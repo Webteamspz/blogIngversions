@@ -7,11 +7,11 @@
 }
 
 /* Professional Back Button Style */
-.back-link-wrapper {
+.article-main .back-link-wrapper {
   margin-bottom: 2rem;
 }
 
-.back-link {
+.article-main .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -23,33 +23,33 @@
   font-weight: 500;
   padding: 8px 16px 8px 12px;
   background: #0a84ff;
-  border-radius: 99px; /* Pill shape */
+  border-radius: 12px; /* Pill shape */
   width: fit-content;
   border: 1px solid transparent;
 }
 
-.back-link svg {
+.article-main .back-link svg {
   transition: transform 0.3s ease;
 }
 
-.back-link:hover {
+.article-main .back-link:hover {
   background: #ffffff1a;
   color: #0a84ff
 }
 
-.back-link:hover svg {
+.article-main .back-link:hover svg {
   transform: translateX(-4px); /* Smooth left arrow animation */
 }
 
 /* Main Container */
-.article-container {
+.article-main .article-container {
   max-width: 56rem;
   margin: 0 auto;
   padding: 1rem 1rem 3rem 1rem;
 }
 
 /* Hero Image */
-.article-hero-wrapper {
+.article-main .article-hero-wrapper {
   max-width: 56rem;
   margin: 0 auto 2rem auto;
   border-radius: 16px;
@@ -59,42 +59,40 @@
   border: 1px solid transparent;
 }
 
-.article-hero-img {
+.article-main .article-hero-img {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-.article-content-wrapper {
+.article-main .article-content-wrapper {
   max-width: 48rem;
   margin: 0 auto;
 }
 
 /* Badges */
-.badge-container {
+.article-main .badge-container {
   margin-bottom: 1.5rem;
 }
 
-.article-badge {
+.article-main .article-badge {
   display: inline-block;
-  padding: .25rem .75rem;
+  padding: 10px 20px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
+  background-color: #0a84ff; 
+  color: #fff;
   font-family: Barlow, sans-serif;
 }
-
-.badge-cro { background-color: #16a34a; color: #fff; }
-.badge-ab { background-color: #ea580c; color: #fff; }
-.badge-shopify { background-color: #9333ea; color: #fff; }
 
 /* ----------------------------------------- */
 /* TYPOGRAPHY (Desktop First)                */
 /* ----------------------------------------- */
 
-.article-title {
+.article-main .article-title {
   font-family: Barlow, sans-serif;
   font-weight: 600;
   font-size: 36px;
@@ -103,7 +101,7 @@
   margin-bottom: 1rem;
 }
 
-.article-meta {
+.article-main .article-meta {
   display: flex;
   align-items: center;
   font-weight: 400;
@@ -114,16 +112,16 @@
   line-height: 150%;
 }
 
-.meta-dot {
+.article-main .meta-dot {
   margin: 0 .5rem;
 }
 
-.article-body {
+.article-main .article-body {
   font-family: Barlow, sans-serif;
   color: #ffffffcc;
 }
 
-.article-h2 {
+.article-main .article-h2 {
   font-family: Barlow, sans-serif;
   font-weight: 600;
   font-size: 28px;
@@ -133,7 +131,7 @@
   margin-bottom: 1rem;
 }
 
-.article-h3 {
+.article-main .article-h3 {
   font-family: Barlow, sans-serif;
   font-weight: 600;
   font-size: 22px;
@@ -143,7 +141,7 @@
   margin-bottom: .75rem;
 }
 
-.article-p {
+.article-main .article-p {
   font-family: Barlow, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -152,7 +150,7 @@
   margin-bottom: 1.25rem;
 }
 
-.article-li {
+.article-main .article-li {
   font-family: Barlow, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -167,7 +165,7 @@
 /* CTA SECTION                               */
 /* ----------------------------------------- */
 
-.article-cta-box {
+.article-main .article-cta-box {
   margin-top: 4rem;
   padding: 2.5rem 2rem;
   background-color: #141414;
@@ -179,7 +177,7 @@
   align-items: center;
 }
 
-.cta-heading {
+.article-main .cta-heading {
   font-family: Barlow, sans-serif;
   font-size: 36px;
   font-weight: 600;
@@ -188,7 +186,7 @@
   margin-bottom: .5rem;
 }
 
-.cta-text {
+.article-main .cta-text {
   font-family: Barlow, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -197,7 +195,7 @@
   margin-bottom: 1.5rem;
 }
 
-.cta-button {
+.article-main .cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -217,7 +215,7 @@
   cursor: pointer;
 }
 
-.cta-button:hover {
+.article-main .cta-button:hover {
   background: #ffffff1a;
   color: #0a84ff;
 }
@@ -227,45 +225,45 @@
 /* ----------------------------------------- */
 
 @media (max-width: 767px) {
-  .article-container {
+  .article-main .article-container {
     padding-top: 1.5rem;
   }
   
-  .article-title {
+  .article-main .article-title {
     font-size: 24px;
     line-height: 120%;
   }
 
-  .article-meta {
+  .article-main .article-meta {
     font-size: 14px;
   }
 
-  .article-h2 {
+  .article-main .article-h2 {
     font-size: 22px;
     line-height: 130%;
   }
 
-  .article-h3 {
+  .article-main .article-h3 {
     font-size: 18px;
     line-height: 140%;
   }
 
-  .article-p,
-  .article-li {
+  .article-main .article-p,
+  .article-main .article-li {
     font-size: 14px;
     line-height: 150%;
   }
 
-  .cta-heading {
+  .article-main .cta-heading {
     font-size: 24px;
     line-height: 120%;
   }
 
-  .cta-text {
+  .article-main .cta-text {
     font-size: 14px;
   }
 
-  .cta-button {
+  .article-main .cta-button {
     max-width: 100%;
   }
 }

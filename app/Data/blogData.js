@@ -1,12 +1,12 @@
 export const blogData = {
     header: {
  links: [
-      { label: "Home", href: "/" },
-      { label: "Services", href: "/#services" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Contact Us", href: "/#contact" },
-      { label: "Team Page", href: "/teampage" },
-      { label: "About Us", href: "/about-us" },
+      { label: "Home", href: "https://ingversionsdigital.com/" },
+      { label: "Services", href: "https://ingversionsdigital.com/#services" },
+      { label: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
+      { label: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
+      { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
+      // { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
       { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     cta: {
@@ -93,23 +93,23 @@ export const blogData = {
     links: [
       {
         name: "Home",
-        href: "#hero",
+        href: "https://ingversionsdigital.com/",
       },
       {
         name: "Services",
-        href: "/#services",
+        href: "https://ingversionsdigital.com/#services",
       },
       {
         name: "Pricing",
-        href: "/pricing",
+        href: "https://ingversionsdigital.com/#pricing",
       },
       {
         name: "Contact Us",
-        href: "/#contact",
+        href: "https://ingversionsdigital.com/#contact",
       },
       {
         name: "Team Page",
-        href: "/teampage",
+        href: "https://ingversionsdigital.com/teampage",
       },
     ],
     address: "2599, Shiv Krupa Association, Kansad, Sachin, Surat 394230 India",
