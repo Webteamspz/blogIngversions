@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* --- Tailwind Utilities --- */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- YAHAN SE AAPKI ORIGINAL REACT THEME SHURU HAI --- */
+:root {
+  --bg-900: #030303;
+  --bg-800: #0f1628;
+  --text-100: #ffffff;
+  --text-200: rgba(255, 255, 255, 0.9);
+  --text-300: #FFFFFFE5;
+  --muted-400: rgba(255, 255, 255, 0.08);
+  --accent-500: #1ea7ff;
+  --pill-500: #3b82f6;
+  --card-800: #121a2f;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-900);
+  color: var(--text-200);
+  font-family: Barlow, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Yeh aapke layout ko center karega */
+.container {
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Yeh cards ko horizontally set karega */
+.grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr); /* Desktop pe 3 cards */
+}
+
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet pe 2 cards */
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr; /* Mobile pe 1 card */
+  }
+}
+
+/* Card ki original styling */
+.card {
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 22px;
+  -webkit-box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+.section-title {
+  color: var(--text-100);
+  margin: 0 0 14px;
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 56px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Buttons aur effects */
+.btn-hero, .c-btn, .social-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #0a84ff;
+  border-radius: 10px;
+  background: transparent;
+  color: #0a84ff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .25s ease-in-out;
+}
+
+.btn-hero:hover, .c-btn:hover, .social-btn:hover {
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 0 14px rgba(10,132,255,.4);
+  color: #0a84ff;
+  transform: translateY(-2px);
+}
+.btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  max-width: 162px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: #0a84ff;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  font-family: Barlow,sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #0a84ff;
+  cursor: pointer
+}
+.btn:hover {
+  background: #ffffff1a;
+  color: #0a84ff
+}

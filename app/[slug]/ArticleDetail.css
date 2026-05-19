@@ -1,0 +1,271 @@
+/* Main Page Background & Spacing */
+.article-main {
+  background-color: #030303;
+  color: #fff;
+  min-height: 100vh;
+  padding-top: 100px; /* Fixed header offset */
+}
+
+/* Professional Back Button Style */
+.back-link-wrapper {
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: Barlow, sans-serif;
+  font-weight: 500;
+  padding: 8px 16px 8px 12px;
+  background: #0a84ff;
+  border-radius: 99px; /* Pill shape */
+  width: fit-content;
+  border: 1px solid transparent;
+}
+
+.back-link svg {
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover {
+  background: #ffffff1a;
+  color: #0a84ff
+}
+
+.back-link:hover svg {
+  transform: translateX(-4px); /* Smooth left arrow animation */
+}
+
+/* Main Container */
+.article-container {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem 1rem;
+}
+
+/* Hero Image */
+.article-hero-wrapper {
+  max-width: 56rem;
+  margin: 0 auto 2rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  background-color: #141414;
+  border: 1px solid transparent;
+}
+
+.article-hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.article-content-wrapper {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+/* Badges */
+.badge-container {
+  margin-bottom: 1.5rem;
+}
+
+.article-badge {
+  display: inline-block;
+  padding: .25rem .75rem;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  font-family: Barlow, sans-serif;
+}
+
+.badge-cro { background-color: #16a34a; color: #fff; }
+.badge-ab { background-color: #ea580c; color: #fff; }
+.badge-shopify { background-color: #9333ea; color: #fff; }
+
+/* ----------------------------------------- */
+/* TYPOGRAPHY (Desktop First)                */
+/* ----------------------------------------- */
+
+.article-title {
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 56px;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffffcc;
+  margin-bottom: 2.5rem;
+  font-family: Barlow, sans-serif;
+  line-height: 150%;
+}
+
+.meta-dot {
+  margin: 0 .5rem;
+}
+
+.article-body {
+  font-family: Barlow, sans-serif;
+  color: #ffffffcc;
+}
+
+.article-h2 {
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.3;
+  color: #fff;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.article-h3 {
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.4;
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: .75rem;
+}
+
+.article-p {
+  font-family: Barlow, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffffffcc;
+  margin-bottom: 1.25rem;
+}
+
+.article-li {
+  font-family: Barlow, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffffffcc;
+  margin-left: 1.5rem;
+  margin-bottom: .5rem;
+  list-style-type: disc;
+}
+
+/* ----------------------------------------- */
+/* CTA SECTION                               */
+/* ----------------------------------------- */
+
+.article-cta-box {
+  margin-top: 4rem;
+  padding: 2.5rem 2rem;
+  background-color: #141414;
+  border-radius: 16px; 
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-heading {
+  font-family: Barlow, sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 56px;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+
+.cta-text {
+  font-family: Barlow, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffffffcc;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 162px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: #0a84ff;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration: none;
+  transition: .3s all ease-in-out;
+  font-family: Barlow, sans-serif;
+  border: 1px solid #0a84ff;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background: #ffffff1a;
+  color: #0a84ff;
+}
+
+/* ----------------------------------------- */
+/* MOBILE RESPONSIVE (@media max-width: 767) */
+/* ----------------------------------------- */
+
+@media (max-width: 767px) {
+  .article-container {
+    padding-top: 1.5rem;
+  }
+  
+  .article-title {
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .article-meta {
+    font-size: 14px;
+  }
+
+  .article-h2 {
+    font-size: 22px;
+    line-height: 130%;
+  }
+
+  .article-h3 {
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  .article-p,
+  .article-li {
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  .cta-heading {
+    font-size: 24px;
+    line-height: 120%;
+  }
+
+  .cta-text {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    max-width: 100%;
+  }
+}
