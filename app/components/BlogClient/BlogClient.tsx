@@ -1,24 +1,46 @@
- "use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./BlogClient.css"; 
-// Agar gtm.ts tumhari root folder mein hai, toh path "/gtm" ya "../gtm" hoga
+// GTM import - path apne hisaab se adjust kar lena agar error aaye
 import { ctaClick, formSuccess, pageview } from "../../gtm"; 
 
-const featuredImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop";
+// ✅ STEP 1: Aapki data file import kar li hai
+// Agar path ka error aaye toh "./../../Data/blogData" ya "../Data/blogData" try karna
+import { blogData } from "../../Data/blogData"; 
 
+// Fallback images agar kisi blog mein coverImage miss ho jaye
 const articleImages: Record<string, string> = {
   "cro": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
   "ab-testing": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
   "shopify": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop",
+  "qa": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
 };
 
+// Helper function: Taki 'Shopify Development' jaisi category 'shopify' slug ban jaye
+const getCategorySlug = (categoryName: string) => {
+  if (!categoryName) return "all";
+  if (categoryName === "Shopify Development") return "shopify";
+  if (categoryName === "A/B Testing") return "ab-testing";
+  if (categoryName === "Quality Assurance") return "qa";
+  if (categoryName === "CRO") return "cro";
+  return categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+};
+
+// ✅ STEP 2: Ab hardcoded articles ki jagah direct blogData use ho raha hai
+const articles = blogData.posts.map(post => ({
+  ...post,
+  categorySlug: getCategorySlug(post.category)
+}));
+
+// Categories array jo article counts dynamically calculate karega
 const categories = [
-  { id: "all", name: "All Posts", count: 9 },
-  { id: "cro", name: "CRO", count: 3 },
-  { id: "ab-testing", name: "A/B Testing", count: 3 },
-  { id: "shopify", name: "Shopify Development", count: 3 },
+  { id: "all", name: "All Posts", count: articles.length },
+  { id: "cro", name: "CRO", count: articles.filter(a => a.categorySlug === "cro").length },
+  { id: "ab-testing", name: "A/B Testing", count: articles.filter(a => a.categorySlug === "ab-testing").length },
+  { id: "shopify", name: "Shopify Development", count: articles.filter(a => a.categorySlug === "shopify").length },
+  { id: "qa", name: "Quality Assurance", count: articles.filter(a => a.categorySlug === "qa").length },
 ];
 
 const featuredArticle = {
@@ -30,27 +52,21 @@ const featuredArticle = {
   categorySlug: "cro",
   date: "April 10, 2026",
   readTime: "8 min read",
+  coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
 };
-
-const articles = [
-  { id: "1", slug: "shopify-theme-customizations-boost-sales", title: "5 Shopify Theme Customizations That Boost Sales", excerpt: "From product page layouts to checkout optimizations, these theme changes can significantly improve your conversion rate.", category: "Shopify Development", categorySlug: "shopify", date: "April 8, 2026", readTime: "6 min read" },
-  { id: "2", slug: "ab-testing-mistakes-cost-money", title: "A/B Testing Mistakes That Cost You Money", excerpt: "Common pitfalls in conversion testing and how to avoid them. Learn from real client experiences.", category: "A/B Testing", categorySlug: "ab-testing", date: "April 5, 2026", readTime: "5 min read" },
-  { id: "3", slug: "cro-fundamentals-where-to-start", title: "CRO Fundamentals: Where to Start", excerpt: "New to conversion rate optimization? This guide covers the essential frameworks and tools you need.", category: "CRO", categorySlug: "cro", date: "April 3, 2026", readTime: "7 min read" },
-  { id: "4", slug: "headless-shopify-storefront", title: "Building a Headless Shopify Storefront", excerpt: "When and why to go headless, plus a technical overview of our preferred stack for performance.", category: "Shopify Development", categorySlug: "shopify", date: "March 28, 2026", readTime: "10 min read" },
-  { id: "5", slug: "statistical-significance-ab-testing", title: "Statistical Significance in A/B Testing", excerpt: "Stop guessing and start testing with confidence. A no-nonsense guide to test validity.", category: "A/B Testing", categorySlug: "ab-testing", date: "March 25, 2026", readTime: "6 min read" },
-  { id: "6", slug: "mobile-checkout-optimization", title: "Mobile Checkout Optimization: 7 Quick Wins", excerpt: "Mobile commerce is growing. Here's how to capture those sales with better UX.", category: "CRO", categorySlug: "cro", date: "March 22, 2026", readTime: "4 min read" },
-];
 
 const categoryColors: Record<string, string> = {
   "CRO": "badge-cro",
   "A/B Testing": "badge-ab",
   "Shopify Development": "badge-shopify",
+  "Quality Assurance": "badge-qa",
 };
 
 const categoryBorderColors: Record<string, string> = {
   "CRO": "border-hover-cro",
   "A/B Testing": "border-hover-ab",
   "Shopify Development": "border-hover-shopify",
+  "Quality Assurance": "border-hover-qa",
 };
 
 export default function BlogClient() {
@@ -60,7 +76,6 @@ export default function BlogClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Track Page View
   useEffect(() => {
     try { pageview(window.location.pathname, "Blog Index Page"); } catch (e) {}
   }, []);
@@ -98,7 +113,6 @@ export default function BlogClient() {
 
   return (
    <main className="blog-main">
-      {/* Hero Section */}
       <section className="blog-section hero-section">
         <div className="container text-center">
           <h1 className="hero-title">
@@ -108,7 +122,6 @@ export default function BlogClient() {
             Practical advice on conversion optimization, A/B testing, and Shopify development
           </p>
 
-          {/* Category Tabs */}
           <div className="tabs-container">
             {categories.map((cat) => (
               <button
@@ -123,7 +136,6 @@ export default function BlogClient() {
         </div>
       </section>
 
-      {/* Featured Article */}
       {activeCategory === "all" && (
         <section className="blog-section py-8">
           <div className="container">
@@ -131,7 +143,7 @@ export default function BlogClient() {
               <div className="featured-card">
                 <div className="featured-layout">
                   <div className="featured-image-container">
-                    <img src={featuredImage} alt="Checkout conversion" className="featured-image" />
+                    <img src={featuredArticle.coverImage} alt="Checkout conversion" className="featured-image" />
                   </div>
                   <div className="featured-content">
                     <span className={`badge ${categoryColors[featuredArticle.category]}`}>
@@ -159,7 +171,6 @@ export default function BlogClient() {
         </section>
       )}
 
-      {/* Articles Grid */}
       <section className="blog-section py-8">
         <div className="container">
           <div className="grid-header">
@@ -170,12 +181,13 @@ export default function BlogClient() {
           </div>
 
           <div className="articles-grid">
-            {filteredArticles.map((article) => (
+            {filteredArticles.map((article: any) => (
               <Link key={article.id} href={`/${article.slug}`} className="block-link">
                 <article className={`article-card ${categoryBorderColors[article.category]}`}>
                   <div className="article-img-wrapper">
+                    {/* ✅ STEP 3: Yahan pe article.coverImage use hua hai */}
                     <img 
-                      src={articleImages[article.categorySlug]} 
+                      src={article.coverImage || articleImages[article.categorySlug]} 
                       alt={article.category} 
                       className="article-img"
                     />
@@ -203,7 +215,6 @@ export default function BlogClient() {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
       <section className="blog-section py-12">
         <div className="newsletter-container text-center">
           <h2 className="newsletter-title">
@@ -241,12 +252,10 @@ export default function BlogClient() {
         </div>
       </section>
 
-      {/* Category Cards */}
       <section className="blog-section py-12">
         <div className="container">
           <h2 className="section-title-center">Browse by Category</h2>
           <div className="categories-grid">
-            {/* CRO */}
             <div 
               className="category-card hover-cro"
               onClick={() => setActiveCategory("cro")}
@@ -256,10 +265,9 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">CRO</h3>
               <p className="category-desc">Conversion rate optimization strategies and best practices.</p>
-              <span className="category-link text-green">3 articles →</span>
+              <span className="category-link text-green">{categories.find(c => c.id === "cro")?.count} articles →</span>
             </div>
 
-            {/* A/B Testing */}
             <div 
               className="category-card hover-ab"
               onClick={() => setActiveCategory("ab-testing")}
@@ -269,10 +277,9 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">A/B Testing</h3>
               <p className="category-desc">Testing methodologies and statistical significance.</p>
-              <span className="category-link text-orange">3 articles →</span>
+              <span className="category-link text-orange">{categories.find(c => c.id === "ab-testing")?.count} articles →</span>
             </div>
 
-            {/* Shopify */}
             <div 
               className="category-card hover-shopify"
               onClick={() => setActiveCategory("shopify")}
@@ -282,8 +289,21 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">Shopify Development</h3>
               <p className="category-desc">Theme customization and store optimization.</p>
-              <span className="category-link text-purple">3 articles →</span>
+              <span className="category-link text-purple">{categories.find(c => c.id === "shopify")?.count} articles →</span>
             </div>
+            
+            <div 
+              className="category-card hover-qa"
+              onClick={() => setActiveCategory("qa")}
+            >
+              <div className="category-img-wrapper bg-blue-light">
+                <img src={articleImages["qa"]} alt="Quality Assurance" className="category-img" />
+              </div>
+              <h3 className="category-title">Quality Assurance</h3>
+              <p className="category-desc">Automated testing, checklists, and performance tracking.</p>
+              <span className="category-link text-blue">{categories.find(c => c.id === "qa")?.count} articles →</span>
+            </div>
+            
           </div>
         </div>
       </section>

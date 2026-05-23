@@ -2,15 +2,34 @@ import type { Metadata } from "next";
 import BlogClient from "./components/BlogClient/BlogClient";
 
 export const metadata: Metadata = {
-  title: "CRO, A/B Testing & Shopify Development Blog | Ingversions",
-  description: "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices. Learn from real case studies and client experiences. Join 2,000+ founders receiving actionable advice.",
-  keywords: ["CRO", "conversion rate optimization", "A/B testing", "Shopify development", "eCommerce blog", "Shopify tips", "blog"],
+  title: "Blog Page",
+  description:
+    "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices. Learn from real case studies and client experiences. Join 2,000+ founders receiving actionable advice.",
+  keywords: [
+    "CRO",
+    "conversion rate optimization",
+    "A/B testing",
+    "Shopify development",
+    "eCommerce blog",
+    "Shopify tips",
+    "blog",
+  ],
   authors: [{ name: "Ingversions" }],
+  // Canonical URL set karna zaroori hai SEO ke liye
+  alternates: {
+    canonical: "https://blog.ingversionsdigital.com/",
+  },
+  // Robots index follow
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     url: "https://blog.ingversionsdigital.com",
     title: "CRO, A/B Testing & Shopify Development Blog | Ingversions",
-    description: "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
+    description:
+      "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
     images: [
       {
         url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
@@ -23,8 +42,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CRO, A/B Testing & Shopify Development Blog | Ingversions",
-    description: "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
+    description:
+      "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
     images: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop"],
+    site: "@ingversions", // Aapke purane code se uthaya
   },
 };
 

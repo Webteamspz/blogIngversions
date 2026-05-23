@@ -67,7 +67,6 @@
 }
 
 .article-main .article-content-wrapper {
-  max-width: 48rem;
   margin: 0 auto;
 }
 
@@ -121,7 +120,8 @@
   color: #ffffffcc;
 }
 
-.article-main .article-h2 {
+/* MARKDOWN CONTENT STYLING */
+.markdown-content h2 {
   font-family: Barlow, sans-serif;
   font-weight: 600;
   font-size: 28px;
@@ -131,7 +131,7 @@
   margin-bottom: 1rem;
 }
 
-.article-main .article-h3 {
+.markdown-content h3 {
   font-family: Barlow, sans-serif;
   font-weight: 600;
   font-size: 22px;
@@ -141,7 +141,7 @@
   margin-bottom: .75rem;
 }
 
-.article-main .article-p {
+.markdown-content p {
   font-family: Barlow, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -150,15 +150,41 @@
   margin-bottom: 1.25rem;
 }
 
-.article-main .article-li {
+.markdown-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: #ffffffcc;
   font-family: Barlow, sans-serif;
-  font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  color: #ffffffcc;
-  margin-left: 1.5rem;
-  margin-bottom: .5rem;
-  list-style-type: disc;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content th, 
+.markdown-content td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.markdown-content th {
+  background-color: #141414;
+  color: #fff;
 }
 
 /* ----------------------------------------- */
@@ -221,6 +247,309 @@
 }
 
 /* ----------------------------------------- */
+/* COMMENTS SECTION                          */
+/* ----------------------------------------- */
+
+.comments-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #333;
+  font-family: Barlow, sans-serif;
+}
+
+.comments-heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.comment-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #333;
+}
+
+.comment-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comment-body {
+  background-color: #141414;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  flex-grow: 1;
+}
+
+.comment-author {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.comment-text {
+  font-size: 15px;
+  color: #ffffffcc;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.comment-reply-btn {
+  background: none;
+  border: none;
+  color: #0a84ff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.comment-reply-btn:hover {
+  text-decoration: underline;
+}
+
+.comment-form-wrapper {
+  margin-top: 3rem;
+}
+
+.comment-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.comment-input,
+.comment-textarea {
+  background-color: transparent;
+  border: 1px solid #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.comment-input:focus,
+.comment-textarea:focus {
+  border-color: #0a84ff;
+}
+
+.comment-textarea {
+  grid-column: span 2;
+  resize: vertical;
+}
+
+.comment-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 162px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: #0a84ff;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration: none;
+  transition: .3s all ease-in-out;
+  font-family: Barlow, sans-serif;
+  border: 1px solid #0a84ff;
+  cursor: pointer;
+}
+
+.comment-submit-btn:hover {
+  background: #ffffff1a;
+  color: #0a84ff;
+}
+
+/* ----------------------------------------- */
+/* NEWSLETTER BANNER                         */
+/* ----------------------------------------- */
+
+.newsletter-banner {
+  max-width: 56rem;
+  margin: 4rem auto 0 auto;
+  padding: 0 1rem;
+}
+
+.newsletter-content {
+  background-color: #141414;
+  border: 1px solid #333;
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Barlow, sans-serif;
+}
+
+.newsletter-icon {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 100px;
+  height: 100px;
+  opacity: 0.1;
+  color: #0a84ff;
+  transform: rotate(45deg);
+}
+
+.newsletter-subtitle {
+  color: #ffffffcc;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.newsletter-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 14px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.newsletter-input:focus {
+  border-color: #0a84ff;
+}
+
+.newsletter-submit-btn {
+  background-color: #f97316;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.newsletter-submit-btn:hover {
+  background-color: #ea580c;
+}
+/* --- Markdown Content Styling --- */
+
+.markdown-content {
+  color: #ffffffcc; /* Paragraphs ke liye light grey color jo padhne mein aasan ho */
+  font-family: 'Barlow', sans-serif; /* Tumhara standard font */
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* H2 Styling (e.g., "Conversion Rate Optimization Isn't Magic") */
+.markdown-content h2 {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+/* Agar H2 sabse pehla element hai, toh upar extra space na aaye */
+.markdown-content h2:first-child {
+  margin-top: 0;
+}
+
+/* H3 Styling (e.g., "Step 1: Establish Baselines") */
+.markdown-content h3 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* Paragraph spacing */
+.markdown-content p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* Bullet Points & Lists */
+.markdown-content ul, 
+.markdown-content ol {
+  margin-top: 0;
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.markdown-content li {
+  margin-bottom: 10px;
+}
+
+/* Bold text inside markdown */
+.markdown-content strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767.98px) {
+  .markdown-content {
+    font-size: 15px;
+  }
+  .markdown-content h2 {
+    font-size: 24px;
+    margin-top: 36px;
+  }
+  .markdown-content h3 {
+    font-size: 18px;
+    margin-top: 28px;
+  }
+}
+/* ----------------------------------------- */
 /* MOBILE RESPONSIVE (@media max-width: 767) */
 /* ----------------------------------------- */
 
@@ -238,18 +567,19 @@
     font-size: 14px;
   }
 
-  .article-main .article-h2 {
+  .markdown-content h2 {
     font-size: 22px;
     line-height: 130%;
   }
 
-  .article-main .article-h3 {
+  .markdown-content h3 {
     font-size: 18px;
     line-height: 140%;
   }
 
-  .article-main .article-p,
-  .article-main .article-li {
+  .markdown-content p,
+  .markdown-content ul,
+  .markdown-content li {
     font-size: 14px;
     line-height: 150%;
   }
@@ -265,5 +595,34 @@
 
   .article-main .cta-button {
     max-width: 100%;
+  }
+.comment-submit-btn text{
+   font-size: 14px;
+}
+.comment-submit-btn{
+    max-width: 100%;
+}
+  .comment-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .comment-textarea {
+    grid-column: span 1;
+  }
+
+  .newsletter-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .newsletter-title {
+    font-size: 24px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-submit-btn {
+    width: 100%;
   }
 }
