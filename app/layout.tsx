@@ -6,7 +6,7 @@ import "./globals.css";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Preloader from "./components/Preloader/Preloader"; // ✅ 
+// import Preloader from "./components/Preloader/Preloader"; // 
 import ScrollToTop from "../app/components/ScrollToTop/ScrollToTop";
 
 import GTMProvider from "./GTMProvider";
@@ -113,11 +113,11 @@ export default function RootLayout({
         <ScrollToTop />
         
         {/* ✅ Preloader ke andar wrap kar diya poora app */}
-        <Preloader>
+        {/* <Preloader> */}
           <Header />
           <main className="grow">{children}</main>
           <Footer />
-        </Preloader>
+        {/* </Preloader> */}
         
       </body>
     </html>
