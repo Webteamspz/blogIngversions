@@ -6,7 +6,7 @@ export const blogData = {
       { label: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
       { label: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
-      { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
+      // { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
       { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     cta: {
@@ -291,7 +291,7 @@ featuredPost: {
       { name: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
       { name: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { name: "Team Page", href: "https://ingversionsdigital.com/teampage" },
-      { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
+      // { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
       { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     address: "2599, Shiv Krupa Association, Kansad, Sachin, Surat 394230 India",
