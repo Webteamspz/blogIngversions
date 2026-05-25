@@ -3,7 +3,7 @@
 }
 .blog-section {
   background-color: #030303;
-  padding: 40px 15px
+  padding: 0 15px 40px
 }
 .container {
   max-width: 1260px;
@@ -96,6 +96,7 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid transparent;
+  display: none;
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,.25);
   transition: box-shadow .2s

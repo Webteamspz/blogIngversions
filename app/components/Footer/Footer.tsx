@@ -4,7 +4,7 @@ import { blogData as data } from "../../Data/blogData";
 import styles from "./Footer.module.css";
 import parse from "html-react-parser";
 
-// TypeScript Types
+// ✅ TypeScript Types
 interface SocialItem {
   name: string;
   href: string;
@@ -12,7 +12,8 @@ interface SocialItem {
 }
 
 interface LinkItem {
-  name: string;
+  name?: string;  
+  label?: string; 
   href: string;
 }
 
@@ -29,7 +30,7 @@ interface FooterData {
 }
 
 const Footer: React.FC = () => {
-  const f = data.footer as FooterData;
+  const f = data?.footer as FooterData;
 
   // Agar galti se footer ka data nahi hai, toh crash se bachne ke liye fallback
   if (!f) return null;
@@ -41,51 +42,81 @@ const Footer: React.FC = () => {
         {/* Main Multi-Column Area */}
         <div className={styles.footerMain}>
           
-          {/* Column 1: Logo & Bio */}
+          {/* Column 1: Logo, Bio & Socials */}
           <div className={styles.brandCol}>
             <Link href="/" className={styles.footerLeft}>
-              <img
-                src={f.logo}
-                alt={`${f.company} logo`}
-                className={styles.footerLogo}
-              />
+              {f?.logo && (
+                <img
+                  src={f.logo}
+                  alt={`${f.company} logo`}
+                  className={styles.footerLogo}
+                />
+              )}
             </Link>
             <p className={styles.companyBio}>
-              {f.bio || "Ingversions is a digital agency focused on CRO-driven websites. We help e-commerce brands scale conversions with data-backed design and development."}
+              {f?.bio || "Ingversions is a digital agency focused on CRO-driven websites. We help e-commerce brands scale conversions with data-backed design and development."}
             </p>
+
+            {/* Follow Us Section */}
+            <div className={`${styles.linkGroup} ${styles.brandSocials}`}>
+              <div className={styles.footSocials}>
+                {f?.socials?.map((s: SocialItem, i: number) => (
+                  <a
+                    key={i}
+                    href={s.href}
+                    aria-label={s.name}
+                    className={styles.socialBtn}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {parse(s.icon)}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Columns 2, 3, 4: Links Grid */}
+          {/* Columns 2 & 3: Links Grid */}
           <div className={styles.linksWrapper}>
             
             {/* Column 2: Quick Links */}
             <div className={styles.linkGroup}>
-              <h4>Company</h4>
-              {f.links.map((l: LinkItem, i: number) => {
-                const isExternal =
-                  l.href.startsWith("http") ||
-                  l.href.startsWith("mailto:") ||
-                  l.href.startsWith("tel:");
+              {/* 👇 CSS GRID WRAPPER: Ek line (column) me max 6 labels. 7th aate hi naya column. 👇 */}
+              <div style={{ 
+                display: "grid", 
+                gridTemplateRows: "repeat(6, auto)", // Max 6 items vertical
+                gridAutoFlow: "column",              // Automatically shift to next column after 6
+                columnGap: "30px", 
+                rowGap: "12px"     
+              }}>
+                {f?.links?.map((l: LinkItem, i: number) => {
+                  const isExternal =
+                    l.href.startsWith("http") ||
+                    l.href.startsWith("mailto:") ||
+                    l.href.startsWith("tel:");
+                    
+                  const displayText = l.name || l.label || "Link";
 
-                if (isExternal) {
+                  if (isExternal) {
+                    return (
+                      <a key={i} href={l.href} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+                        {displayText}
+                      </a>
+                    );
+                  }
+
                   return (
-                    <a key={i} href={l.href} target="_blank" rel="noreferrer">
-                      {l.name}
-                    </a>
+                    <Link key={i} href={l.href} style={{ textDecoration: 'none' }}>
+                      {displayText}
+                    </Link>
                   );
-                }
-
-                return (
-                  <Link key={i} href={l.href}>
-                    {l.name}
-                  </Link>
-                );
-              })}
+                })}
+              </div>
+              {/* 👆 CSS GRID WRAPPER END 👆 */}
             </div>
 
-            {/* Column 3: Contact Info (With your SVGs) */}
+            {/* Column 3: Contact Info */}
             <div className={styles.linkGroup}>
-              <h4>Contact Us</h4>
               
               <a href={`mailto:${f.email}`} className={styles.footContact}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -107,25 +138,6 @@ const Footer: React.FC = () => {
                   <path fillRule="evenodd" clipRule="evenodd" d="M11.5397 22.351C11.57 22.3685 11.5937 22.3821 11.6105 22.3915L11.6384 22.4071C11.8613 22.5294 12.1378 22.5285 12.3608 22.4075L12.3895 22.3915C12.4063 22.3821 12.43 22.3685 12.4603 22.351C12.5207 22.316 12.607 22.265 12.7155 22.1982C12.9325 22.0646 13.2388 21.8676 13.6046 21.6091C14.3351 21.0931 15.3097 20.3274 16.2865 19.3273C18.2307 17.3368 20.25 14.3462 20.25 10.5C20.25 5.94365 16.5563 2.25 12 2.25C7.44365 2.25 3.75 5.94365 3.75 10.5C3.75 14.3462 5.76932 17.3368 7.71346 19.3273C8.69025 20.3274 9.66491 21.0931 10.3954 21.6091C10.7612 21.8676 11.0675 22.0646 11.2845 22.1982C11.393 22.265 11.4793 22.316 11.5397 22.351ZM12 13.5C13.6569 13.5 15 12.1569 15 10.5C15 8.84315 13.6569 7.5 12 7.5C10.3431 7.5 9 8.84315 9 10.5C9 12.1569 10.3431 13.5 12 13.5Z" fill="#0A84FF"/>
                 </svg>
                 <span>{f.address}</span>
-              </div>
-            </div>
-
-            {/* Column 4: Social Icons (Replacing Resources) */}
-            <div className={styles.linkGroup}>
-              <h4>Follow Us</h4>
-              <div className={styles.footSocials}>
-                {f.socials.map((s: SocialItem, i: number) => (
-                  <a
-                    key={i}
-                    href={s.href}
-                    aria-label={s.name}
-                    className={styles.socialBtn}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {parse(s.icon)}
-                  </a>
-                ))}
               </div>
             </div>
 

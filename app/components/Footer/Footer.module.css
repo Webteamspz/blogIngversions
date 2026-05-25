@@ -1,20 +1,20 @@
 .siteFooter {
   background: #030303;
-  border-top: 1px solid #ffffffcc;
   position: relative;
-  padding: 80px 0 30px
+  border-top: 1px solid #ffffffcc;
+  padding: 60px 0 30px
 }
 .footerMain {
   display: flex;
   justify-content: space-between;
   gap: 60px;
-  margin-bottom: 60px
+  margin-bottom: 40px
 }
 .brandCol {
   max-width: 320px
 }
 .footerLogo {
-  max-width: 200px;
+  max-width: 230px;
   width: 100%;
   display: block;
   object-fit: cover;
@@ -23,15 +23,19 @@
 .companyBio {
   color: #ffffffcc;
   font-family: Barlow;
-  font-size: 14px;
-  line-height: 1.6;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
   margin: 0
+}
+.brandSocials {
+  margin-top: 30px
 }
 .linksWrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
-  justify-content: center;
+  gap: 65px;
+  justify-content: flex-end;
   flex: 1
 }
 .linkGroup {
@@ -39,7 +43,7 @@
   flex-direction: column;
   gap: 14px;
   min-width: 160px;
-  max-width: 250px
+  max-width: 270px
 }
 .linkGroup h4 {
   color: #fff;
@@ -48,41 +52,30 @@
   font-weight: 600;
   margin: 0 0 8px 0
 }
-.linkGroup a {
-  color: #ffffffcc;
+.linkGroup > a {
+  color: #fff;
   text-decoration: none;
   font-family: Barlow;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 1.5;
-  transition: color .2s ease
+  font-size: 18px;
+  line-height: 100%;
+  transition: color .2s ease;
+  padding: 4px 0
 }
-.linkGroup span.addressText {
-  color: #ffffffcc;
-  text-decoration: none;
-  font-family: Barlow;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.5;
-  word-wrap: break-word;
-  white-space: normal;
-  transition: color .2s ease
-}
-.linkGroup a:hover {
+.linkGroup > a:hover {
   color: #0a84ff
 }
 .footerBottomRow {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-top: 1px solid rgba(255,255,255,.1);
-  padding-top: 24px
+  align-items: center
 }
 .copyright {
   color: #ffffffcc;
   font-family: Barlow;
-  font-size: 14px;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
   text-align: center
 }
 .footSocials {
@@ -93,18 +86,18 @@
 .socialBtn {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 6px;
+  border: none;
   display: grid;
   place-items: center;
-  transition: all .2s ease;
-  color: #ffffffcc
+  color: #ffffffcc;
+  transition: transform .15s ease,filter .15s ease;
+  background: linear-gradient(180deg,#242424 0,rgba(36,36,36,0) 100%)
 }
 .socialBtn:hover {
-  border-color: #0a84ff;
-  background: #0a84ff;
-  color: #fff;
-  transform: translateY(-2px)
+  color: #0a84ff;
+  transform: translateY(-1px);
+  filter: brightness(1.1)
 }
 .socialBtn svg {
   width: 18px;
@@ -115,9 +108,13 @@
 .footContact {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 15px;
   color: #ffffffcc;
-  text-decoration: none
+  text-decoration: none;
+  font-family: Barlow;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%
 }
 .footContact:hover {
   color: #0a84ff
@@ -125,47 +122,152 @@
 .footAddress svg,
 .footContact svg {
   flex-shrink: 0;
-  margin-top: 2px
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  color: #0a84ff
 }
-
 @media (max-width:1199.98px) and (min-width:1024px) {
   .footerMain {
     gap: 20px
   }
   .linksWrapper {
-    gap: 10px;
+    gap: 10px
   }
 }
-@media (max-width:1023.98px) {
+@media (max-width:1023.98px) and (min-width:768px) {
+  .siteFooter {
+    padding: 40px 0 30px
+  }
   .footerMain {
     flex-direction: column;
+    align-items: center;
     gap: 50px
   }
   .brandCol {
-    max-width: 100%
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center
+  }
+  .footerLogo {
+    margin: 0 auto 24px auto
   }
   .linksWrapper {
-    justify-content: flex-start;
-    gap: 40px
+    justify-content: center;
+    gap: 80px;
+    width: 100%
+  }
+  .linkGroup {
+    align-items: flex-start;
+    text-align: left
+  }
+  .linkGroup.brandSocials {
+    align-items: center;
+    width: 100%
+  }
+  .linkGroup.brandSocials h4 {
+    text-align: center
+  }
+  .footSocials {
+    justify-content: center;
+    width: 100%
   }
 }
 @media (max-width:767.98px) {
   .siteFooter {
-    padding: 60px 0 20px
+    padding: 30px 0 20px
+  }
+  .footerMain {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px
+  }
+  .brandCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%
+  }
+  .footerLogo {
+    margin: 0 auto 24px auto
   }
   .linksWrapper {
     flex-direction: column;
-    gap: 32px
+    align-items: center;
+    gap: 40px;
+    width: 100%
   }
   .linkGroup {
-    min-width: 100%
+    min-width: 100%;
+    align-items: center;
+    text-align: center
+  }
+  .linksWrapper .linkGroup:nth-child(2) h4 {
+    display: none
   }
   .footerBottomRow {
     flex-direction: column;
     justify-content: center;
-    gap: 20px
+    gap: 20px;
+    padding: 8px 0 44px
   }
   .footSocials {
-    justify-content: flex-start
+    justify-content: center;
+    width: 100%
+  }
+  .socialBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px
+  }
+  .footAddress,
+  .footContact {
+    font-size: 16px;
+    line-height: 130%;
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 9px;
+    align-items: start;
+    width: 100%;
+    max-width: max-content;
+    margin: 0 auto;
+    text-align: center
+  }
+  .footAddress svg,
+  .footContact svg {
+    margin-top: 2px
+  }
+  .copyright {
+    font-size: 14px;
+    line-height: 130%;
+    color: #98989a
+  }
+}
+@media (max-width:359.98px) {
+  .footerLogo {
+    max-width: 160px
+  }
+  .socialBtn {
+    width: 40px;
+    height: 40px
+  }
+  .socialBtn svg {
+    width: 22px;
+    height: 22px
+  }
+  .linkGroup > a {
+    font-size: 15px
+  }
+  .companyBio,
+  .footAddress,
+  .footContact {
+    font-size: 13px
+  }
+  .copyright {
+    font-size: 12px;
+    color: #98989a
   }
 }

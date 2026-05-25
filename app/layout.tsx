@@ -6,7 +6,8 @@ import "./globals.css";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Preloader from "./components/Preloader/Preloader";
+import Preloader from "./components/Preloader/Preloader"; // ✅ 
+import ScrollToTop from "../app/components/ScrollToTop/ScrollToTop";
 
 import GTMProvider from "./GTMProvider";
 
@@ -15,14 +16,12 @@ const barlow = Barlow({
   weight: ["400", "600", "700", "800"],
 });
 
-// 1. Theme Color (Pehle meta tag mein tha, ab Next.js Viewport mein aayega)
 export const viewport: Viewport = {
   themeColor: "#030303",
   width: "device-width",
   initialScale: 1,
 };
 
-// 2. Global Metadata: Favicons aur Manifest yahan add ho gaye hain
 export const metadata: Metadata = {
   title: "Ingversions Digital",
   description: "Your trusted digital partner.",
@@ -42,7 +41,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // 3. Organization Schema (JSON-LD)
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -68,13 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager Script (Aapka original) */}
-        <Script
-          src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`}
-          strategy="afterInteractive"
-        />
-
-        {/* GTM Init (Aapka original) */}
+        <Script src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`} strategy="afterInteractive" />
         <Script id="gtm-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -84,16 +76,10 @@ export default function RootLayout({
             });
           `}
         </Script>
-
-        {/* Schema Markup Injector */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       </head>
 
       <body className={`${barlow.className} flex flex-col min-h-screen`}>
-        {/* Microsoft Clarity - Next.js Script format mein */}
         <Script
           id="microsoft-clarity"
           strategy="afterInteractive"
@@ -113,27 +99,26 @@ export default function RootLayout({
           }}
         />
 
-        {/* GTM Provider */}
         <GTMProvider />
 
-        {/* GTM NoScript (Aapka original) */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P5BGX7H7"
             height="0"
             width="0"
-            style={{
-              display: "none",
-              visibility: "hidden",
-            }}
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
 
+        <ScrollToTop />
+        
+        {/* ✅ Preloader ke andar wrap kar diya poora app */}
         <Preloader>
           <Header />
           <main className="grow">{children}</main>
           <Footer />
         </Preloader>
+        
       </body>
     </html>
   );

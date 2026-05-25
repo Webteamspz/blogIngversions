@@ -21,6 +21,27 @@
   -webkit-animation: logoPulse 0.9s ease-in-out infinite alternate;
   animation: logoPulse 0.9s ease-in-out infinite alternate
 }
+.preloader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #030303; /* Tumhara theme color - Black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* Sabse upar */
+  /* Agar animation daalna ho hide hone pe toh: */
+  animation: fadeOut 0.5s ease 1.5s forwards; 
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @-webkit-keyframes logoPulse {
   from {
     -webkit-transform: scale(1);

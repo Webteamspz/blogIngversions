@@ -6,7 +6,7 @@ export const blogData = {
       { label: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
       { label: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
-      // { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
+      { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
       { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     cta: {
@@ -33,11 +33,12 @@ export const blogData = {
   categories: ["All", "Shopify Development", "A/B Testing", "CRO", "Quality Assurance", "Design", "Business", "Marketing"],
 
   // 4. Featured Post
-  featuredPost: {
+featuredPost: {
     id: "post-0",
     title: "How to Migrate from React to Next.js App Router",
     slug: "migrate-react-to-nextjs",
     excerpt: "A complete step-by-step guide to migrating your React Single Page Application (SPA) to Next.js with Server-Side Rendering.",
+    content: "<h2>Why Migrate to Next.js?</h2><p>Next.js offers out-of-the-box Server Side Rendering (SSR), which is amazing for SEO and initial load times compared to a standard React SPA...</p><p>Here is how you can start the migration process step-by-step.</p>",
     author: {
       name: "Ingversions Team",
       avatar: "/assets/team/author-1.png",
@@ -59,7 +60,7 @@ export const blogData = {
       date: "April 8, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "/blog-page/inner_blog_img01.jpg",
+      coverImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "post-2",
@@ -70,7 +71,7 @@ export const blogData = {
       date: "April 5, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "/blog-page/inner_blog_img02.jpg",
+      coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "post-3",
@@ -81,18 +82,18 @@ export const blogData = {
       date: "April 3, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "/blog-page/inner_blog_img03.jpg",
+      coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "post-4",
-      title: "CRO Fundamentals: Where to Start From",
-      slug: "cro-fundamentals-where-to-start",
-      excerpt: "New to conversion rate optimization? This guide covers the essential frameworks and...",
+      title: "Mobile CRO: Designing for Small Screens",
+      slug: "mobile-cro-designing-small-screens",
+      excerpt: "Over 60% of traffic comes from mobile. Learn how to optimize your mobile layout to prevent friction and boost conversions.",
       author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
       date: "April 9, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "/blog-page/inner_blog_img01.jpg",
+      coverImage: "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "post-5",
@@ -103,7 +104,7 @@ export const blogData = {
       date: "April 12, 2026",
       readTime: "8 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      coverImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
     },
     {
       id: "post-6",
@@ -180,7 +181,7 @@ export const blogData = {
       date: "May 5, 2026",
       readTime: "5 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80",
+      coverImage: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80",
     },
     {
       id: "post-13",
@@ -191,7 +192,7 @@ export const blogData = {
       date: "May 8, 2026",
       readTime: "7 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
+      coverImage: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=600&q=80",
     },
     {
       id: "post-14",
@@ -290,6 +291,8 @@ export const blogData = {
       { name: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
       { name: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { name: "Team Page", href: "https://ingversionsdigital.com/teampage" },
+      { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
+      { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     address: "2599, Shiv Krupa Association, Kansad, Sachin, Surat 394230 India",
     email: "ingversionsdigital@gmail.com",
