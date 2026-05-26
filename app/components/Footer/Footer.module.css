@@ -65,6 +65,9 @@
 .linkGroup > a:hover {
   color: #0a84ff
 }
+.footerLink:hover {
+  color: #0a84ff
+}
 .footerBottomRow {
   display: flex;
   justify-content: center;
@@ -84,8 +87,8 @@
   flex-wrap: wrap
 }
 .socialBtn {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 6px;
   border: none;
   display: grid;
@@ -100,8 +103,8 @@
   filter: brightness(1.1)
 }
 .socialBtn svg {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   fill: currentColor
 }
 .footAddress,
