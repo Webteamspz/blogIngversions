@@ -11,7 +11,7 @@ export const blogData = {
     ],
     cta: {
       label: "Book a call",
-      href: "/#contact",
+      href: "https://ingversionsdigital.com/#hero",
     },
   },
 

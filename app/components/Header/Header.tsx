@@ -130,7 +130,7 @@ export default function Header() {
     <header className={styles.siteHeader} id="header">
       <div className={`container ${styles.headerRow}`}>
         {/* Brand Logo */}
-        <Link href="/" className={styles.brand}>
+        <Link href="https://ingversionsdigital.com/" className={styles.brand}>
           <img 
             src="/logos/main-logo.png" 
             alt="Ingversions Logo" 

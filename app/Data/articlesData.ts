@@ -80,6 +80,27 @@ Month 1: Quick wins. Month 2: UX improvements. Month 3: Major changes.
 ### Step 5: Test, Learn, Repeat
 Every test teaches something. Even "failed" tests provide insights.`,
   },
+  "mobile-cro-designing-small-screens": {
+    title: "Mobile CRO: Designing for Small Screens",
+    category: "CRO",
+    categorySlug: "cro",
+    date: "April 9, 2026",
+    readTime: "7 min read",
+    content: `## Mobile First is Not Optional
+Over 60% of traffic comes from mobile. Learn how to optimize your mobile layout to prevent friction and boost conversions.
+
+### 1. Thumb-Friendly Navigation
+Keep your most important buttons (like Add to Cart and Checkout) fixed at the bottom of the screen. Don't make users stretch their fingers to the top.
+
+### 2. Simplify Mobile Forms
+Typing on a small screen is hard. Use autofill, remove non-essential fields, and trigger the correct keyboard (e.g., number pad for phone numbers and zip codes).
+
+### 3. Tap Target Sizes
+Make sure all buttons, links, and form fields are at least 44x44 pixels. If elements are too close together, users will "fat-finger" the wrong link and get frustrated.
+
+### 4. Lightning Fast Loading
+Mobile users are often on slower 4G/3G networks. Compress images, defer off-screen content, and optimize your Largest Contentful Paint (LCP) specifically for mobile devices.`,
+  },
 
   "psychology-high-converting-landing-pages": {
     title: "The Psychology of High-Converting Landing Pages",
