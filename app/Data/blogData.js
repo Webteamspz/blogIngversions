@@ -3,7 +3,7 @@ export const blogData = {
     links: [
       { label: "Home", href: "https://ingversionsdigital.com/" },
       { label: "Services", href: "https://ingversionsdigital.com/#services" },
-      { label: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
+      { label: "Pricing", href: "https://ingversionsdigital.com/pricing" },
       // { label: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
@@ -288,7 +288,7 @@ featuredPost: {
     links: [
       { name: "Home", href: "https://ingversionsdigital.com/" },
       { name: "Services", href: "https://ingversionsdigital.com/#services" },
-      { name: "Pricing", href: "https://ingversionsdigital.com/#pricing" },
+      { name: "Pricing", href: "https://ingversionsdigital.com/pricing" },
       // { name: "Contact Us", href: "https://ingversionsdigital.com/#contact" },
       { name: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },

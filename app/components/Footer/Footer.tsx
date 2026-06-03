@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         <div className={styles.footerMain}>
           {/* Column 1: Logo, Bio & Socials */}
           <div className={styles.brandCol}>
-            <Link href="/" className={styles.footerLeft}>
+            <Link href="https://ingversionsdigital.com/" className={styles.footerLeft}>
               {f?.logo && (
                 <img
                   src={f.logo}
@@ -86,6 +86,7 @@ const Footer: React.FC = () => {
                   gridTemplateRows: "repeat(6, auto)",
                   gridAutoFlow: "column",
                   columnGap: "30px",
+                  fontSize: "18px",
                   rowGap: "12px",
                 }}
               >

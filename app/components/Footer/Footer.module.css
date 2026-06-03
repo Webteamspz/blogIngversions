@@ -119,6 +119,9 @@
   font-size: 16px;
   line-height: 150%
 }
+.footAddress{
+  font-size: 18px;
+}
 .footContact:hover {
   color: #0a84ff
 }

@@ -20,7 +20,7 @@ export default function GetStartedBtn() {
 
   return (
     <Link
-      href="/#contact"
+      href="https://ingversionsdigital.com/#hero"
       className="cta-button"
       onClick={handleGetStartedClick}
     >

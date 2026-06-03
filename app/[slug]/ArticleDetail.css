@@ -626,3 +626,21 @@
     width: 100%;
   }
 }
+/* Autofill background color fix for dark mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+    /* Text color ko white/light rakhne ke liye */
+    -webkit-text-fill-color: #ffffff !important; 
+    
+    /* Background color ko apne dark theme jaisa banane ke liye inset shadow use karte hain */
+    -webkit-box-shadow: 0 0 0px 1000px #0a0a0a inset !important; 
+    
+    /* Smooth transition fallback */
+    transition: background-color 5000s ease-in-out 0s;
+}

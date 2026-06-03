@@ -61,23 +61,26 @@
   line-height: 150%;
   transition: all .2s;
   cursor: pointer;
-  border: none
+  border: 1px solid transparent; 
 }
 .tab-btn.active {
   background-color: #3b82f6;
-  color: #fff
+  color: #fff;
 }
 .tab-btn.inactive {
   background-color: rgba(255,255,255,.1);
-  color: #d1d5db
+  color: #d1d5db;
 }
 .tab-btn.inactive:hover {
-  background-color: rgba(255,255,255,.2)
+  background-color: #ffffff1a;
+  color: #0a84ff;
+  border-color: #0a84ff;
 }
+
 .badge {
   display: inline-block;
-  padding: .25rem .75rem;
-  border-radius: 2px;
+  padding: 4px 12px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 700;
   background: #0a84ff;
@@ -85,8 +88,10 @@
   line-height: 14px;
   margin-bottom: 1rem;
   width: fit-content;
-  align-self: flex-start
+  align-self: flex-start;
+  font-family: Barlow, sans-serif;
 }
+
 .block-link {
   display: block;
   text-decoration: none
@@ -216,56 +221,84 @@
   box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);
   overflow: hidden;
   border: 1px solid transparent;
-  transition: all .2s;
+  transition: transform .3s ease,box-shadow .3s ease;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column
 }
+
+/* UPDATE: Image Wrapper styles */
 .article-img-wrapper {
-  height: 10rem;
+  position: relative;
+  height: 220px;
+  width: 100%;
+  flex-shrink: 0;
   background-color: #f3f4f6;
   overflow: hidden
 }
+
+/* UPDATE: Place the badge exactly at bottom left over image */
+.article-img-wrapper .badge {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  margin-bottom: 0;
+  z-index: 2;
+}
+
 .article-img {
   width: 100%;
   height: 100%;
   object-fit: cover
 }
+
+/* UPDATE: Increased Padding inside the card content to match 25px */
 .article-content {
-  padding: 1.25rem;
+  padding: 25px;
   flex-grow: 1;
   display: flex;
   flex-direction: column
 }
+
+/* UPDATE: Margins and fonts matched */
 .article-title {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-family: Barlow, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
   color: #fff;
-  margin-bottom: .5rem;
+  margin: 0 0 15px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden
 }
+
+/* UPDATE: Margins and fonts matched */
 .article-excerpt {
+  font-family: Barlow, sans-serif;
+  font-size: 16px;
   color: #ffffffcc;
-  font-size: .875rem;
-  margin-bottom: .75rem;
+  margin-bottom: 20px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex-grow: 1
 }
+
+/* UPDATE: Padding matched */
 .meta-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
+  font-family: Barlow, sans-serif;
+  font-size: 14px;
   color: #ffffffcc;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding-top: 15px;
   margin-top: auto
 }
+
 .newsletter-container {
   max-width: 48rem;
   margin-left: auto;
@@ -349,7 +382,6 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
   font-family: Barlow,sans-serif;
-  font-weight: 700;
   font-size: 14px;
   line-height: 14px;
   text-align: center;
@@ -473,8 +505,7 @@
     font-size: 24px
   }
   .article-title {
-    font-size: 16px;
-    line-height: 24px
+    font-size: 20px;
   }
   .article-count {
     font-size: 16px;

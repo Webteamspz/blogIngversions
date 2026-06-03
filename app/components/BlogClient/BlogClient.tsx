@@ -1,6 +1,5 @@
 "use client";
 
-// ✅ STEP 1: useRef ko import mein add kiya
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import "./BlogClient.css"; 
@@ -69,18 +68,14 @@ export default function BlogClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
-  // ✅ STEP 2: Scroll ke liye ref create kiya
   const topRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     try { pageview(window.location.pathname, "Blog Index Page"); } catch (e) {}
   }, []);
 
-  // ✅ STEP 3: Naya handler jo category set karega aur upar scroll karega
   const handleCategoryClick = (categoryId: string) => {
     setActiveCategory(categoryId);
-    
-    // Smooth scroll to top of the blog section
     if (topRef.current) {
       topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -119,7 +114,6 @@ export default function BlogClient() {
 
   return (
    <main className="blog-main">
-      {/* ✅ STEP 4: Yahan par ref={topRef} lagaya taaki screen yahan scroll ho */}
       <section className="blog-section hero-section" ref={topRef}>
         <div className="container text-center">
           <h1 className="hero-title">
@@ -197,12 +191,13 @@ export default function BlogClient() {
                       alt={article.category} 
                       className="article-img"
                     />
-                  </div>
-
-                  <div className="article-content">
+                    {/* ✅ BADGE MOVED HERE (INSIDE IMAGE WRAPPER) */}
                     <span className={`badge ${categoryColors[article.category]}`}>
                       {article.category}
                     </span>
+                  </div>
+
+                  <div className="article-content">
                     <h3 className="article-title">
                       {article.title}
                     </h3>
@@ -263,7 +258,6 @@ export default function BlogClient() {
           <h2 className="section-title-center">Browse by Category</h2>
           <div className="categories-grid">
             
-            {/* ✅ STEP 5: Yahan sabhi onClick mein naya handleCategoryClick pass kiya */}
             <div 
               className="category-card hover-cro"
               onClick={() => handleCategoryClick("cro")}
