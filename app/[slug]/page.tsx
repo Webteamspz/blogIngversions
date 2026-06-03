@@ -159,7 +159,7 @@ export default async function ArticlePage({
           </div>
 
           {/* 🎯 Real-Time Comments Component */}
-          <Comments />
+          {/* <Comments /> */}
 
           {/* CTA Box */}
           <div className="article-cta-box">
