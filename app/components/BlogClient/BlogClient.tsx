@@ -22,10 +22,13 @@ const getCategorySlug = (categoryName: string) => {
   return categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 };
 
-const articles = blogData.posts.map(post => ({
-  ...post,
-  categorySlug: getCategorySlug(post.category)
-}));
+// ✅ UPDATED: sort by date, newest first, so newly added blogs show at the top
+const articles = blogData.posts
+  .map(post => ({
+    ...post,
+    categorySlug: getCategorySlug(post.category)
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const categories = [
   { id: "all", name: "All Posts", count: articles.length },
@@ -191,7 +194,6 @@ export default function BlogClient() {
                       alt={article.category} 
                       className="article-img"
                     />
-                    {/* ✅ BADGE MOVED HERE (INSIDE IMAGE WRAPPER) */}
                     <span className={`badge ${categoryColors[article.category]}`}>
                       {article.category}
                     </span>

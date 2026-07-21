@@ -17,11 +17,16 @@ interface LinkItem {
   href: string;
 }
 
+interface LinkGroup {
+  title: string;
+  links: LinkItem[];
+}
+
 interface FooterData {
   logo: string;
   company: string;
   bio?: string;
-  links: LinkItem[];
+  linkGroups: LinkGroup[]; // Updated to match the nested group structure
   email: string;
   phone: string;
   address: string;
@@ -42,7 +47,7 @@ const Footer: React.FC = () => {
         <div className={styles.footerMain}>
           {/* Column 1: Logo, Bio & Socials */}
           <div className={styles.brandCol}>
-            <Link href="https://ingversionsdigital.com/" className={styles.footerLeft}>
+            <Link href="/" className={styles.footerLeft}>
               {f?.logo && (
                 <img
                   src={f.logo}
@@ -77,20 +82,12 @@ const Footer: React.FC = () => {
 
           {/* Columns 2 & 3: Links Grid */}
           <div className={styles.linksWrapper}>
-            {/* Column 2: Quick Links */}
-            <div className={styles.linkGroup}>
-              {/* 👇 CSS GRID WRAPPER 👇 */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateRows: "repeat(6, auto)",
-                  gridAutoFlow: "column",
-                  columnGap: "30px",
-                  fontSize: "18px",
-                  rowGap: "12px",
-                }}
-              >
-                {f?.links?.map((l: LinkItem, i: number) => {
+            
+            {/* Columns 2 & onward: Grouped Links mapped dynamically */}
+            {f?.linkGroups?.map((group: LinkGroup, gi: number) => (
+              <div className={styles.linkGroup} key={gi}>
+                <h4>{group.title}</h4>
+                {group.links.map((l: LinkItem, i: number) => {
                   const isExternal =
                     l.href.startsWith("http") ||
                     l.href.startsWith("mailto:") ||
@@ -100,7 +97,6 @@ const Footer: React.FC = () => {
 
                   if (isExternal) {
                     return (
-                      // ✅ Yahan maine styles.footerLink class de di hai
                       <a
                         key={i}
                         href={l.href}
@@ -114,16 +110,15 @@ const Footer: React.FC = () => {
                   }
 
                   return (
-                    // ✅ Yahan bhi styles.footerLink de di hai (inline style hata diya)
                     <Link key={i} href={l.href} className={styles.footerLink}>
                       {displayText}
                     </Link>
                   );
                 })}
               </div>
-            </div>
+            ))}
 
-            {/* Column 3: Contact Info */}
+            {/* Final Column: Contact Info */}
             <div className={styles.linkGroup}>
               <a href={`mailto:${f.email}`} className={styles.footContact}>
                 <svg

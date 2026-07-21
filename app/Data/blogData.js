@@ -392,16 +392,27 @@ export const blogData = {
   },
 
   // 7. Footer
-  footer: {
+footer: {
     logo: "/logos/main-logo.png",
     company: "Ingversions Digital",
-    links: [
-      { name: "Home", href: "https://ingversionsdigital.com/" },
-      { name: "Services", href: "https://ingversionsdigital.com/#services" },
-      { name: "Pricing", href: "https://ingversionsdigital.com/pricing" },
-      { name: "Team Page", href: "https://ingversionsdigital.com/teampage" },
-      { name: "About Us", href: "https://ingversionsdigital.com/about-us" },
-      { name: "Blog", href: "https://blog.ingversionsdigital.com/" },
+    linkGroups: [
+      {
+        title: "Quick Links",
+        links: [
+          { name: "Home", href: "/#hero" },
+          { name: "Services", href: "/#services" },
+          { name: "Pricing", href: "/pricing" },
+          { name: "Projects", href: "/projects" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { name: "Team Page", href: "/teampage" },
+          { name: "About Us", href: "/about-us" },
+          { name: "Blog", href: "https://blog.ingversionsdigital.com/" },
+        ],
+      },
     ],
     address: "2599, Shiv Krupa Association, Kansad, Sachin, Surat 394230 India",
     email: "ingversionsdigital@gmail.com",
@@ -429,5 +440,5 @@ export const blogData = {
       },
     ],
     year: new Date().getFullYear(),
-  }
+  },
 };

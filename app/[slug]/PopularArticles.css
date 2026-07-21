@@ -1,0 +1,190 @@
+.popular-section {
+  margin-top: 4rem;
+  font-family: Barlow, sans-serif;
+}
+
+.popular-title {
+  font-family: Barlow, sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.3;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.popular-slider-wrapper {
+  position: relative;
+  padding: 4px 0 0;
+}
+
+/* ✅ Reserve real space at the bottom of the swiper box for the dots,
+   instead of trying to push them outside it with bottom offsets */
+.popular-swiper {
+  padding: 4px 4px 44px;
+}
+
+.popular-slide {
+  height: auto;
+  display: flex;
+}
+
+.popular-card-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.popular-card {
+  background-color: #141414;
+  border: 1px solid #262626;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* .popular-card-link:hover .popular-card {
+  border-color: #0a84ff;
+  transform: translateY(-4px);
+} */
+
+.popular-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #0a0a0a;
+}
+
+.popular-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.popular-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 8px !important;
+  font-size: 11px;
+  line-height: 12px;
+  border-radius: 8px;
+}
+
+.popular-content {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.popular-card-title {
+  font-family: Barlow, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #fff;
+  margin: 0 0 10px 0;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 2; */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.popular-meta {
+  margin-top: auto;
+  font-size: 12px;
+  color: #ffffff99;
+  display: flex;
+  align-items: center;
+}
+
+.popular-meta-dot {
+  margin: 0 6px;
+}
+
+/* Nav buttons — same style as Reviews slider */
+.popular-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0a84ff;
+  border: 1px solid #0a84ff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.popular-prev {
+  left: -8px;
+}
+
+.popular-next {
+  right: -8px;
+}
+
+.popular-nav svg {
+  max-width: 16px;
+  width: 100%;
+  display: block;
+}
+
+.popular-nav.popular-prev svg {
+  transform: rotate(180deg);
+}
+
+.popular-nav:hover {
+  background: #ffffff1a;
+}
+
+.popular-nav:hover svg path {
+  stroke: #0a84ff;
+}
+
+/* ✅ Dots now sit inside the reserved bottom padding of .popular-swiper,
+   clearly separated from the cards, and never clipped */
+.popular-swiper .swiper-pagination {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
+
+.popular-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.4;
+  margin: 0 !important;
+}
+
+.popular-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #0a84ff;
+}
+
+@media (max-width: 767.98px) {
+  .popular-title {
+    font-size: 22px;
+  }
+  .popular-nav {
+    display: none;
+  }
+}
