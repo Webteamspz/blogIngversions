@@ -31,7 +31,19 @@ export const articleImages: Record<string, string> = {
   "sample-ratio-mismatch-ab-testing": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
   "how-long-to-run-ab-test": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
   "regression-testing-shopify-releases": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=600&q=80",
-  "accessibility-testing-wcag-ecommerce": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
+  "accessibility-testing-wcag-ecommerce": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+
+  // AI & Automation series
+  "what-is-claude-ai-for-shopify-merchants": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=80",
+  "what-are-mcp-servers-explained": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+  "connect-claude-to-shopify-store-mcp-guide": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+  "ai-product-descriptions-with-claude": "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1200&q=80",
+  "automating-customer-support-with-claude": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
+  "claude-vs-chatgpt-for-ecommerce": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+  "ai-powered-shopify-reporting-claude-mcp": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+  "ai-agents-in-ecommerce-2026": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+  "prompting-claude-ecommerce-playbook": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
+  "claude-for-shopify-seo-content": "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=80"
 };
 // Same 4-category fallback map used on the blog homepage (BlogClient.tsx),
 // so the Popular Articles slider matches homepage thumbnails exactly.
@@ -40,6 +52,7 @@ export const homepageCategoryImages: Record<string, string> = {
   "ab-testing": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
   "shopify": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop",
   "qa": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
+  "ai-automation": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop",
 };
 
 export const fallbackImagesByCategory: Record<string, string> = {
@@ -48,5 +61,6 @@ export const fallbackImagesByCategory: Record<string, string> = {
   shopify: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop",
   "quality-assurance": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
   "ux-design": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
-  analytics: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop"
+  analytics: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+  "ai-automation": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop"
 };
