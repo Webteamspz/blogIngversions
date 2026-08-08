@@ -23,6 +23,20 @@ const CloseIcon = (props: any) => (
 const isExternalHref = (href = "") =>
   /^https?:\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
 
+const MagicModeIcon = (props: any) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
+    <path d="M12 3.75V2.25" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M12 21.75V20.25" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M4.64 4.64L3.6 3.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M20.4 20.4L19.36 19.36" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M3.75 12H2.25" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M21.75 12H20.25" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M4.64 19.36L3.6 20.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M20.4 3.6L19.36 4.64" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+  </svg>
+);
+
 export default function Header() {
   const { links, cta } = data.header;
   const pathname = usePathname();
@@ -30,6 +44,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [ctaScrollMode, setCtaScrollMode] = useState(false);
   const [hideHeaderCta, setHideHeaderCta] = useState(false);
+  const [themeMode, setThemeMode] = useState<"day" | "night">("night");
 
   const isTeamPage = pathname === "/teampage";
   const ctaHref = isTeamPage ? "/#contact" : cta.href;
@@ -40,7 +55,17 @@ export default function Header() {
     if (flag === "1") {
       setCtaScrollMode(true);
     }
+
+    const savedTheme = window.localStorage.getItem("magic-theme-mode");
+    if (savedTheme === "day" || savedTheme === "night") {
+      setThemeMode(savedTheme);
+    }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeMode);
+    window.localStorage.setItem("magic-theme-mode", themeMode);
+  }, [themeMode]);
 
   // Lock body scroll when mobile menu open
   useEffect(() => {
@@ -159,6 +184,17 @@ export default function Header() {
               {cta.label}
             </Link>
           ))}
+
+        <button
+          type="button"
+          className={styles.magicModeToggle}
+          onClick={() => setThemeMode((current) => (current === "day" ? "night" : "day"))}
+          aria-label={`Switch to ${themeMode === "day" ? "night" : "day"} mode`}
+          title="Magic Mode"
+        >
+          <MagicModeIcon className={styles.magicModeIcon} />
+          <span>{themeMode === "day" ? "Day" : "Night"}</span>
+        </button>
 
         {/* Simple & Clean Hamburger Button */}
         <button 
