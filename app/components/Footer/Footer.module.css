@@ -1,4 +1,23 @@
 .siteFooter {
+  /* Always render with the night palette, regardless of the day/night toggle */
+  --palette-bg-950: #030303;
+  --palette-bg-900: #0b0b0b;
+  --palette-bg-800: #141414;
+  --palette-bg-700: #242424;
+  --palette-bg-600: #262626;
+  --palette-text-primary: #ffffff;
+  --palette-text-secondary: #ffffffcc;
+  --palette-text-muted: #ffffff99;
+  --palette-text-subtle: #d1d5db;
+  --palette-accent: #0a84ff;
+  --palette-accent-strong: #1d4ed8;
+  --palette-accent-soft: #3b82f6;
+  --palette-border: #141414;
+  --palette-border-soft: rgba(255,255,255,.06);
+  --palette-overlay: rgba(0,0,0,.6);
+  --palette-hover-surface: rgba(255,255,255,.1);
+  --palette-hover-ghost: rgba(255,255,255,.05);
+
   background: var(--palette-bg-950);
   position: relative;
   border-top: 1px solid var(--palette-text-secondary);

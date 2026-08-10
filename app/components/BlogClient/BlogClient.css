@@ -294,7 +294,7 @@
   font-family: Barlow, sans-serif;
   font-size: 14px;
   color: var(--palette-text-secondary);
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(128, 128, 128, .35);
   padding-top: 15px;
   margin-top: auto
 }
@@ -348,8 +348,8 @@
   flex: 1;
   padding: .75rem 1rem;
   border-radius: 0.5rem;
-  background-color: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.2);
+  background-color: rgba(128,128,128,.1);
+  border: 1px solid rgba(128,128,128,.35);
   color: var(--palette-text-primary);
   outline: 0
 }
@@ -423,7 +423,7 @@
 .category-card {
   padding: 1.25rem;
   border-radius: 16px;
-  background-color: #141414;
+  background-color: var(--palette-bg-800);
   transition: all .2s;
   cursor: pointer
 }
