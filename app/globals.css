@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
 /* --- Tailwind Utilities --- */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
