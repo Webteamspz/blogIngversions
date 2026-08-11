@@ -10,6 +10,10 @@ import { articles } from "../Data/articlesData";
 import { articleImages, fallbackImagesByCategory } from "../Data/articleImages";
 import Comments from "./Comments";
 
+// ✅ Import your new Mermaid client component
+// (Adjust the path if your page.tsx is located elsewhere relative to the components folder)
+import Mermaid from "../components/Mermaid";
+
 export async function generateStaticParams() {
   return Object.keys(articles).map((slug) => ({
     slug,
@@ -131,7 +135,29 @@ export default async function ArticlePage({
           </div>
 
           <div className="article-body markdown-content">
-            <ReactMarkdown>{article.content}</ReactMarkdown>
+            {/* ✅ NEW: Pass custom components to ReactMarkdown to render the Mermaid chart */}
+            <ReactMarkdown
+              components={{
+                code({ className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || "");
+                  const language = match ? match[1] : "";
+
+                  // If it's a mermaid block, render our client component
+                  if (language === "mermaid") {
+                    return <Mermaid chart={String(children).replace(/\n$/, "")} />;
+                  }
+
+                  // Otherwise, return standard code blocks
+                  return (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {article.content}
+            </ReactMarkdown>
           </div>
 
           {/* <Comments /> */}
