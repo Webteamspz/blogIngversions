@@ -11,7 +11,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--palette-text-primary);
+  color: #fff;
   font-size: 15px;
   text-decoration: none;
   transition: all .3s ease;
@@ -67,7 +67,7 @@
   font-weight: 700;
   line-height: 14px;
   background-color: var(--palette-accent);
-  color: var(--palette-text-primary);
+  color: #fff;
   font-family: Barlow,sans-serif
 }
 .article-main .article-title {
@@ -188,7 +188,7 @@
   padding: 14px 22px;
   border-radius: 10px;
   background: var(--palette-accent);
-  color: var(--palette-text-primary);
+  color: #fff;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
@@ -306,7 +306,7 @@
   padding: 14px 22px;
   border-radius: 10px;
   background: var(--palette-accent);
-  color: var(--palette-text-primary);
+  color: #fff;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;

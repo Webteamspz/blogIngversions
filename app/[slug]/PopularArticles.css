@@ -118,7 +118,7 @@
   border-radius: 50%;
   background: var(--palette-accent);
   border: 1px solid var(--palette-accent);
-  color: var(--palette-text-primary);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -64,8 +64,8 @@
   border: 1px solid transparent; 
 }
 .tab-btn.active {
-  background-color: var(--palette-accent-soft);
-  color: var(--palette-text-primary);
+  background-color: var(--palette-accent);
+  color: #fff;
 }
 .tab-btn.inactive {
   background-color: var(--palette-hover-surface);
@@ -84,7 +84,7 @@
   font-size: 12px;
   font-weight: 700;
   background: var(--palette-accent);
-  color: var(--palette-text-primary);
+  color: #fff;
   line-height: 14px;
   margin-bottom: 1rem;
   width: fit-content;
