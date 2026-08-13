@@ -153,10 +153,10 @@
   border-radius: 999px;
   cursor: pointer;
   background: #e9edf3;
-  transition: background-color .35s ease;
+  transition: background-color .35s ease
 }
 .themeToggle.themeToggleNight {
-  background: #2b2b30;
+  background: #2b2b30
 }
 .themeToggleThumb {
   position: absolute;
@@ -165,14 +165,14 @@
   width: calc(50% - 4px);
   height: calc(100% - 8px);
   border-radius: 999px;
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,.18);
-  transition: transform .35s cubic-bezier(.4,0,.2,1), background-color .35s ease;
-  pointer-events: none;
+  transition: transform .35s cubic-bezier(.4,0,.2,1),background-color .35s ease;
+  pointer-events: none
 }
 .themeToggle.themeToggleNight .themeToggleThumb {
   background: #101014;
-  box-shadow: 0 1px 4px rgba(0,0,0,.5);
+  box-shadow: 0 1px 4px rgba(0,0,0,.5)
 }
 .themeToggleBtn {
   position: relative;
@@ -182,34 +182,34 @@
   gap: 6px;
   padding: 6px 14px;
   border: none;
-  background: transparent;
+  background: 0 0;
   border-radius: 999px;
-  font-family: Barlow, sans-serif;
+  font-family: Barlow,sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #8b93a1;
   cursor: pointer;
-  transition: color .3s ease;
+  transition: color .3s ease
 }
 .themeToggle.themeToggleNight .themeToggleBtn {
-  color: #8a8a92;
+  color: #8a8a92
 }
 .themeToggleBtnActive {
-  color: #0f172a;
+  color: #0f172a
 }
 .themeToggle.themeToggleNight .themeToggleBtnActive {
-  color: #ffffff;
+  color: #fff
 }
 .themeToggleIcon {
   flex-shrink: 0;
   color: inherit;
-  transition: color .3s ease;
+  transition: color .3s ease
 }
 .themeToggleBtnActive .themeToggleIconSun {
-  color: #f59e0b;
+  color: #f59e0b
 }
 .themeToggleBtnActive .themeToggleIconMoon {
-  color: #a78bfa;
+  color: #a78bfa
 }
 body.menu-open {
   overflow: hidden
@@ -220,6 +220,20 @@ body.menu-open {
 .mobileLogoOnly {
   display: none
 }
+@media (min-width:1024px) and (max-width:1199.98px) {
+  .brandLogo {
+    max-width: 200px
+  }
+  .desktopCta {
+    max-width: 115px!important;
+  }
+  .headerThemeToggle .themeToggleBtn {
+    padding: 6px 10px
+  }
+  .headerThemeToggle .themeToggleBtn span {
+    display: none
+  }
+}
 @media (max-width:1023.98px) {
   .nav {
     display: none
@@ -228,11 +242,11 @@ body.menu-open {
     display: none!important
   }
   .headerThemeToggle {
-    display: none;
+    display: none
   }
   .hamburger {
     display: inline-block;
-    margin-left: auto;
+    margin-left: auto
   }
   .brandLogo {
     max-width: 200px
