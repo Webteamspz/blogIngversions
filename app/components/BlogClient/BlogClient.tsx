@@ -36,6 +36,7 @@ const categories = [
   { id: "ab-testing", name: "A/B Testing", count: articles.filter(a => a.categorySlug === "ab-testing").length },
   { id: "shopify", name: "Shopify Development", count: articles.filter(a => a.categorySlug === "shopify").length },
   { id: "qa", name: "Quality Assurance", count: articles.filter(a => a.categorySlug === "qa").length },
+  { id: "ai-automation", name: "AI & Automation", count: articles.filter(a => a.categorySlug === "ai-automation").length },
 ];
 
 const featuredArticle = {
@@ -55,6 +56,7 @@ const categoryColors: Record<string, string> = {
   "A/B Testing": "badge-ab",
   "Shopify Development": "badge-shopify",
   "Quality Assurance": "badge-qa",
+  "AI & Automation": "badge-ai-automation",
 };
 
 const categoryBorderColors: Record<string, string> = {

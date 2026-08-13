@@ -66,8 +66,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`} strategy="afterInteractive" />
-        <Script id="gtm-init" strategy="afterInteractive">
+        {/* <Script src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`} strategy="afterInteractive" /> */}
+        {/* <Script id="gtm-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -75,12 +75,12 @@ export default function RootLayout({
               event: 'gtm.js'
             });
           `}
-        </Script>
+        </Script> */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       </head>
 
-      <body className={`${barlow.className} flex flex-col min-h-screen`}>
-        <Script
+      <body className={`${barlow.className} flex flex-col min-h-screen`} suppressHydrationWarning>
+        {/* <Script
           id="microsoft-clarity"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -97,18 +97,18 @@ export default function RootLayout({
               })(window, document, "clarity", "script", "wqx46kxwy8");
             `,
           }}
-        />
+        /> */}
 
-        <GTMProvider />
+        {/* <GTMProvider /> */}
 
-        <noscript>
+        {/* <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P5BGX7H7"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
-        </noscript>
+        </noscript> */}
 
         <ScrollToTop />
         

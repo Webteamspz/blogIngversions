@@ -807,4 +807,685 @@ WCAG (Web Content Accessibility Guidelines) is built around four principles: con
 ### Conclusion
 Accessibility testing isn't a one-time audit — it's an ongoing part of QA. Automate what you can, manually test keyboard and screen reader flows, and treat accessibility issues with the same urgency as any other checkout-blocking bug.`,
   },
+
+ // ============ AI & Automation series (posts 31-40) ============
+  "what-is-claude-ai-for-shopify-merchants": {
+    title: "What Is Claude, and Why Are Shopify Merchants Using It?",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "July 13, 2026",
+    readTime: "6 min read",
+    content: `## Not Just Another Chatbot
+Claude is an AI assistant made by Anthropic. What makes it relevant to a Shopify store isn't the chat window, it's what happens once you connect it to real work: your product catalog, your docs, your support inbox, even your store's admin.
+
+Think of it less like a search engine and more like a very fast, very literal employee who never gets tired of repetitive work, but always needs your final sign-off.
+
+\`\`\`mermaid
+graph LR
+    %% Defining the shapes based on the provided reference image
+    Start([Start: Shopify Merchant]) --> Action1[Provide Context & Data]
+    Action1 --> Decision1{Task Required?}
+    
+    Decision1 -->|Writing| Option1[Draft Descriptions & Emails]
+    Decision1 -->|Analysis| Option2[Analyze Conversion Data]
+    Decision1 -->|Operations| Option3[Write Liquid & Support Replies]
+    
+    Option1 --> Decision2{Human Review}
+    Option2 --> Decision2
+    Option3 --> Decision2
+    
+    Decision2 -->|Sign-off| End([End: Task Complete])
+
+    %% Styling to mimic the colors in the reference image
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision2 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### What Merchants Actually Use It For
+- **Writing:** product descriptions, email flows, ad copy, blog posts.
+- **Analysis:** "why did conversion drop last week?" against your own exported data.
+- **Code:** small Liquid snippets, fixing a broken CSS rule, writing a script.
+- **Operations:** drafting support replies, summarizing reviews, checking a policy against a customer question.
+- **Store actions:** with a connector (see our MCP guide), checking inventory or order status directly.
+
+### What It Isn't
+Claude doesn't "know" your store unless you give it the data, a file, or a live connection. Out of the box, it has no idea what's in your inventory today. It's not magic, it's a very capable assistant that's only as good as the context you hand it.
+
+### A Realistic First Task
+Instead of starting with something abstract, start with something you'd normally spend 20 minutes on:
+
+\`\`\`text
+I'm the owner of a [type of store] on Shopify. Here's our brand voice: [2-3 sentences].
+Write 5 product titles + descriptions for these items: [paste a short CSV or list].
+Keep descriptions under 60 words. No exclamation points. No "unleash" or "elevate."
+\`\`\`
+
+Run it, edit what's wrong, and you'll have a much better sense of what it's good at than any explainer article can give you.
+
+### Where This Series Goes Next
+This is the first in a short series. Next up: what MCP servers are and why they're the piece that turns Claude from "a chatbot I copy-paste into" to "a tool that can actually see my store."`,
+  },
+
+ // ============ AI & Automation series (posts 31-40) ============
+  "what-are-mcp-servers-explained": {
+    title: "What Are MCP Servers? A Plain-English Guide for Store Owners",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "July 17, 2026",
+    readTime: "7 min read",
+    content: `## The Problem MCP Solves
+Without a connection, Claude only knows what you paste in. Ask it "what's my best-selling product this month" and it can't answer, it has no access to your store. You'd have to export a report, paste it in, and ask again next week.
+
+MCP (Model Context Protocol) is the standard that lets Claude connect to outside tools and data, safely and with your permission, so it can answer that question directly.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Ask a Question]) --> Action1[Claude Processes Request]
+    Action1 --> Decision1{Needs Store Data?}
+    
+    Decision1 -->|Yes| Option1[MCP Translates to API Call]
+    Decision1 -->|No| Option2[Answer from Base Knowledge]
+    
+    Option1 --> Action2[Shopify Returns JSON Data]
+    Action2 --> Action3[Claude Translates to English]
+    Option2 --> End([End: Answer Delivered])
+    Action3 --> End
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### The Simplest Way to Think About It
+An MCP server is a **translator**. Shopify's Admin API speaks in API calls and JSON. Claude speaks in plain English. The MCP server sits in between, exposing a small set of "tools" Claude is allowed to call, like \`get_inventory\` or \`list_orders\`, and translating Claude's request into the actual API call.
+
+- **You** ask a question in chat.
+- **Claude** decides which tool it needs.
+- **The MCP server** makes the real API call to Shopify.
+- **Shopify** returns real data.
+- **Claude** turns that data into a plain-English answer.
+
+### Why This Matters More Than It Sounds
+Without MCP, "AI for my store" usually means copy-pasting data back and forth, which is slow and error-prone. With MCP, Claude can check things live: current stock, a specific order's status, a customer's order history, without you doing the lookup yourself first.
+
+### What You Should Know Before Connecting One
+- **Scoped access.** A well-built MCP server only exposes the tools it needs. You shouldn't grant "delete all orders" access for a reporting use case.
+- **Read vs. write.** Start with read-only tools (view orders, check inventory) before enabling anything that can change data (issue refunds, edit prices).
+- **It's not Shopify-specific.** MCP servers exist for Google Drive, Slack, GitHub, and dozens of other tools. Shopify is just one connector among many you can combine.
+
+### Common Questions
+**Do I need to be technical to use one?** No, connecting an existing MCP server is usually a few clicks in Claude's settings. Building a custom one from scratch is a developer task.
+
+**Is my data safe?** Access is permission-based and scoped to what the server exposes, the same trust model as connecting any third-party app to your store. Review scopes before approving.
+
+Next in this series: the actual step-by-step of connecting Claude to your Shopify store.`,
+  },
+
+  "connect-claude-to-shopify-store-mcp-guide": {
+    title: "How to Connect Claude to Your Shopify Store (MCP Setup Guide)",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "July 21, 2026",
+    readTime: "8 min read",
+    content: `## Before You Start
+This assumes you understand what an MCP server does (see our previous post if not). This guide covers the general setup flow, exact menu names can shift as Claude and Shopify both ship updates, so treat this as the shape of the process rather than a pixel-perfect walkthrough.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Setup Connection]) --> Decision1{Choose Method}
+    
+    Decision1 -->|Existing App| Option1[Add via Claude Settings]
+    Decision1 -->|Custom App| Option2[Developer Builds Tool]
+    
+    Option1 --> Action1[Review Requested Scopes]
+    Option2 --> Action1
+    
+    Action1 --> Decision2{Run Test Prompt}
+    
+    Decision2 -->|Success| Option3[Build Real Workflows]
+    Decision2 -->|Fails| Action2[Fix Scopes/Permissions]
+    Action2 --> Decision2
+    
+    Option3 --> End([End: System Connected])
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision2 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### Step 1: Choose Your Connection Method
+You have two realistic paths:
+- **An existing Shopify MCP server or connector**, if one is available in Claude's connector directory, this is the fastest route.
+- **A custom Shopify App**, built by a developer, exposing only the specific tools you want (e.g. inventory read access, order lookups). This is the safer route for stores handling sensitive customer data.
+
+### Step 2: Add the Connector in Claude
+In Claude's settings, look for **Connectors** (sometimes called Integrations). Adding one typically asks you to authenticate, this is where you log into your Shopify admin and approve the connection, exactly like installing any third-party app.
+
+### Step 3: Review the Requested Scopes Carefully
+Before approving, check what access is being requested:
+- **Read products / inventory** — safe for most reporting and content use cases.
+- **Read orders** — needed for support and analysis workflows, contains customer data.
+- **Write access (edit products, issue refunds)** — only grant this if you have a specific, reviewed workflow that needs it.
+
+### Step 4: Test With a Low-Stakes Request
+Don't jump straight into something business-critical. Try:
+
+\`\`\`text
+Can you list my 5 most recent orders and their status?
+\`\`\`
+
+or
+
+\`\`\`text
+Which 10 products currently have the lowest inventory count?
+\`\`\`
+
+If the answer matches what you see in your Shopify admin, the connection is working correctly.
+
+### Step 5: Build a Real Workflow
+Once verified, this is where it gets useful. A few starting points:
+- A weekly low-stock check, ask Claude to flag anything under a threshold.
+- A daily "what changed" summary of new orders and any flagged support tickets.
+- A product content pass, pull a batch of products missing descriptions and draft copy for them.
+
+### A Word on Permissions
+Treat an MCP connection the same way you'd treat handing a staff member the keys to your admin. Grant only what the workflow needs, review connected apps quarterly, and revoke access immediately if a workflow is retired.
+
+If you're not confident setting this up internally, this is exactly the kind of technical integration our team handles, feel free to book a call if you'd rather have it done right the first time.`,
+  },
+
+  "ai-product-descriptions-with-claude": {
+    title: "Using Claude to Write Product Descriptions at Scale",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "July 25, 2026",
+    readTime: "7 min read",
+    content: `## The Real Bottleneck Isn't Writing, It's Consistency
+Writing one great product description is easy. Writing 200 of them that all sound like the same brand, without repeating the same three adjectives, is where most stores give up and settle for "premium quality, built to last."
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Batch Creation]) --> Action1[Export Clean Data]
+    Action1 --> Action2[Create Strict Style Guide]
+    Action2 --> Decision1{Generate Batch}
+    
+    Decision1 -->|15-25 SKUs| Option1[Claude Drafts Copy]
+    
+    Option1 --> Decision2{Human Review}
+    
+    Decision2 -->|Factual Errors| Action3[Edit & Refine Guide]
+    Action3 --> Decision1
+    
+    Decision2 -->|Approved| Option2[Publish via CSV/MCP]
+    Option2 --> End([End: Batch Live])
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision2 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Action3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### Step 1: Export Clean Product Data First
+Garbage in, garbage out applies harder to AI than almost anything else. Before writing a single prompt, export:
+- Product title, category, and key specs (material, size, dimensions).
+- Anything that differentiates it from similar SKUs (this is what stops descriptions from sounding identical).
+- Any compliance-required language (care instructions, safety warnings) that must appear verbatim.
+
+### Step 2: Write a Style Guide Once, Reuse It Forever
+This is the single highest-leverage thing you can do. A short, specific style guide beats a long, vague one:
+
+\`\`\`text
+Brand voice: direct, a little dry, no exclamation points.
+Sentence length: short. Avoid "elevate," "unleash," "premium," "game-changing."
+Structure: 1 hook sentence, 2-3 sentences on material/fit/use case, 1 short line on care.
+Always mention: [material], [where it's made, if relevant].
+Never mention: competitors, price, "limited time."
+\`\`\`
+
+Save this and paste it into every batch, this is what prevents the generic "AI voice" that customers can spot instantly.
+
+### Step 3: Generate in Small, Reviewable Batches
+Don't ask for 200 at once. Batches of 15-25 keep quality high and make review manageable:
+
+\`\`\`text
+Using the style guide above, write descriptions for these 20 products: [paste data].
+Flag any product where you don't have enough information to write confidently,
+don't guess at specs.
+\`\`\`
+
+That last line matters, it's the difference between Claude saying "I need more detail on this one" versus inventing a fabric composition that isn't accurate.
+
+### Step 4: Human Review Is Not Optional
+Specifically check for:
+- **Factual accuracy** — materials, sizing, care instructions.
+- **Compliance language** — anything legally required must be verified, not trusted to AI.
+- **Repetition across the batch** — if every product uses "effortlessly," fix the style guide, not just that one description.
+
+### Step 5: Publish in Bulk
+Once reviewed, bring descriptions back into Shopify via CSV import (Products → Import), or directly through an MCP connection if you've set one up.
+
+### The Honest Trade-off
+This isn't "set and forget." It's turning a 40-hour writing task into a 6-hour writing-and-editing task. For a 300-SKU catalog, that's still a massive win, just don't expect zero human involvement.`,
+  },
+
+  "automating-customer-support-with-claude": {
+    title: "Automating Customer Support Replies with Claude",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "July 29, 2026",
+    readTime: "6 min read",
+    content: `## The Goal Isn't Full Automation, It's Faster Humans
+The best support automation setups don't remove people, they remove the blank-page problem. An agent staring at "where's my order" for the 40th time today isn't adding value by typing the same sentence from scratch, they're adding value by catching the 5% of cases that need real judgment.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Ticket Received]) --> Decision1{Ticket Category?}
+    
+    Decision1 -->|Routine Query| Option1[Claude Drafts Reply via MCP]
+    Decision1 -->|Sensitive Issue| Option2[Send Direct to Human]
+    
+    Option1 --> Decision2{Confidence Check}
+    
+    Decision2 -->|High| Option3[Human Approves/Edits]
+    Decision2 -->|Low| Option2
+    
+    Option3 --> Action1[Analyze Edit Rate]
+    Action1 --> End([End: Ticket Resolved])
+    Option2 --> End
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision2 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### Sort Tickets Into Two Buckets First
+Before automating anything, separate your ticket volume:
+- **Routine, low-risk:** order status, shipping timelines, return policy questions, sizing questions with a clear chart.
+- **Sensitive or judgment-heavy:** damaged goods, billing disputes, angry customers, anything involving a refund exception.
+
+Only the first bucket should get AI-drafted replies with light review. The second bucket needs a human from the start, Claude can still help by summarizing the ticket and pulling relevant order history, but it shouldn't be drafting the emotional parts of that reply.
+
+### A Working Draft-and-Review Setup
+1. Ticket comes in through your help desk.
+2. Claude (connected via MCP to your order data) drafts a reply using the actual order status, not a guess.
+3. The draft is flagged by confidence: routine tickets get a "looks good, send" queue; anything ambiguous gets flagged for a full rewrite.
+4. An agent reviews, edits if needed, and sends.
+5. Every edited reply is worth reviewing weekly, patterns in what gets changed tell you what to fix in your instructions.
+
+### What to Give Claude So Replies Don't Sound Robotic
+\`\`\`text
+You're drafting a support reply for [store name]. Tone: warm but concise, no corporate
+filler like "we sincerely apologize for any inconvenience this may have caused."
+Here's the customer's message: [paste]
+Here's their order info: [paste or pull via connector]
+Here's our return policy: [paste relevant section only, not the whole policy page]
+Draft a reply. If you're not confident about any detail, say so instead of guessing.
+\`\`\`
+
+### Where This Goes Wrong
+- **Auto-sending without review** on anything involving money, refunds, or a clearly upset customer.
+- **Feeding it your entire policy document** instead of the relevant section, longer context isn't always better, it's easier to bury the actual answer.
+- **Not tracking edit rates.** If agents are rewriting 80% of drafts, the prompt needs work, not more patience.
+
+### The Metric That Actually Matters
+Don't just track response time. Track **edit distance**, how much agents change before sending. A shrinking edit rate over time means your setup is actually learning your store's voice and policies, not just generating plausible-sounding text.`,
+  },
+
+  "claude-vs-chatgpt-for-ecommerce": {
+    title: "Claude vs ChatGPT for E-commerce: Which to Use When",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "August 2, 2026",
+    readTime: "6 min read",
+    content: `## Skip the Brand Loyalty, Match the Task
+This isn't a "which one is better" post, that question doesn't have a real answer. Both are capable general-purpose AI assistants. What actually matters for a Shopify store is which one fits a specific task better, and most teams end up using both.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Identify Task]) --> Decision1{What does the task require?}
+    
+    Decision1 -->|Real-Time Data / Long Docs| Option1[Use Claude + MCP]
+    Decision1 -->|Image Gen / Quick Ideas| Option2[Use ChatGPT]
+    Decision1 -->|Strict Code / Formatting| Option1
+    
+    Option1 --> Action1[Execute Structured Workflow]
+    Option2 --> Action2[Execute Creative Ideation]
+    
+    Action1 --> End([End: Task Complete])
+    Action2 --> End
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### Where Claude Tends to Pull Ahead
+- **Long documents.** Pasting in a full return policy, a contract, or a big product spec sheet and asking careful questions about it.
+- **Store connections.** Claude's MCP support makes direct, live connections to tools like Shopify more straightforward to set up and reason about.
+- **Careful, structured writing.** Batch product descriptions that need to follow a strict style guide without drifting.
+- **Code work.** Editing Liquid templates, debugging a theme issue, writing a script, longer, more careful reasoning through multi-file changes.
+
+### Where ChatGPT Tends to Pull Ahead
+- **Fast, casual brainstorming.** Quick back-and-forth ideation where you don't need deep context.
+- **Image generation.** Product mockups, ad creative concepts, generated directly in the same chat.
+- **A larger plugin/app ecosystem.** More third-party integrations exist out of the box.
+- **Voice and mobile-first use.** If your workflow is mostly on your phone between tasks.
+
+### A Practical Way to Decide
+Ask yourself two questions before picking a tool for a given task:
+1. **Does this need to read something long or connect to real data?** → Claude.
+2. **Do I need an image, or is this a 30-second brainstorm?** → ChatGPT.
+
+### Don't Overthink the Switching Cost
+Neither tool requires you to "pick a side." A common, sensible setup: Claude connected to your store via MCP for anything touching real data or long documents, ChatGPT open in a tab for quick ideation and image concepts. Optimize per task, not per subscription.`,
+  },
+
+  "ai-powered-shopify-reporting-claude-mcp": {
+    title: "Building an AI-Powered Reporting Workflow with Claude + MCP",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "August 6, 2026",
+    readTime: "8 min read",
+    content: `## Most Store Reports Get Built, Then Ignored
+You've probably built a dashboard that looked great on day one and hasn't been opened in three weeks. The problem usually isn't the data, it's that dashboards require someone to go look at them. A report that lands in Slack every Monday morning gets read. A dashboard that requires a login doesn't.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Scheduled Trigger]) --> Action1[MCP Fetches Store Data]
+    Action1 --> Action2[Claude Analyzes Deltas]
+    
+    Action2 --> Decision1{Anomalies Found?}
+    
+    Decision1 -->|Yes| Option1[Draft: Highlight Spike/Drop]
+    Decision1 -->|No| Option2[Draft: Standard Trends]
+    
+    Option1 --> Action3[Format as Plain English]
+    Option2 --> Action3
+    
+    Action3 --> Action4[Deliver to Slack/Email]
+    Action4 --> End([End: Founder Reads Report])
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action4 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### The Pipeline, End to End
+1. **Shopify data updates** continuously, orders, inventory levels, traffic if you've connected analytics too.
+2. **The MCP server exposes it** as callable tools, \`get_weekly_orders\`, \`get_low_stock\`, \`get_top_products\`, whatever you've scoped it to expose.
+3. **Claude pulls and analyzes it on a schedule**, this is where it earns its keep: not just listing numbers, but noting what actually changed and why it might matter.
+4. **A plain-English report gets drafted**, written for a founder skimming on their phone, not a data analyst.
+5. **It's delivered** to Slack, email, or a shared doc automatically.
+
+### What Makes a Report Actually Get Read
+- **Lead with the change, not the total.** "Orders up 18% week over week, driven mostly by [product]" beats "Total orders: 412."
+- **Flag anomalies, not just summaries.** A sudden spike in one SKU's returns is worth a line. A normal week isn't worth three paragraphs.
+- **Keep it under a 90-second read.** If it needs scrolling, it'll get skimmed and forgotten.
+
+### A Prompt Structure That Works Well for This
+\`\`\`text
+You have access to this week's order, inventory, and traffic data via [connector name].
+Write a Monday morning report for the founder. Structure:
+1. One-line headline (the single most important change this week)
+2. 3 bullet points: what's working, what needs attention, what to watch
+3. Skip anything that's roughly the same as last week, only report on change
+Keep the whole thing under 200 words. No corporate phrasing.
+\`\`\`
+
+### Start Manual, Automate Once You Trust It
+Run this as a manual weekly prompt for 3-4 weeks first. Check it against your own read of the numbers. Once you're confident it's not missing anything important or hallucinating trends that aren't real, that's when it's worth wiring up on a schedule so it lands automatically.
+
+### The Failure Mode to Watch For
+AI-generated reports can sound confident even when they're wrong. Spot-check the underlying numbers against your Shopify admin periodically, especially in the first month. Confidence in tone isn't the same as accuracy in the data.`,
+  },
+
+  "ai-agents-in-ecommerce-2026": {
+    title: "AI Agents in E-commerce: What Merchants Need to Know in 2026",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "August 10, 2026",
+    readTime: "7 min read",
+    content: `## "Agent" Is Doing a Lot of Marketing Work Right Now
+Every tool in your app store seems to call itself an "AI agent" now. Most of them are just a chatbot with a new label. It's worth being precise about what actually makes something an agent, because the difference determines how much you should trust it running unsupervised.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Trigger Event]) --> Action1[Agent Checks Data]
+    Action1 --> Decision1{Target Condition Met?}
+    
+    Decision1 -->|No| Option1[Wait for Next Loop]
+    Decision1 -->|Yes| Decision2{High Risk Action?}
+    
+    Decision2 -->|Yes e.g. Refunds| Option2[Draft & Await Approval]
+    Decision2 -->|No e.g. Alerts| Option3[Execute Autonomous Action]
+    
+    Option2 --> Action2[Human Verifies]
+    Action2 --> End([End: Workflow Complete])
+    Option3 --> End
+    Option1 --> End
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision2 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### The Actual Definition
+A chatbot answers a question. An **agent** does something with the answer, calls a tool, checks the result, and decides what to do next, on its own, in a loop, without you prompting each step.
+
+The loop looks roughly like this:
+- **Goal:** "Send a restock alert when any product drops below 10 units."
+- **Tool call:** it checks current inventory via a connector.
+- **Action:** it drafts and sends the alert if the condition is met.
+- **Check and log:** it confirms the action happened and notes it, ready to run again tomorrow.
+
+### Where Agents Are Genuinely Useful for a Store
+- **Scheduled monitoring**, low-stock alerts, price-change checks, order-anomaly flags, running on autopilot and only pinging a human when something looks off.
+- **Multi-step research tasks**, "find our 10 lowest-rated products and summarize the common complaint in each review set" involves several tool calls chained together.
+- **Repetitive, well-defined workflows**, tasks with a clear success condition, not open-ended judgment calls.
+
+### Where You Should Still Keep a Human in the Loop
+- **Anything involving money moving**, refunds, discounts, price changes.
+- **Anything customer-facing where tone matters**, an agent replying to an upset customer without review is a real risk.
+- **Ambiguous judgment calls**, "is this review fake" is a harder problem than it looks, and a wrong automated action (like removing a real review) has real consequences.
+
+### A Sane Way to Roll This Out
+1. Start with **read-only agents**, monitoring and alerting, nothing that takes action on its own.
+2. Move to **draft-and-approve** for anything customer-facing, the agent prepares the action, a human confirms.
+3. Only graduate a workflow to **fully autonomous** once you've watched it get the draft-and-approve stage right, consistently, for weeks.
+
+### The Question to Ask Before Automating Anything
+"If this is wrong 1 in 20 times, how bad is that?" A wrong low-stock alert costs you five minutes. A wrong autonomous refund costs you money and possibly a customer's trust. Match the level of autonomy to the actual cost of a mistake.`,
+  },
+
+  "prompting-claude-ecommerce-playbook": {
+    title: "Prompting Claude for E-commerce Tasks: A Practical Playbook",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "August 14, 2026",
+    readTime: "7 min read",
+    content: `## Good Prompts Aren't Clever, They're Complete
+The difference between a mediocre AI output and a genuinely useful one is rarely the AI, it's almost always missing context in the prompt. Here's a reusable structure, plus five prompts you can copy today.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: Write Prompt]) --> Action1[Define AI Role]
+    Action1 --> Action2[Provide Store Context]
+    Action2 --> Action3[State Exact Task]
+    
+    Action3 --> Decision1{Define Output?}
+    
+    Decision1 -->|Yes| Option1[Set Format & Check Rules]
+    Decision1 -->|No| Option2[Add Verification Step]
+    
+    Option1 --> Action4[Execute Prompt]
+    Option2 --> Action4
+    
+    Action4 --> End([End: High Quality Output])
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Option2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action4 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### The 5-Part Structure
+1. **Role** — who should Claude act as? ("You're a Shopify merchandiser," not just "help me with products.")
+2. **Context** — the store data, brand voice, or constraints it needs to know.
+3. **Task** — the exact outcome, not the general topic.
+4. **Format** — how you want the output structured.
+5. **Check** — tell it how you'll verify the answer, this alone reduces confident-sounding mistakes.
+
+### Prompt 1: Merchandising Analysis
+\`\`\`text
+You're analyzing product performance for a Shopify store. Here's last month's
+sales-by-product data: [paste export].
+Identify: (1) top 3 products by margin, not just revenue, (2) any product with
+high traffic but low conversion, (3) one clear recommendation for each.
+Flag if the data is too limited to draw a confident conclusion.
+\`\`\`
+
+### Prompt 2: Support Reply Draft
+\`\`\`text
+Draft a reply to this customer message: [paste].
+Their order info: [paste or pull via connector]. Our policy on this: [paste relevant
+section only]. Tone: warm, concise, no corporate filler.
+If any detail is uncertain, say so rather than guessing.
+\`\`\`
+
+### Prompt 3: Product Copy Batch
+\`\`\`text
+Style guide: [paste your saved style guide].
+Write descriptions for these products: [paste data].
+Flag any product you don't have enough detail to write confidently about.
+\`\`\`
+
+### Prompt 4: Weekly Report
+\`\`\`text
+Using this week's order and inventory data [via connector or pasted export],
+write a founder-facing summary. Lead with the single biggest change. 3 bullets max.
+Skip anything roughly unchanged from last week. Under 200 words.
+\`\`\`
+
+### Prompt 5: Code / Theme Fix
+\`\`\`text
+Here's a Liquid snippet that's [describe the bug]: [paste code].
+Explain what's causing it in one sentence, then show the corrected code.
+Don't rewrite anything outside what's needed to fix this specific issue.
+\`\`\`
+
+### The One Habit That Improves Every Prompt
+Add a line that gives Claude permission to say "I don't have enough information." Without it, AI tools tend to fill gaps with a plausible-sounding guess. With it, you get an honest flag instead, which is far more useful for anything touching real customer data or money.`,
+  },
+
+  "claude-for-shopify-seo-content": {
+    title: "Using Claude for Shopify SEO and Content at Scale",
+    category: "AI & Automation",
+    categorySlug: "ai-automation",
+    date: "August 18, 2026",
+    readTime: "7 min read",
+    content: `## AI Content Without the SEO Homework Is a Wasted Effort
+Publishing more content faster only helps if it's actually structured to rank. This is a repeatable system for turning keyword research into content that's checked against real technical SEO requirements before it goes live, not just generated and published.
+
+\`\`\`mermaid
+graph LR
+    Start([Start: SEO Campaign]) --> Action1[Human Keyword Research]
+    Action1 --> Action2[Claude Drafts Outline]
+    
+    Action2 --> Decision1{Outline Approved?}
+    
+    Decision1 -->|No| Action2
+    Decision1 -->|Yes| Option1[Generate Content Sections]
+    
+    Option1 --> Action3[SEO Checklist Validation]
+    Action3 --> End([End: Publish & Monitor])
+
+    style Start fill:#222,stroke:#333,stroke-width:2px,color:#fff
+    style Action1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action2 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Decision1 fill:#cceeff,stroke:#33bbff,stroke-width:2px,color:#000
+    style Option1 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style Action3 fill:#e6ccff,stroke:#d580ff,stroke-width:2px,color:#000
+    style End fill:#222,stroke:#333,stroke-width:2px,color:#fff
+\`\`\`
+
+### Step 1: Keyword Research Stays Human-Led
+Claude can help you brainstorm angles and group related terms, but the actual search volume and intent data should come from a proper keyword tool. AI is good at expanding a list, not at knowing what people are currently searching.
+
+\`\`\`text
+Here's our core keyword: [keyword]. Here are 15 related terms with volume from
+[tool]: [paste]. Group these into 3-4 distinct content angles, and tell me which
+ones likely have commercial vs informational intent.
+\`\`\`
+
+### Step 2: Draft From an Outline, Not a Blank Prompt
+Asking for a finished article directly tends to produce generic, template-shaped content. Asking for an outline first, reviewing it, then drafting section by section produces something closer to what you'd actually publish.
+
+\`\`\`text
+Outline a blog post targeting "[keyword]" for a Shopify store selling [category].
+Include an H1, 4-5 H2 sections, and one FAQ section for potential featured snippets.
+Don't write the full copy yet, outline only.
+\`\`\`
+
+### Step 3: Run the SEO Checklist Before Publishing
+This is the step most AI content skips entirely, and it's why so much AI-generated content underperforms.
+- **One H1 only.** Don't duplicate it in the body copy.
+- **Unique meta description** written for click-through, not just a summary of the page.
+- **Product or Article schema** added where relevant.
+- **Internal links** to 2-3 related products or posts, this is easy to forget and easy to add.
+- **Image alt text** written descriptively, not left blank or stuffed with keywords.
+
+### Step 4: Publish and Set a Refresh Reminder
+Content isn't finished at publish, it's finished when it's ranking. Set a 90-day reminder to check performance in Search Console. If a page is ranking on page 2, that's often a sign it needs a content refresh, not a full rewrite.
+
+### The Trap to Avoid
+Publishing volume without a checklist step produces a lot of thin, similar-sounding pages that can actually hurt your site's overall authority. One well-structured, SEO-checked page beats five rushed ones every time.`,
+  },
 };
