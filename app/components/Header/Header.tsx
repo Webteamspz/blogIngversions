@@ -139,6 +139,38 @@ export default function Header() {
     );
   };
 
+  const renderThemeToggle = (extraClassName: string) => (
+    <div
+      className={`${styles.themeToggle} ${extraClassName} ${themeMode === "night" ? styles.themeToggleNight : ""}`}
+      role="group"
+      aria-label="Color theme"
+    >
+      <span
+        className={styles.themeToggleThumb}
+        style={{ transform: themeMode === "day" ? "translateX(0%)" : "translateX(100%)" }}
+        aria-hidden="true"
+      />
+      <button
+        type="button"
+        className={`${styles.themeToggleBtn} ${themeMode === "day" ? styles.themeToggleBtnActive : ""}`}
+        onClick={() => setThemeMode("day")}
+        aria-pressed={themeMode === "day"}
+      >
+        <SunIcon className={`${styles.themeToggleIcon} ${styles.themeToggleIconSun}`} />
+        <span>Light</span>
+      </button>
+      <button
+        type="button"
+        className={`${styles.themeToggleBtn} ${themeMode === "night" ? styles.themeToggleBtnActive : ""}`}
+        onClick={() => setThemeMode("night")}
+        aria-pressed={themeMode === "night"}
+      >
+        <MoonIcon className={`${styles.themeToggleIcon} ${styles.themeToggleIconMoon}`} />
+        <span>Dark</span>
+      </button>
+    </div>
+  );
+
   const renderMobileNavLink = (linkItem: any, index: number) => {
     const { href, label } = linkItem;
 
@@ -191,35 +223,7 @@ export default function Header() {
             </Link>
           ))}
 
-        <div
-          className={`${styles.themeToggle} ${themeMode === "night" ? styles.themeToggleNight : ""}`}
-          role="group"
-          aria-label="Color theme"
-        >
-          <span
-            className={styles.themeToggleThumb}
-            style={{ transform: themeMode === "day" ? "translateX(0%)" : "translateX(100%)" }}
-            aria-hidden="true"
-          />
-          <button
-            type="button"
-            className={`${styles.themeToggleBtn} ${themeMode === "day" ? styles.themeToggleBtnActive : ""}`}
-            onClick={() => setThemeMode("day")}
-            aria-pressed={themeMode === "day"}
-          >
-            <SunIcon className={`${styles.themeToggleIcon} ${styles.themeToggleIconSun}`} />
-            <span>Light</span>
-          </button>
-          <button
-            type="button"
-            className={`${styles.themeToggleBtn} ${themeMode === "night" ? styles.themeToggleBtnActive : ""}`}
-            onClick={() => setThemeMode("night")}
-            aria-pressed={themeMode === "night"}
-          >
-            <MoonIcon className={`${styles.themeToggleIcon} ${styles.themeToggleIconMoon}`} />
-            <span>Dark</span>
-          </button>
-        </div>
+        {renderThemeToggle(styles.headerThemeToggle)}
 
         {/* Simple & Clean Hamburger Button */}
         <button 
@@ -249,6 +253,7 @@ export default function Header() {
         aria-label="Mobile menu"
       >
         <div className={styles.mobileHeader}>
+          {renderThemeToggle(styles.mobileThemeToggle)}
           <button className={styles.closeBtn} aria-label="Close menu" onClick={() => setOpen(false)} type="button">
             <CloseIcon className={styles.closeIcon} />
           </button>
