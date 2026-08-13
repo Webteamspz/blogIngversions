@@ -49,11 +49,18 @@ const Footer: React.FC = () => {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.footerLeft}>
               {f?.logo && (
-                <img
-                  src={f.logo}
-                  alt={`${f.company} logo`}
-                  className={styles.footerLogo}
-                />
+                <>
+                  <img
+                    src={f.logo}
+                    alt={`${f.company} logo`}
+                    className={`${styles.footerLogo} ${styles.footerLogoNight}`}
+                  />
+                  <img
+                    src={f.logo.replace(/\.png$/, "-day.png")}
+                    alt={`${f.company} logo`}
+                    className={`${styles.footerLogo} ${styles.footerLogoDay}`}
+                  />
+                </>
               )}
             </Link>
             <p className={styles.companyBio}>

@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
 /* --- Tailwind Utilities --- */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -24,11 +40,78 @@
   --accent-500: #1ea7ff;
   --pill-500: #3b82f6;
   --card-800: #121a2f;
+
+  --palette-bg-950: #030303;
+  --palette-bg-900: #0b0b0b;
+  --palette-bg-800: #141414;
+  --palette-bg-700: #242424;
+  --palette-bg-600: #262626;
+  --palette-text-primary: #ffffff;
+  --palette-text-secondary: #ffffffcc;
+  --palette-text-muted: #ffffff99;
+  --palette-text-subtle: #d1d5db;
+  --palette-accent: #0a84ff;
+  --palette-accent-strong: #1d4ed8;
+  --palette-accent-soft: #3b82f6;
+  --palette-border: #141414;
+  --palette-border-soft: rgba(255,255,255,.06);
+  --palette-overlay: rgba(0,0,0,.6);
+  --palette-hover-surface: rgba(255,255,255,.1);
+  --palette-hover-ghost: rgba(255,255,255,.05);
+}
+
+html[data-theme="day"] {
+  --palette-bg-950: #f5f7fb;
+  --palette-bg-900: #eef3fb;
+  --palette-bg-800: #ffffff;
+  --palette-bg-700: #e8eef8;
+  --palette-bg-600: #dfe7f4;
+  --palette-text-primary: #0f172a;
+  --palette-text-secondary: #334155;
+  --palette-text-muted: #64748b;
+  --palette-text-subtle: #475569;
+  --palette-accent: #0a84ff;
+  --palette-accent-strong: #2563eb;
+  --palette-accent-soft: #60a5fa;
+  --palette-border: #dbe4f0;
+  --palette-border-soft: rgba(15, 23, 42, 0.08);
+  --palette-overlay: rgba(15, 23, 42, 0.3);
+  --palette-hover-surface: rgba(10, 132, 255, 0.08);
+  --palette-hover-ghost: rgba(10, 132, 255, 0.06);
+}
+
+html[data-theme="night"] {
+  --palette-bg-950: #030303;
+  --palette-bg-900: #0b0b0b;
+  --palette-bg-800: #141414;
+  --palette-bg-700: #242424;
+  --palette-bg-600: #262626;
+  --palette-text-primary: #ffffff;
+  --palette-text-secondary: #ffffffcc;
+  --palette-text-muted: #ffffff99;
+  --palette-text-subtle: #d1d5db;
+  --palette-accent: #0a84ff;
+  --palette-accent-strong: #1d4ed8;
+  --palette-accent-soft: #3b82f6;
+  --palette-border: #141414;
+  --palette-border-soft: rgba(255,255,255,.06);
+  --palette-overlay: rgba(0,0,0,.6);
+  --palette-hover-surface: rgba(255,255,255,.1);
+  --palette-hover-ghost: rgba(255,255,255,.05);
 }
 
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+/* Smooth cross-fade when switching between day/night mode */
+html,
+body,
+*,
+*::before,
+*::after {
+  transition: background-color .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
 }
 
 body, html {
@@ -38,8 +121,8 @@ body, html {
 
 body {
   margin: 0;
-  background: var(--bg-900);
-  color: var(--text-200);
+  background: var(--palette-bg-950);
+  color: var(--palette-text-secondary);
   font-family: Barlow, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
@@ -72,7 +155,7 @@ body {
 
 /* Card ki original styling */
 .card {
-  background: #1a1a1a;
+  background: var(--palette-bg-800);
   border-radius: 18px;
   padding: 22px;
   -webkit-box-shadow: 0 10px 24px rgba(0,0,0,.35);
@@ -80,7 +163,7 @@ body {
 }
 
 .section-title {
-  color: var(--text-100);
+  color: var(--palette-text-primary);
   margin: 0 0 14px;
   font-family: Barlow, sans-serif;
   font-weight: 600;
@@ -96,19 +179,19 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid #0a84ff;
+  border: 1.5px solid var(--palette-accent);
   border-radius: 10px;
   background: transparent;
-  color: #0a84ff;
+  color: var(--palette-accent);
   font-weight: 600;
   text-decoration: none;
   transition: all .25s ease-in-out;
 }
 
 .btn-hero:hover, .c-btn:hover, .social-btn:hover {
-  background: rgba(255,255,255,.05);
+  background: var(--palette-hover-ghost);
   box-shadow: 0 0 14px rgba(10,132,255,.4);
-  color: #0a84ff;
+  color: var(--palette-accent);
   transform: translateY(-2px);
 }
 .btn {
@@ -125,7 +208,7 @@ body {
   justify-content: center;
   padding: 14px 22px;
   border-radius: 10px;
-  background: #0a84ff;
+  background: var(--palette-accent);
   color: #fff;
   font-weight: 800;
   text-decoration: none;
@@ -138,7 +221,7 @@ body {
   line-height: 14px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #0a84ff;
+  border: 1px solid var(--palette-accent);
   cursor: pointer
 }
 .btn:hover {

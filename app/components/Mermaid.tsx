@@ -15,6 +15,7 @@ export default function Mermaid({ chart }: { chart: string }) {
   const id = `mermaid-${useId().replace(/:/g, "")}`;
   const [svg, setSvg] = useState<string>("");
 
+  
   useEffect(() => {
     let isMounted = true;
 

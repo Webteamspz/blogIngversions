@@ -1,6 +1,6 @@
 .article-main {
-  background-color: #030303;
-  color: #fff;
+  background-color: var(--palette-bg-950);
+  color: var(--palette-text-primary);
   min-height: 100vh;
   padding-top: 100px
 }
@@ -18,7 +18,7 @@
   font-family: Barlow,sans-serif;
   font-weight: 500;
   padding: 8px 16px 8px 12px;
-  background: #0a84ff;
+  background: var(--palette-accent);
   border-radius: 12px;
   width: fit-content;
   border: 1px solid transparent
@@ -27,8 +27,8 @@
   transition: transform .3s ease
 }
 .article-main .back-link:hover {
-  background: #ffffff1a;
-  color: #0a84ff
+  background: var(--palette-hover-ghost);
+  color: var(--palette-accent)
 }
 .article-main .back-link:hover svg {
   transform: translateX(-4px)
@@ -44,7 +44,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(0,0,0,.25);
-  background-color: #141414;
+  background-color: var(--palette-bg-800);
   border: 1px solid transparent
 }
 .article-main .article-hero-img {
@@ -66,7 +66,7 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
-  background-color: #0a84ff;
+  background-color: var(--palette-accent);
   color: #fff;
   font-family: Barlow,sans-serif
 }
@@ -75,7 +75,7 @@
   font-weight: 600;
   font-size: 36px;
   line-height: 56px;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin-bottom: 1rem
 }
 .article-main .article-meta {
@@ -83,7 +83,7 @@
   align-items: center;
   font-weight: 400;
   font-size: 16px;
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   margin-bottom: 2.5rem;
   font-family: Barlow,sans-serif;
   line-height: 150%
@@ -93,14 +93,14 @@
 }
 .article-main .article-body {
   font-family: Barlow,sans-serif;
-  color: #ffffffcc
+  color: var(--palette-text-secondary)
 }
 .markdown-content h2 {
   font-family: Barlow,sans-serif;
   font-weight: 600;
   font-size: 28px;
   line-height: 1.3;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin-top: 2.5rem;
   margin-bottom: 1rem
 }
@@ -109,7 +109,7 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 1.4;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin-top: 2rem;
   margin-bottom: .75rem
 }
@@ -118,14 +118,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   margin-bottom: 1.25rem
 }
 .markdown-content ul {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1.25rem;
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   font-family: Barlow,sans-serif;
   font-size: 16px;
   line-height: 150%
@@ -135,7 +135,7 @@
 }
 .markdown-content strong {
   font-weight: 700;
-  color: #fff
+  color: var(--palette-text-primary)
 }
 .markdown-content table {
   width: 100%;
@@ -144,18 +144,18 @@
 }
 .markdown-content td,
 .markdown-content th {
-  border: 1px solid #333;
+  border: 1px solid var(--palette-border);
   padding: 10px;
   text-align: left
 }
 .markdown-content th {
-  background-color: #141414;
-  color: #fff
+  background-color: var(--palette-bg-800);
+  color: var(--palette-text-primary)
 }
 .article-main .article-cta-box {
   margin-top: 4rem;
   padding: 2.5rem 2rem;
-  background-color: #141414;
+  background-color: var(--palette-bg-800);
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,.25);
   text-align: center;
@@ -168,7 +168,7 @@
   font-size: 36px;
   font-weight: 600;
   line-height: 56px;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin-bottom: .5rem
 }
 .article-main .cta-text {
@@ -176,7 +176,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   margin-bottom: 1.5rem
 }
 .article-main .cta-button {
@@ -187,7 +187,7 @@
   max-width: 162px;
   padding: 14px 22px;
   border-radius: 10px;
-  background: #0a84ff;
+  background: var(--palette-accent);
   color: #fff;
   font-weight: 700;
   font-size: 14px;
@@ -195,23 +195,23 @@
   text-decoration: none;
   transition: .3s all ease-in-out;
   font-family: Barlow,sans-serif;
-  border: 1px solid #0a84ff;
+  border: 1px solid var(--palette-accent);
   cursor: pointer
 }
 .article-main .cta-button:hover {
-  background: #ffffff1a;
-  color: #0a84ff
+  background: var(--palette-hover-ghost);
+  color: var(--palette-accent)
 }
 .comments-section {
   margin-top: 4rem;
   padding-top: 3rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--palette-border);
   font-family: Barlow,sans-serif
 }
 .comments-heading {
   font-size: 24px;
   font-weight: 700;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin-bottom: 1.5rem
 }
 .comment-item {
@@ -225,7 +225,7 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  background-color: #333
+  background-color: var(--palette-border)
 }
 .comment-avatar img {
   width: 100%;
@@ -233,7 +233,7 @@
   object-fit: cover
 }
 .comment-body {
-  background-color: #141414;
+  background-color: var(--palette-bg-800);
   padding: 1rem 1.25rem;
   border-radius: 12px;
   flex-grow: 1
@@ -241,25 +241,25 @@
 .comment-author {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: var(--palette-text-primary);
   margin: 0
 }
 .comment-date {
   font-size: 12px;
-  color: #888;
+  color: var(--palette-text-muted);
   display: block;
   margin-bottom: .5rem
 }
 .comment-text {
   font-size: 15px;
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   line-height: 1.5;
   margin-bottom: .5rem
 }
 .comment-reply-btn {
   background: 0 0;
   border: none;
-  color: #0a84ff;
+  color: var(--palette-accent);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -280,10 +280,10 @@
 .comment-input,
 .comment-textarea {
   background-color: transparent;
-  border: 1px solid #333;
+  border: 1px solid var(--palette-border);
   padding: 12px 16px;
   border-radius: 8px;
-  color: #fff;
+  color: var(--palette-text-primary);
   font-family: inherit;
   font-size: 15px;
   outline: 0;
@@ -291,7 +291,7 @@
 }
 .comment-input:focus,
 .comment-textarea:focus {
-  border-color: #0a84ff
+  border-color: var(--palette-accent)
 }
 .comment-textarea {
   grid-column: span 2;
@@ -305,7 +305,7 @@
   max-width: 162px;
   padding: 14px 22px;
   border-radius: 10px;
-  background: #0a84ff;
+  background: var(--palette-accent);
   color: #fff;
   font-weight: 700;
   font-size: 14px;
@@ -313,12 +313,12 @@
   text-decoration: none;
   transition: .3s all ease-in-out;
   font-family: Barlow,sans-serif;
-  border: 1px solid #0a84ff;
+  border: 1px solid var(--palette-accent);
   cursor: pointer
 }
 .comment-submit-btn:hover {
-  background: #ffffff1a;
-  color: #0a84ff
+  background: var(--palette-hover-ghost);
+  color: var(--palette-accent)
 }
 .newsletter-banner {
   max-width: 56rem;
@@ -326,8 +326,8 @@
   padding: 0 1rem
 }
 .newsletter-content {
-  background-color: #141414;
-  border: 1px solid #333;
+  background-color: var(--palette-bg-800);
+  border: 1px solid var(--palette-border);
   border-radius: 24px;
   padding: 3rem 2rem;
   text-align: center;
@@ -342,11 +342,11 @@
   width: 100px;
   height: 100px;
   opacity: .1;
-  color: #0a84ff;
+  color: var(--palette-accent);
   transform: rotate(45deg)
 }
 .newsletter-subtitle {
-  color: #ffffffcc;
+  color: var(--palette-text-secondary);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: .1em;
@@ -355,7 +355,7 @@
 .newsletter-title {
   font-size: 36px;
   font-weight: 700;
-  color: #fff;
+  color: var(--palette-text-primary);
   line-height: 1.2;
   margin-bottom: 20px
 }
@@ -369,18 +369,18 @@
 }
 .newsletter-input {
   flex-grow: 1;
-  background-color: #222;
-  border: 1px solid #444;
+  background-color: var(--palette-bg-700);
+  border: 1px solid var(--palette-border);
   padding: 14px 20px;
   border-radius: 8px;
-  color: #fff;
+  color: var(--palette-text-primary);
   font-family: inherit;
   font-size: 15px;
   outline: 0;
   transition: border-color .3s
 }
 .newsletter-input:focus {
-  border-color: #0a84ff
+  border-color: var(--palette-accent)
 }
 .newsletter-submit-btn {
   background-color: #f97316;
@@ -511,7 +511,7 @@ textarea:-webkit-autofill,
 textarea:-webkit-autofill:active,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:hover {
-  -webkit-text-fill-color: #ffffff!important;
-  -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset!important;
+  -webkit-text-fill-color: var(--palette-text-primary)!important;
+  -webkit-box-shadow: 0 0 0 1000px var(--palette-bg-950) inset!important;
   transition: background-color 5000s ease-in-out 0s
 }
