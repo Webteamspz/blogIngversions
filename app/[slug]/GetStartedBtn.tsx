@@ -20,7 +20,7 @@ export default function GetStartedBtn() {
 
   return (
     <Link
-      href="https://ingversionsdigital.com/#hero"
+      href="https://calendly.com/ingversionsdigital/30min?month=2025-10"
       className="cta-button"
       onClick={handleGetStartedClick}
     >

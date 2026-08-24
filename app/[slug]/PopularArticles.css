@@ -1,14 +1,15 @@
 .popular-section {
   margin-top: 4rem;
-  font-family: Barlow, sans-serif;
+  font-family: var(--font-plus-jakarta), sans-serif;
 }
 
 .popular-title {
-  font-family: Barlow, sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 700;
   font-size: 28px;
+  letter-spacing: -0.02em;
   line-height: 1.3;
-  color: var(--palette-text-primary);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -17,7 +18,7 @@
   padding: 4px 0 0;
 }
 
-/* ✅ Reserve real space at the bottom of the swiper box for the dots,
+/* Reserve real space at the bottom of the swiper box for the dots,
    instead of trying to push them outside it with bottom offsets */
 .popular-swiper {
   padding: 4px 4px 44px;
@@ -36,27 +37,34 @@
 }
 
 .popular-card {
-  background-color: var(--palette-bg-800);
-  border: 1px solid var(--palette-bg-600);
-  border-radius: 14px;
+  background-color: var(--bg-800);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop-soft);
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), rotate 0.3s var(--ease-pop);
 }
 
-/* .popular-card-link:hover .popular-card {
-  border-color: #0a84ff;
-  transform: translateY(-4px);
-} */
+.popular-card-link:hover .popular-card {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: var(--shadow-pop-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popular-card { transition: none !important; }
+  .popular-card-link:hover .popular-card { transform: none; }
+}
 
 .popular-img-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: #0a0a0a;
+  border-bottom: var(--border-width) solid var(--border);
+  background-color: var(--bg-700);
 }
 
 .popular-img {
@@ -70,10 +78,10 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  padding: 4px 8px !important;
+  padding: 4px 10px !important;
   font-size: 11px;
   line-height: 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-full);
 }
 
 .popular-content {
@@ -84,14 +92,14 @@
 }
 
 .popular-card-title {
-  font-family: Barlow, sans-serif;
-  font-weight: 600;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
   font-size: 15px;
+  letter-spacing: -0.01em;
   line-height: 1.4;
-  color: var(--palette-text-primary);
+  color: var(--text-primary);
   margin: 0 0 10px 0;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -99,7 +107,7 @@
 .popular-meta {
   margin-top: auto;
   font-size: 12px;
-  color: var(--palette-text-muted);
+  color: var(--text-muted);
   display: flex;
   align-items: center;
 }
@@ -108,22 +116,24 @@
   margin: 0 6px;
 }
 
-/* Nav buttons — same style as Reviews slider */
+/* Nav buttons */
 .popular-nav {
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--palette-accent);
-  border: 1px solid var(--palette-accent);
-  color: #fff;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-full);
+  background: var(--bg-800);
+  border: var(--border-width) solid var(--border);
+  box-shadow: 3px 3px 0 0 var(--border);
+  color: var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .popular-prev {
@@ -135,24 +145,31 @@
 }
 
 .popular-nav svg {
-  max-width: 16px;
-  width: 100%;
   display: block;
 }
 
-.popular-nav.popular-prev svg {
-  transform: rotate(180deg);
-}
-
 .popular-nav:hover {
-  background: var(--palette-hover-ghost);
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-50%) translate(-2px, -2px);
+  box-shadow: 5px 5px 0 0 var(--border);
 }
 
-.popular-nav:hover svg path {
-  stroke: var(--palette-accent);
+.popular-nav:active {
+  transform: translateY(-50%) translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--border);
 }
 
-/* ✅ Dots now sit inside the reserved bottom padding of .popular-swiper,
+.popular-nav.swiper-button-disabled {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popular-nav { transition: none !important; }
+  .popular-nav:hover, .popular-nav:active { transform: translateY(-50%); }
+}
+
+/* Dots now sit inside the reserved bottom padding of .popular-swiper,
    clearly separated from the cards, and never clipped */
 .popular-swiper .swiper-pagination {
   position: absolute;
@@ -170,14 +187,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--palette-text-primary);
-  opacity: 0.4;
+  background: var(--text-primary);
+  opacity: 0.3;
   margin: 0 !important;
 }
 
 .popular-swiper .swiper-pagination-bullet-active {
   opacity: 1;
-  background: var(--palette-accent);
+  background: var(--accent);
 }
 
 @media (max-width: 767.98px) {

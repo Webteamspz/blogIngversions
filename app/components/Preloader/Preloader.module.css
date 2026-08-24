@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: #030303;
+  background: var(--bg-950, #fffdf5);
   z-index: 9999;
   display: -ms-grid;
   display: grid;
@@ -27,7 +27,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #030303; /* Tumhara theme color - Black */
+  background-color: var(--bg-950, #fffdf5);
   display: flex;
   justify-content: center;
   align-items: center;

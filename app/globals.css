@@ -29,75 +29,73 @@
   overflow: hidden;
 }
 
-/* --- YAHAN SE AAPKI ORIGINAL REACT THEME SHURU HAI --- */
+/* --- Playful Geometric design system --- */
 :root {
-  --bg-900: #030303;
-  --bg-800: #0f1628;
-  --text-100: #ffffff;
-  --text-200: rgba(255, 255, 255, 0.9);
-  --text-300: #FFFFFFE5;
-  --muted-400: rgba(255, 255, 255, 0.08);
-  --accent-500: #1ea7ff;
-  --pill-500: #3b82f6;
-  --card-800: #121a2f;
+  /* background (cream, layered) */
+  --bg-950: #fffdf5;
+  --bg-900: #fdf9ec;
+  --bg-800: #ffffff;
+  --bg-700: #f1f5f9;
+  --bg-600: #e2e8f0;
 
-  --palette-bg-950: #030303;
-  --palette-bg-900: #0b0b0b;
-  --palette-bg-800: #141414;
-  --palette-bg-700: #242424;
-  --palette-bg-600: #262626;
-  --palette-text-primary: #ffffff;
-  --palette-text-secondary: #ffffffcc;
-  --palette-text-muted: #ffffff99;
-  --palette-text-subtle: #d1d5db;
-  --palette-accent: #0a84ff;
-  --palette-accent-strong: #1d4ed8;
-  --palette-accent-soft: #3b82f6;
-  --palette-border: #141414;
-  --palette-border-soft: rgba(255,255,255,.06);
-  --palette-overlay: rgba(0,0,0,.6);
-  --palette-hover-surface: rgba(255,255,255,.1);
-  --palette-hover-ghost: rgba(255,255,255,.05);
-}
+  /* text */
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #475569;
 
-html[data-theme="day"] {
-  --palette-bg-950: #f5f7fb;
-  --palette-bg-900: #eef3fb;
-  --palette-bg-800: #ffffff;
-  --palette-bg-700: #e8eef8;
-  --palette-bg-600: #dfe7f4;
-  --palette-text-primary: #0f172a;
-  --palette-text-secondary: #334155;
-  --palette-text-muted: #64748b;
-  --palette-text-subtle: #475569;
-  --palette-accent: #0a84ff;
-  --palette-accent-strong: #2563eb;
-  --palette-accent-soft: #60a5fa;
-  --palette-border: #dbe4f0;
-  --palette-border-soft: rgba(15, 23, 42, 0.08);
-  --palette-overlay: rgba(15, 23, 42, 0.3);
-  --palette-hover-surface: rgba(10, 132, 255, 0.08);
-  --palette-hover-ghost: rgba(10, 132, 255, 0.06);
-}
+  /* accent */
+  --accent: #8b5cf6;
+  --accent-strong: #7c3aed;
+  --accent-soft: #a78bfa;
 
-html[data-theme="night"] {
-  --palette-bg-950: #030303;
-  --palette-bg-900: #0b0b0b;
-  --palette-bg-800: #141414;
-  --palette-bg-700: #242424;
-  --palette-bg-600: #262626;
-  --palette-text-primary: #ffffff;
-  --palette-text-secondary: #ffffffcc;
-  --palette-text-muted: #ffffff99;
-  --palette-text-subtle: #d1d5db;
-  --palette-accent: #0a84ff;
-  --palette-accent-strong: #1d4ed8;
-  --palette-accent-soft: #3b82f6;
-  --palette-border: #141414;
-  --palette-border-soft: rgba(255,255,255,.06);
-  --palette-overlay: rgba(0,0,0,.6);
-  --palette-hover-surface: rgba(255,255,255,.1);
-  --palette-hover-ghost: rgba(255,255,255,.05);
+  /* confetti rotation */
+  --secondary: #f472b6;
+  --tertiary: #fbbf24;
+  --quaternary: #34d399;
+
+  /* border */
+  --border: #1e293b;
+  --border-soft: rgba(30, 41, 59, 0.12);
+  --border-width: 2px;
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* hard pop shadows */
+  --shadow-pop: 4px 4px 0 0 var(--border);
+  --shadow-pop-hover: 6px 6px 0 0 var(--border);
+  --shadow-pop-active: 2px 2px 0 0 var(--border);
+  --shadow-pop-soft: 8px 8px 0 0 var(--border-soft);
+
+  /* motion */
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Legacy palette aliases ---
+     Existing component stylesheets in this codebase reference the
+     --palette-* custom properties below. They are mapped onto the tokens
+     above so every consumer picks up the Playful Geometric theme without
+     a mechanical rename pass across every file. */
+  --palette-bg-950: var(--bg-950);
+  --palette-bg-900: var(--bg-900);
+  --palette-bg-800: var(--bg-800);
+  --palette-bg-700: var(--bg-700);
+  --palette-bg-600: var(--bg-600);
+  --palette-text-primary: var(--text-primary);
+  --palette-text-secondary: var(--text-secondary);
+  --palette-text-muted: var(--text-muted);
+  --palette-text-subtle: var(--text-subtle);
+  --palette-accent: var(--accent);
+  --palette-accent-strong: var(--accent-strong);
+  --palette-accent-soft: var(--accent-soft);
+  --palette-border: var(--border);
+  --palette-border-soft: var(--border-soft);
+  --palette-overlay: rgba(30, 41, 59, 0.45);
+  --palette-hover-surface: rgba(139, 92, 246, 0.1);
+  --palette-hover-ghost: rgba(139, 92, 246, 0.08);
 }
 
 * {
@@ -105,25 +103,42 @@ html[data-theme="night"] {
   box-sizing: border-box;
 }
 
-/* Smooth cross-fade when switching between day/night mode */
-html,
-body,
-*,
-*::before,
-*::after {
-  transition: background-color .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
-}
-
 body, html {
-  height: 100%;
+  min-height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background: var(--palette-bg-950);
-  color: var(--palette-text-secondary);
-  font-family: Barlow, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg-950);
+  color: var(--text-secondary);
+  font-family: var(--font-plus-jakarta), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Visible focus rings on all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--border);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Yeh aapke layout ko center karega */
@@ -132,6 +147,12 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+@media (max-width: 767.98px) {
+  .container {
+    padding: 0 22px;
+  }
 }
 
 /* Yeh cards ko horizontally set karega */
@@ -147,7 +168,7 @@ body {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767.98px) {
   .grid {
     grid-template-columns: 1fr; /* Mobile pe 1 card */
   }
@@ -155,20 +176,21 @@ body {
 
 /* Card ki original styling */
 .card {
-  background: var(--palette-bg-800);
-  border-radius: 18px;
+  background: var(--bg-800);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 22px;
-  -webkit-box-shadow: 0 10px 24px rgba(0,0,0,.35);
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  box-shadow: var(--shadow-pop-soft);
 }
 
 .section-title {
-  color: var(--palette-text-primary);
+  color: var(--text-primary);
   margin: 0 0 14px;
-  font-family: Barlow, sans-serif;
-  font-weight: 600;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
   font-size: 36px;
-  line-height: 56px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   text-align: center;
   text-transform: capitalize;
 }
@@ -179,52 +201,61 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--palette-accent);
-  border-radius: 10px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-full);
   background: transparent;
-  color: var(--palette-accent);
-  font-weight: 600;
+  color: var(--text-primary);
+  font-weight: 700;
   text-decoration: none;
-  transition: all .25s ease-in-out;
+  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), background-color 0.2s ease;
 }
 
 .btn-hero:hover, .c-btn:hover, .social-btn:hover {
-  background: var(--palette-hover-ghost);
-  box-shadow: 0 0 14px rgba(10,132,255,.4);
-  color: var(--palette-accent);
-  transform: translateY(-2px);
+  background: var(--tertiary);
+  box-shadow: var(--shadow-pop);
+  color: var(--text-primary);
+  transform: translate(-2px, -2px);
 }
+
 .btn {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   max-width: 162px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   padding: 14px 22px;
-  border-radius: 10px;
-  background: var(--palette-accent);
+  border-radius: var(--radius-full);
+  background: var(--accent);
   color: #fff;
-  font-weight: 800;
   text-decoration: none;
-  -webkit-transition: .3s all ease-in-out;
-  -o-transition: .3s all ease-in-out;
-  transition: .3s all ease-in-out;
-  font-family: Barlow,sans-serif;
+  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), background-color 0.2s ease;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid var(--palette-accent);
-  cursor: pointer
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-pop);
+  cursor: pointer;
 }
+
 .btn:hover {
-  background: #ffffff1a;
-  color: #0a84ff
+  background: var(--accent-strong);
+  box-shadow: var(--shadow-pop-hover);
+  transform: translate(-2px, -2px);
+}
+
+.btn:active {
+  box-shadow: var(--shadow-pop-active);
+  transform: translate(2px, 2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-hero, .c-btn, .social-btn, .btn {
+    transition: none !important;
+  }
+  .btn-hero:hover, .c-btn:hover, .social-btn:hover, .btn:hover, .btn:active {
+    transform: none;
+  }
 }
