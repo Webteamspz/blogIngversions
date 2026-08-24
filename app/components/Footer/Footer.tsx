@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactElement } from "react";
 import Link from "next/link";
 import { blogData as data } from "../../data/blogData";
@@ -102,7 +104,16 @@ const Footer = () => {
                   }
 
                   return (
-                    <Link key={i} href={l.href} style={{ textDecoration: "none" }}>
+                    <Link
+                      key={i}
+                      href={l.href}
+                      style={{ textDecoration: "none" }}
+                      onClick={() => {
+                        if (l.href === "/" && typeof window !== "undefined") {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      }}
+                    >
                       {displayText}
                     </Link>
                   );

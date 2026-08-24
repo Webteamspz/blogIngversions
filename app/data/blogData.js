@@ -6,7 +6,6 @@ export const blogData = {
       { label: "Pricing", href: "https://ingversionsdigital.com/pricing" },
       { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
-      { label: "Blog", href: "/" },
     ],
     cta: {
       label: "Book a call",
@@ -511,7 +510,7 @@ footer: {
       {
         title: "Quick Links",
         links: [
-          { name: "Home", href: "https://ingversionsdigital.com/" },
+          { name: "Home", href: "/" },
           { name: "Services", href: "https://ingversionsdigital.com/#services" },
           { name: "Pricing", href: "https://ingversionsdigital.com/pricing" },
           { name: "Projects", href: "https://ingversionsdigital.com/projects" },

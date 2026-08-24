@@ -158,6 +158,10 @@ const Header = () => {
 
   const handleNavClick = (label: string, loc: string, href: string) => {
     ctaClick({ label, location: loc, href });
+
+    if (href === "/" && typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handleBookCallClick = (loc: string) => {
