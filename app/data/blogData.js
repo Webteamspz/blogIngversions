@@ -527,8 +527,8 @@ footer: {
       {
         title: "Legal",
         links: [
-          { name: "Privacy Policy", href: "/privacy-policy" },
-          { name: "Terms of Service", href: "/terms-of-service" },
+          { name: "Privacy Policy", href: "https://ingversionsdigital.com/privacy-policy" },
+          { name: "Terms of Service", href: "https://ingversionsdigital.com/terms-of-service" },
         ],
       },
     ],

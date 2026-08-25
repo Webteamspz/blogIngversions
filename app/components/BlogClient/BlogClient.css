@@ -316,15 +316,15 @@
 
 .newsletter-container {
   position: relative;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: min(56rem, calc(100% - 40px));
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 76px 42px 70px;
+  padding: 40px 42px 40px;
   border: var(--border-width) solid var(--border);
   border-radius: 56px 56px 0 56px;
   background: var(--accent);
