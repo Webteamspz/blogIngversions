@@ -198,7 +198,7 @@ function CommentsContent() {
                   <button 
                     className="comment-delete-btn"
                     onClick={() => handleDeleteComment(comment.id)}
-                    style={{ color: "#ff4d4d", background: "none", border: "none", cursor: "pointer", fontSize: "14px", fontWeight: "500" }}
+                    style={{ color: "#dc2626", background: "none", border: "none", cursor: "pointer", fontSize: "14px", fontWeight: 600 }}
                   >
                     Delete
                   </button>
@@ -248,7 +248,7 @@ function CommentsContent() {
 
           {/* NESTED REPLIES DISPLAY */}
           {comment.replies && comment.replies.length > 0 && (
-            <div className="nested-replies" style={{ marginLeft: "60px", marginTop: "15px", borderLeft: "2px solid #444", paddingLeft: "20px" }}>
+            <div className="nested-replies" style={{ marginLeft: "60px", marginTop: "15px", borderLeft: "2px solid var(--border-soft)", paddingLeft: "20px" }}>
               {comment.replies.map((reply) => (
                 <div key={reply.id} className="comment-item" style={{ marginBottom: "15px" }}>
                   <div className="comment-avatar">
@@ -264,7 +264,7 @@ function CommentsContent() {
                       <button 
                         className="reply-delete-btn"
                         onClick={() => handleDeleteReply(comment.id, reply.id)}
-                        style={{ color: "#ff4d4d", background: "none", border: "none", cursor: "pointer", fontSize: "12px", marginTop: "5px", padding: "0" }}
+                        style={{ color: "#dc2626", background: "none", border: "none", cursor: "pointer", fontSize: "12px", fontWeight: 600, marginTop: "5px", padding: "0" }}
                       >
                         Delete
                       </button>

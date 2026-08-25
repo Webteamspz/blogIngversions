@@ -1,8 +1,17 @@
 .siteFooter {
-  background: var(--palette-bg-950);
+  background: var(--palette-border);
   position: relative;
-  border-top: 1px solid var(--palette-text-secondary);
-  padding: 60px 0 30px
+  overflow: hidden;
+  padding: 115px 0 30px
+}
+.footerWave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: block;
+  pointer-events: none
 }
 .footerMain {
   display: flex;
@@ -13,6 +22,9 @@
 .brandCol {
   max-width: 320px
 }
+.footerLeft {
+  display: block
+}
 .footerLogo {
   max-width: 230px;
   width: 100%;
@@ -20,30 +32,18 @@
   object-fit: cover;
   margin-bottom: 24px
 }
-.footerLogoDay {
-  display: none;
-}
-:root[data-theme="day"] .footerLogoNight {
-  display: none;
-}
-:root[data-theme="day"] .footerLogoDay {
-  display: block;
-}
 .companyBio {
-  color: var(--palette-text-secondary);
-  font-family: Barlow;
+  color: rgba(255,255,255,.65);
+  font-family: var(--font-plus-jakarta), sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
   margin: 0
 }
-.brandSocials {
-  margin-top: 30px
-}
 .linksWrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 65px;
+  gap: 25px;
   justify-content: flex-end;
   flex: 1
 }
@@ -55,16 +55,16 @@
   max-width: 270px
 }
 .linkGroup h4 {
-  color: var(--palette-text-primary);
-  font-family: Barlow;
+  color: var(--palette-accent-soft);
+  font-family: var(--font-outfit), system-ui, sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 8px 0
 }
 .linkGroup > a {
-  color: var(--palette-text-primary);
+  color: var(--palette-bg-800);
   text-decoration: none;
-  font-family: Barlow;
+  font-family: var(--font-plus-jakarta), sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 100%;
@@ -72,23 +72,21 @@
   padding: 4px 0
 }
 .linkGroup > a:hover {
-  color: var(--palette-accent)
-}
-.footerLink:hover {
-  color: var(--palette-accent)
+  color: var(--tertiary)
 }
 .footerBottomRow {
   display: flex;
-  justify-content: center;
-  align-items: center
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 24px
 }
 .copyright {
-  color: var(--palette-text-secondary);
-  font-family: Barlow;
+  color: rgba(255,255,255,.6);
+  font-family: var(--font-plus-jakarta), sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
-  text-align: center
+  font-size: 15px;
+  line-height: 150%
 }
 .footSocials {
   display: flex;
@@ -96,52 +94,26 @@
   flex-wrap: wrap
 }
 .socialBtn {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  border: 1px solid var(--palette-border);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: var(--border-width) solid rgba(255,255,255,.25);
   display: grid;
   place-items: center;
-  color: var(--palette-text-secondary);
-  transition: transform .15s ease,filter .15s ease,border-color .2s ease;
-  background: linear-gradient(180deg,var(--palette-bg-700) 0,transparent 100%)
+  color: var(--palette-bg-800);
+  background: 0 0;
+  transition: transform .2s ease,background-color .2s ease,border-color .2s ease
 }
 .socialBtn:hover {
-  color: var(--palette-accent);
-  border-color: var(--palette-accent);
-  transform: translateY(-1px);
-  filter: brightness(1.1)
+  color: var(--palette-border);
+  background: var(--tertiary);
+  border-color: var(--tertiary);
+  transform: translateY(-2px)
 }
 .socialBtn svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor
-}
-.footAddress,
-.footContact {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  color: var(--palette-text-secondary);
-  text-decoration: none;
-  font-family: Barlow;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%
-}
-.footAddress{
-  font-size: 18px;
-}
-.footContact:hover {
-  color: var(--palette-accent)
-}
-.footAddress svg,
-.footContact svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  width: 20px;
-  height: 20px;
-  color: var(--palette-accent)
+  width: 18px;
+  height: 18px;
+  fill: none
 }
 @media (max-width:1199.98px) and (min-width:1024px) {
   .footerMain {
@@ -153,7 +125,7 @@
 }
 @media (max-width:1023.98px) and (min-width:768px) {
   .siteFooter {
-    padding: 40px 0 30px
+    padding: 70px 0 30px
   }
   .footerMain {
     flex-direction: column;
@@ -172,28 +144,16 @@
   }
   .linksWrapper {
     justify-content: center;
-    gap: 80px;
     width: 100%
   }
   .linkGroup {
     align-items: flex-start;
     text-align: left
   }
-  .linkGroup.brandSocials {
-    align-items: center;
-    width: 100%
-  }
-  .linkGroup.brandSocials h4 {
-    text-align: center
-  }
-  .footSocials {
-    justify-content: center;
-    width: 100%
-  }
 }
 @media (max-width:767.98px) {
   .siteFooter {
-    padding: 30px 0 20px
+    padding: 90px 0 20px
   }
   .footerMain {
     flex-direction: column;
@@ -213,7 +173,7 @@
   .linksWrapper {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     width: 100%
   }
   .linkGroup {
@@ -228,38 +188,15 @@
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    padding: 8px 0 44px
+    padding-top: 20px
   }
   .footSocials {
     justify-content: center;
     width: 100%
   }
-  .socialBtn {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px
-  }
-  .footAddress,
-  .footContact {
-    font-size: 18px;
-    line-height: 130%;
-    display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: 9px;
-    align-items: start;
-    width: 100%;
-    max-width: max-content;
-    margin: 0 auto;
-    text-align: center
-  }
-  .footAddress svg,
-  .footContact svg {
-    margin-top: 2px
-  }
   .copyright {
     font-size: 14px;
-    line-height: 130%;
-    color: var(--palette-text-muted)
+    line-height: 130%
   }
 }
 @media (max-width:359.98px) {
@@ -271,19 +208,16 @@
     height: 40px
   }
   .socialBtn svg {
-    width: 22px;
-    height: 22px
+    width: 16px;
+    height: 16px
   }
   .linkGroup > a {
     font-size: 15px
   }
-  .companyBio,
-  .footAddress,
-  .footContact {
+  .companyBio {
     font-size: 13px
   }
   .copyright {
-    font-size: 12px;
-    color: var(--palette-text-muted)
+    font-size: 12px
   }
 }

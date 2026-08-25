@@ -1,29 +1,36 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-// import Preloader from "./components/Preloader/Preloader"; // 
+// import Preloader from "./components/Preloader/Preloader"; //
 import ScrollToTop from "../app/components/ScrollToTop/ScrollToTop";
 
 import GTMProvider from "./GTMProvider";
 
-const barlow = Barlow({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["600", "700", "800"],
+  variable: "--font-outfit",
+});
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plus-jakarta",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#030303",
+  themeColor: "#fffdf5",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  title: "Ingversions Digital",
+  metadataBase: new URL("https://blog.ingversionsdigital.com"),
+  title: "Ingversions Blog",
   description: "Your trusted digital partner.",
   icons: {
     icon: [
@@ -64,7 +71,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${outfit.variable} ${plusJakarta.variable}`}>
       <head>
         {/* <Script src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`} strategy="afterInteractive" /> */}
         {/* <Script id="gtm-init" strategy="afterInteractive">
@@ -79,7 +86,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       </head>
 
-      <body className={`${barlow.className} flex flex-col min-h-screen`} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         {/* <Script
           id="microsoft-clarity"
           strategy="afterInteractive"

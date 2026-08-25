@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { ArrowLeft } from "lucide-react";
 import "./ArticleDetail.css";
 
 import ArticleTracker from "./ArticleTracker";
 import GetStartedBtn from "./GetStartedBtn";
 import PopularArticles from "./PopularArticles";
-import { articles } from "../Data/articlesData";
-import { articleImages, fallbackImagesByCategory } from "../Data/articleImages";
+import { articles } from "../data/articlesData";
+import { articleImages, fallbackImagesByCategory } from "../data/articleImages";
 import Comments from "./Comments";
 
 // ✅ Import your new Mermaid client component
@@ -52,6 +53,9 @@ export async function generateMetadata({
       "CRO",
       "A/B testing",
     ],
+    alternates: {
+      canonical: `https://blog.ingversionsdigital.com/${slug}`,
+    },
     openGraph: {
       type: "article",
       url: `https://blog.ingversionsdigital.com/${slug}`,
@@ -97,8 +101,38 @@ export default async function ArticlePage({
   const heroImage = articleImages[slug] || fallbackImagesByCategory[article.categorySlug] || fallbackImagesByCategory["cro"];
   const badgeColor = categoryColors[article.category] || "badge-default";
 
+  const publishedDate = new Date(article.date);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    image: [heroImage],
+    datePublished: isNaN(publishedDate.getTime()) ? undefined : publishedDate.toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "Ingversions Digital",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ingversions Digital",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://ingversionsdigital.com/logos/logo-192.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://blog.ingversionsdigital.com/${slug}`,
+    },
+  };
+
   return (
     <main className="article-main">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
 
       <ArticleTracker title={article.title} />
 
@@ -106,10 +140,7 @@ export default async function ArticlePage({
 
         <div className="back-link-wrapper">
           <Link href="/" className="back-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
+            <ArrowLeft size={18} strokeWidth={2.5} aria-hidden="true" />
             Back to Blog
           </Link>
         </div>
