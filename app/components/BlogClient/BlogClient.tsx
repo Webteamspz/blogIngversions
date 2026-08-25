@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import "./BlogClient.css"; 
+import { ArrowRight } from "lucide-react";
+import "./BlogClient.css";
 import { ctaClick, formSuccess, pageview } from "../../gtm"; 
-import { blogData } from "../../Data/blogData"; 
+import { blogData } from "../../data/blogData"; 
 
 const articleImages: Record<string, string> = {
   "cro": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
@@ -38,18 +39,6 @@ const categories = [
   { id: "qa", name: "Quality Assurance", count: articles.filter(a => a.categorySlug === "qa").length },
   { id: "ai-automation", name: "AI & Automation", count: articles.filter(a => a.categorySlug === "ai-automation").length },
 ];
-
-const featuredArticle = {
-  id: "featured-1",
-  slug: "checkout-conversion-34-percent",
-  title: "How We Increased Checkout Conversion by 34% for a Shopify Store",
-  excerpt: "A deep dive into the A/B tests, UX changes, and technical optimizations that transformed a struggling checkout flow into a conversion machine. Learn the exact steps we took to boost revenue.",
-  category: "CRO",
-  categorySlug: "cro",
-  date: "April 10, 2026",
-  readTime: "8 min read",
-  coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
-};
 
 const categoryColors: Record<string, string> = {
   "CRO": "badge-cro",
@@ -120,6 +109,8 @@ export default function BlogClient() {
   return (
    <main className="blog-main">
       <section className="blog-section hero-section" ref={topRef}>
+        <div className="hero-shape hero-shape-circle" aria-hidden="true" />
+        <div className="hero-shape hero-shape-square" aria-hidden="true" />
         <div className="container text-center">
           <h1 className="hero-title">
             Insights for <span className="text-highlight">Founders</span> Who Build
@@ -141,41 +132,6 @@ export default function BlogClient() {
           </div>
         </div>
       </section>
-
-      {activeCategory === "all" && (
-        <section className="blog-section py-8">
-          <div className="container">
-            <Link href={`/${featuredArticle.slug}`} className="block-link">
-              <div className="featured-card">
-                <div className="featured-layout">
-                  <div className="featured-image-container">
-                    <img src={featuredArticle.coverImage} alt="Checkout conversion" className="featured-image" />
-                  </div>
-                  <div className="featured-content">
-                    <span className={`badge ${categoryColors[featuredArticle.category]}`}>
-                      Featured • {featuredArticle.category}
-                    </span>
-                    <h2 className="featured-title">
-                      {featuredArticle.title}
-                    </h2>
-                    <p className="featured-excerpt">
-                      {featuredArticle.excerpt}
-                    </p>
-                    <div className="meta-info">
-                      <span>{featuredArticle.date}</span>
-                      <span className="meta-divider">•</span>
-                      <span>{featuredArticle.readTime}</span>
-                    </div>
-                    <span className="read-more">
-                      Read Article →
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-      )}
 
       <section className="blog-section py-8">
         <div className="container">
@@ -271,7 +227,10 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">CRO</h3>
               <p className="category-desc">Conversion rate optimization strategies and best practices.</p>
-              <span className="category-link text-green">{categories.find(c => c.id === "cro")?.count} articles →</span>
+              <span className="category-link text-green">
+                {categories.find(c => c.id === "cro")?.count} articles
+                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+              </span>
             </div>
 
             <div 
@@ -283,7 +242,10 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">A/B Testing</h3>
               <p className="category-desc">Testing methodologies and statistical significance.</p>
-              <span className="category-link text-orange">{categories.find(c => c.id === "ab-testing")?.count} articles →</span>
+              <span className="category-link text-orange">
+                {categories.find(c => c.id === "ab-testing")?.count} articles
+                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+              </span>
             </div>
 
             <div 
@@ -295,7 +257,10 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">Shopify Development</h3>
               <p className="category-desc">Theme customization and store optimization.</p>
-              <span className="category-link text-purple">{categories.find(c => c.id === "shopify")?.count} articles →</span>
+              <span className="category-link text-purple">
+                {categories.find(c => c.id === "shopify")?.count} articles
+                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+              </span>
             </div>
             
             <div 
@@ -307,7 +272,10 @@ export default function BlogClient() {
               </div>
               <h3 className="category-title">Quality Assurance</h3>
               <p className="category-desc">Automated testing, checklists, and performance tracking.</p>
-              <span className="category-link text-blue">{categories.find(c => c.id === "qa")?.count} articles →</span>
+              <span className="category-link text-blue">
+                {categories.find(c => c.id === "qa")?.count} articles
+                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+              </span>
             </div>
             
           </div>

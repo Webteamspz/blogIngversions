@@ -1,16 +1,15 @@
 export const blogData = {
   header: {
     links: [
-      { label: "Home", href: "https://ingversionsdigital.com/" },
+      { label: "Home", href: "/" },
       { label: "Services", href: "https://ingversionsdigital.com/#services" },
       { label: "Pricing", href: "https://ingversionsdigital.com/pricing" },
       { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
-      { label: "Blog", href: "https://blog.ingversionsdigital.com/" },
     ],
     cta: {
       label: "Book a call",
-      href: "https://ingversionsdigital.com/#hero",
+      href: "https://calendly.com/ingversionsdigital/30min?month=2025-10",
     },
   },
 
@@ -511,18 +510,25 @@ footer: {
       {
         title: "Quick Links",
         links: [
-          { name: "Home", href: "/#hero" },
-          { name: "Services", href: "/#services" },
-          { name: "Pricing", href: "/pricing" },
-          { name: "Projects", href: "/projects" },
+          { name: "Home", href: "/" },
+          { name: "Services", href: "https://ingversionsdigital.com/#services" },
+          { name: "Pricing", href: "https://ingversionsdigital.com/pricing" },
+          { name: "Projects", href: "https://ingversionsdigital.com/projects" },
         ],
       },
       {
         title: "Company",
         links: [
-          { name: "Team Page", href: "/teampage" },
-          { name: "About Us", href: "/about-us" },
-          { name: "Blog", href: "https://blog.ingversionsdigital.com/" },
+          { name: "Team Page", href: "https://ingversionsdigital.com/teampage" },
+          { name: "About Us", href: "https://ingversionsdigital.com/about-us" },
+          { name: "Blog", href: "/" },
+        ],
+      },
+      {
+        title: "Legal",
+        links: [
+          { name: "Privacy Policy", href: "https://ingversionsdigital.com/privacy-policy" },
+          { name: "Terms of Service", href: "https://ingversionsdigital.com/terms-of-service" },
         ],
       },
     ],

@@ -3,12 +3,21 @@
 import React, { useEffect, useState, useId } from "react";
 import mermaid from "mermaid";
 
-// Initialize Mermaid with broader text color settings
+// Initialize Mermaid to match the Playful Geometric (light) theme
 mermaid.initialize({
   startOnLoad: false,
-  // 1. Force the dark theme, which often sets text to light by default
-  theme: "dark", 
+  theme: "base",
   securityLevel: "loose",
+  themeVariables: {
+    background: "#ffffff",
+    primaryColor: "#a78bfa",
+    primaryTextColor: "#1e293b",
+    primaryBorderColor: "#1e293b",
+    lineColor: "#1e293b",
+    secondaryColor: "#f472b6",
+    tertiaryColor: "#fbbf24",
+    fontFamily: "var(--font-plus-jakarta), sans-serif",
+  },
 });
 
 export default function Mermaid({ chart }: { chart: string }) {

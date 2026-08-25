@@ -2,15 +2,16 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./PopularArticles.css";
 
-import { articles } from "../Data/articlesData";
-import { blogData } from "../Data/blogData";
-import { homepageCategoryImages } from "../Data/articleImages";
+import { articles } from "../data/articlesData";
+import { blogData } from "../data/blogData";
+import { homepageCategoryImages } from "../data/articleImages";
 
 const categoryColors: Record<string, string> = {
   CRO: "badge-cro",
@@ -71,14 +72,7 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
           ref={prevRef}
           aria-label="Previous article"
         >
-          <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-            <path
-              d="M0.999921 8.5H15.5833M15.5833 8.5L8.58325 1.5M15.5833 8.5L8.58325 15.5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
+          <ArrowLeft size={18} strokeWidth={2} aria-hidden="true" />
         </button>
 
         <button
@@ -86,14 +80,7 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
           ref={nextRef}
           aria-label="Next article"
         >
-          <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-            <path
-              d="M0.999921 8.5H15.5833M15.5833 8.5L8.58325 1.5M15.5833 8.5L8.58325 15.5"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
+          <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
         </button>
 
         <Swiper
@@ -120,7 +107,6 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
             0: { slidesPerView: 1.15, spaceBetween: 14 },
             640: { slidesPerView: 2, spaceBetween: 16 },
             900: { slidesPerView: 3, spaceBetween: 18 },
-            1280: { slidesPerView: 4, spaceBetween: 20 },
           }}
           className="popular-swiper"
         >
