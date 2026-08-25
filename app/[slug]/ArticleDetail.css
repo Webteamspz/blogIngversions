@@ -583,7 +583,7 @@
     padding-bottom: 1rem
   }
   .mermaid-diagram-container svg {
-    min-width: 768px;
+    width: 100%!important;
     height: auto!important;
     max-width: none!important
   }

@@ -184,16 +184,20 @@
 }
 
 .popular-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--text-primary);
-  opacity: 0.3;
+  border: var(--border-width) solid var(--border);
+  background: transparent;
+  opacity: 1;
   margin: 0 !important;
 }
 
+.popular-swiper .swiper-pagination-bullet:hover {
+  background: var(--tertiary);
+}
+
 .popular-swiper .swiper-pagination-bullet-active {
-  opacity: 1;
   background: var(--accent);
 }
 
