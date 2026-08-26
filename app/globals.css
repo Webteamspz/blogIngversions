@@ -1,72 +1,44 @@
-@import "tailwindcss";
-
-/* --- Tailwind Utilities --- */
 .flex {
-  display: flex;
+  display: flex
 }
-
 .flex-col {
-  flex-direction: column;
+  flex-direction: column
 }
-
 .min-h-screen {
-  min-height: 100vh;
+  min-height: 100vh
 }
-
 .grow {
-  flex-grow: 1;
+  flex-grow: 1
 }
-
-/* --- Playful Geometric design system --- */
 :root {
-  /* background (cream, layered) */
+  color-scheme: light;
   --bg-950: #fffdf5;
   --bg-900: #fdf9ec;
   --bg-800: #ffffff;
   --bg-700: #f1f5f9;
   --bg-600: #e2e8f0;
-
-  /* text */
   --text-primary: #1e293b;
   --text-secondary: #334155;
   --text-muted: #64748b;
   --text-subtle: #475569;
-
-  /* accent */
   --accent: #8b5cf6;
   --accent-strong: #7c3aed;
   --accent-soft: #a78bfa;
-
-  /* confetti rotation */
   --secondary: #f472b6;
   --tertiary: #fbbf24;
   --quaternary: #34d399;
-
-  /* border */
   --border: #1e293b;
   --border-soft: rgba(30, 41, 59, 0.12);
   --border-width: 2px;
-
-  /* radius */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-
-  /* hard pop shadows */
   --shadow-pop: 4px 4px 0 0 var(--border);
   --shadow-pop-hover: 6px 6px 0 0 var(--border);
   --shadow-pop-active: 2px 2px 0 0 var(--border);
   --shadow-pop-soft: 8px 8px 0 0 var(--border-soft);
-
-  /* motion */
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* --- Legacy palette aliases ---
-     Existing component stylesheets in this codebase reference the
-     --palette-* custom properties below. They are mapped onto the tokens
-     above so every consumer picks up the Playful Geometric theme without
-     a mechanical rename pass across every file. */
   --palette-bg-950: var(--bg-950);
   --palette-bg-900: var(--bg-900);
   --palette-bg-800: var(--bg-800);
@@ -83,77 +55,72 @@
   --palette-border-soft: var(--border-soft);
   --palette-overlay: rgba(30, 41, 59, 0.45);
   --palette-hover-surface: rgba(139, 92, 246, 0.1);
-  --palette-hover-ghost: rgba(139, 92, 246, 0.08);
+  --palette-hover-ghost: rgba(139, 92, 246, 0.08)
 }
-
 * {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  box-sizing: border-box
 }
-
-body, html {
+body,
+html {
   min-height: 100%;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth
 }
-
 body {
   margin: 0;
   background: var(--bg-950);
   color: var(--text-secondary);
-  font-family: var(--font-plus-jakarta), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-plus-jakarta),system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
 }
-
-h1, h2, h3, h4 {
-  font-family: var(--font-outfit), system-ui, sans-serif;
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-outfit),system-ui,sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -.03em
 }
-
-/* Visible focus rings on all interactive elements */
+[tabindex]:focus-visible,
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
 select:focus-visible,
-[tabindex]:focus-visible {
+textarea:focus-visible {
   outline: 3px solid var(--border);
-  outline-offset: 4px;
+  outline-offset: 4px
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
+@media (prefers-reduced-motion:reduce) {
+  *,
+  ::after,
+  ::before {
+    animation-duration: 0s!important;
+    animation-iteration-count: 1!important;
+    transition: none!important;
+    scroll-behavior: auto!important
   }
 }
-
 .container {
   max-width: 1260px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 15px
 }
-
-@media (max-width: 767.98px) {
+@media (max-width:767.98px) {
   .container {
-    padding: 0 22px;
+    padding: 0 22px
   }
 }
-
 .section-title {
   color: var(--text-primary);
   margin: 0 0 14px;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-outfit),sans-serif;
   font-weight: 700;
   font-size: 36px;
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: -.03em;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: capitalize
 }
-
 .btn {
   display: inline-flex;
   width: 100%;
@@ -165,8 +132,8 @@ select:focus-visible,
   background: var(--accent);
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), background-color 0.2s ease;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  transition: transform .3s var(--ease-pop),box-shadow .3s var(--ease-pop),background-color .2s ease;
+  font-family: "Plus Jakarta Sans",sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
@@ -174,25 +141,23 @@ select:focus-visible,
   vertical-align: middle;
   border: var(--border-width) solid var(--border);
   box-shadow: var(--shadow-pop);
-  cursor: pointer;
+  cursor: pointer
 }
-
 .btn:hover {
   background: var(--accent-strong);
   box-shadow: var(--shadow-pop-hover);
-  transform: translate(-2px, -2px);
+  transform: translate(-2px,-2px)
 }
-
 .btn:active {
   box-shadow: var(--shadow-pop-active);
-  transform: translate(2px, 2px);
+  transform: translate(2px,2px)
 }
-
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion:reduce) {
   .btn {
-    transition: none !important;
+    transition: none!important
   }
-  .btn:hover, .btn:active {
-    transform: none;
+  .btn:active,
+  .btn:hover {
+    transform: none
   }
 }

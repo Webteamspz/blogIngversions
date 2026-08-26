@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useId } from "react";
 import mermaid from "mermaid";
+import articleStyles from "../[slug]/ArticleDetail.module.css";
 
-// Initialize Mermaid to match the Playful Geometric (light) theme
 mermaid.initialize({
   startOnLoad: false,
   theme: "base",
@@ -57,10 +57,9 @@ export default function Mermaid({ chart }: { chart: string }) {
   }
 
   return (
-    <div 
-      // 2. Add a special class 'mermaid-diagram-container' here for CSS targeting
-      className="flex justify-center my-8 overflow-x-auto w-full mermaid-diagram-container"
-      dangerouslySetInnerHTML={{ __html: svg }} 
+    <div
+      className={`flex justify-center my-8 overflow-x-auto w-full ${articleStyles["mermaid-diagram-container"]}`}
+      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
 }

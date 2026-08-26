@@ -63,9 +63,6 @@ const Header = () => {
   const [ctaScrollMode, setCtaScrollMode] = useState(false);
   const [hideHeaderCta, setHideHeaderCta] = useState(false);
 
-  // No #hero section exists on this blog subsite, so there's nothing to
-  // hide the CTA behind on initial render — start visible and only hide
-  // it if a #hero element actually shows up (see the effect below).
   const [hideCtaOnHero, setHideCtaOnHero] = useState(false);
 
   const ctaHref = cta.href;
@@ -135,8 +132,6 @@ const Header = () => {
 
     const heroEl = document.getElementById("hero");
     if (!heroEl) {
-      // No #hero section on this page (e.g. the blog homepage) — nothing
-      // to hide the CTA behind, so keep it visible.
       setHideCtaOnHero(false);
       return;
     }

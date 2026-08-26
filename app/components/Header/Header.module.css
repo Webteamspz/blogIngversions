@@ -46,7 +46,7 @@
 .nav a {
   color: var(--palette-text-primary);
   text-decoration: none;
-  font-family: plus jakrta sans, sans-serif;
+  font-family: plus jakrta sans,sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -137,7 +137,6 @@ body.menu-open .overlay {
   max-width: 100%;
   background: var(--palette-bg-950);
   border-left: var(--border-width) solid var(--palette-border);
-  box-shadow: -8px 0 0 0 var(--palette-border);
   -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
   transform: translateX(100%);
@@ -157,6 +156,7 @@ body.menu-open .overlay {
   padding: 30px 20px
 }
 .mobileMenu.open {
+  box-shadow: -8px 0 0 0 var(--palette-border);
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
   transform: translateX(0)
@@ -181,7 +181,6 @@ body.menu-open .overlay {
 .mobileNav a {
   color: var(--palette-text-primary);
   text-decoration: none;
-  font-family: sans-serif;
   font-weight: 700;
   font-size: 17px;
   padding: 16px 4px;
@@ -202,6 +201,8 @@ body.menu-open .overlay {
 }
 .mobileMenu {
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   overflow: hidden

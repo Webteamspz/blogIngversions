@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://blog.ingversionsdigital.com/",
   },
-  // Robots index follow
   robots: {
     index: true,
     follow: true,
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
       "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
+        url: "/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg",
         width: 1200,
         height: 630,
         alt: "Ingversions Blog - CRO, A/B Testing & Shopify Development",
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
     title: "CRO, A/B Testing & Shopify Development Blog | Ingversions",
     description:
       "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
-    images: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop"],
+    images: ["/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg"],
     site: "@ingversions",
   },
 };

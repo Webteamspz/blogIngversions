@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import "./BlogClient.css";
+import styles from "./BlogClient.module.css";
 import { pageview } from "../../gtm";
 import { blogData } from "../../data/blogData"; 
 
 const articleImages: Record<string, string> = {
-  "cro": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-  "ab-testing": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
-  "shopify": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop",
-  "qa": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
+  "cro": "/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg",
+  "ab-testing": "/assets/blog/covers/photo-1507003211169-0a1dd7228f2d.jpg",
+  "shopify": "/assets/blog/covers/photo-1441986300917-64674bd600d8.jpg",
+  "qa": "/assets/blog/covers/photo-1516321318423-f06f85e504b3.jpg",
 };
 
 const getCategorySlug = (categoryName: string) => {
@@ -23,7 +24,6 @@ const getCategorySlug = (categoryName: string) => {
   return categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 };
 
-// ✅ UPDATED: sort by date, newest first, so newly added blogs show at the top
 const articles = blogData.posts
   .map(post => ({
     ...post,
@@ -75,24 +75,23 @@ export default function BlogClient() {
     : articles.filter(a => a.categorySlug === activeCategory);
 
   return (
-   <main className="blog-main">
-      <section className="blog-section hero-section" ref={topRef}>
-        <div className="hero-shape hero-shape-circle" aria-hidden="true" />
-        <div className="hero-shape hero-shape-square" aria-hidden="true" />
-        <div className="container text-center">
-          <h1 className="hero-title">
-            Insights for <span className="text-highlight">Founders</span> Who Build
+   <main className={styles["blog-main"]}>
+      <section className={`${styles["blog-section"]} ${styles["hero-section"]}`} ref={topRef}>
+        <div className={styles["hero-grid"]} aria-hidden="true" />
+        <div className={`${styles.container} ${styles["text-center"]}`}>
+          <h1 className={styles["hero-title"]}>
+            Insights for <span className={styles["text-highlight"]}>Founders</span> Who Build
           </h1>
-          <p className="hero-subtitle">
+          <p className={styles["hero-subtitle"]}>
             Practical advice on conversion optimization, A/B testing, and Shopify development
           </p>
 
-          <div className="tabs-container">
+          <div className={styles["tabs-container"]}>
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`tab-btn ${activeCategory === cat.id ? "active" : "inactive"}`}
+                className={`${styles["tab-btn"]} ${activeCategory === cat.id ? styles.active : styles.inactive}`}
               >
                 {cat.name}
               </button>
@@ -101,38 +100,40 @@ export default function BlogClient() {
         </div>
       </section>
 
-      <section className="blog-section py-8">
-        <div className="container">
-          <div className="grid-header">
-            <h2 className="section-title">
+      <section className={`${styles["blog-section"]} py-8`}>
+        <div className={styles.container}>
+          <div className={styles["grid-header"]}>
+            <h2 className={styles["section-title"]}>
               {activeCategory === "all" ? "Latest Articles" : categories.find(c => c.id === activeCategory)?.name}
             </h2>
-            <span className="article-count">{filteredArticles.length} articles</span>
+            <span className={styles["article-count"]}>{filteredArticles.length} articles</span>
           </div>
 
-          <div className="articles-grid">
+          <div className={styles["articles-grid"]}>
             {filteredArticles.map((article: any) => (
-              <Link key={article.id} href={`/${article.slug}`} className="block-link">
-                <article className={`article-card ${categoryBorderColors[article.category]}`}>
-                  <div className="article-img-wrapper">
-                    <img 
-                      src={article.coverImage || articleImages[article.categorySlug]} 
-                      alt={article.category} 
-                      className="article-img"
+              <Link key={article.id} href={`/${article.slug}`} className={styles["block-link"]}>
+                <article className={`${styles["article-card"]} ${styles[categoryBorderColors[article.category]]}`}>
+                  <div className={styles["article-img-wrapper"]}>
+                    <Image
+                      src={article.coverImage || articleImages[article.categorySlug]}
+                      alt={article.category}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={styles["article-img"]}
                     />
-                    <span className={`badge ${categoryColors[article.category]}`}>
+                    <span className={`${styles.badge} ${styles[categoryColors[article.category]]}`}>
                       {article.category}
                     </span>
                   </div>
 
-                  <div className="article-content">
-                    <h3 className="article-title">
+                  <div className={styles["article-content"]}>
+                    <h3 className={styles["article-title"]}>
                       {article.title}
                     </h3>
-                    <p className="article-excerpt">
+                    <p className={styles["article-excerpt"]}>
                       {article.excerpt}
                     </p>
-                    <div className="meta-between">
+                    <div className={styles["meta-between"]}>
                       <span>{article.date}</span>
                       <span>{article.readTime}</span>
                     </div>
@@ -144,71 +145,71 @@ export default function BlogClient() {
         </div>
       </section>
 
-      <section className="blog-section py-12">
-        <div className="container">
-          <h2 className="section-title-center">Browse by Category</h2>
-          <div className="categories-grid">
-            
-            <div 
-              className="category-card hover-cro"
+      <section className={`${styles["blog-section"]} py-12`}>
+        <div className={styles.container}>
+          <h2 className={styles["section-title-center"]}>Browse by Category</h2>
+          <div className={styles["categories-grid"]}>
+
+            <div
+              className={`${styles["category-card"]} ${styles["hover-cro"]}`}
               onClick={() => handleCategoryClick("cro")}
             >
-              <div className="category-img-wrapper bg-green-light">
-                <img src={articleImages["cro"]} alt="CRO analytics" className="category-img" />
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-green-light"]}`}>
+                <Image src={articleImages["cro"]} alt="CRO analytics" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
-              <h3 className="category-title">CRO</h3>
-              <p className="category-desc">Conversion rate optimization strategies and best practices.</p>
-              <span className="category-link text-green">
+              <h3 className={styles["category-title"]}>CRO</h3>
+              <p className={styles["category-desc"]}>Conversion rate optimization strategies and best practices.</p>
+              <span className={`${styles["category-link"]} text-green`}>
                 {categories.find(c => c.id === "cro")?.count} articles
-                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
 
-            <div 
-              className="category-card hover-ab"
+            <div
+              className={`${styles["category-card"]} ${styles["hover-ab"]}`}
               onClick={() => handleCategoryClick("ab-testing")}
             >
-              <div className="category-img-wrapper bg-orange-light">
-                <img src={articleImages["ab-testing"]} alt="A/B testing" className="category-img" />
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-orange-light"]}`}>
+                <Image src={articleImages["ab-testing"]} alt="A/B testing" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
-              <h3 className="category-title">A/B Testing</h3>
-              <p className="category-desc">Testing methodologies and statistical significance.</p>
-              <span className="category-link text-orange">
+              <h3 className={styles["category-title"]}>A/B Testing</h3>
+              <p className={styles["category-desc"]}>Testing methodologies and statistical significance.</p>
+              <span className={`${styles["category-link"]} text-orange`}>
                 {categories.find(c => c.id === "ab-testing")?.count} articles
-                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
 
-            <div 
-              className="category-card hover-shopify"
+            <div
+              className={`${styles["category-card"]} ${styles["hover-shopify"]}`}
               onClick={() => handleCategoryClick("shopify")}
             >
-              <div className="category-img-wrapper bg-purple-light">
-                <img src={articleImages["shopify"]} alt="Shopify development" className="category-img" />
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-purple-light"]}`}>
+                <Image src={articleImages["shopify"]} alt="Shopify development" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
-              <h3 className="category-title">Shopify Development</h3>
-              <p className="category-desc">Theme customization and store optimization.</p>
-              <span className="category-link text-purple">
+              <h3 className={styles["category-title"]}>Shopify Development</h3>
+              <p className={styles["category-desc"]}>Theme customization and store optimization.</p>
+              <span className={`${styles["category-link"]} text-purple`}>
                 {categories.find(c => c.id === "shopify")?.count} articles
-                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
-            
-            <div 
-              className="category-card hover-qa"
+
+            <div
+              className={`${styles["category-card"]} ${styles["hover-qa"]}`}
               onClick={() => handleCategoryClick("qa")}
             >
-              <div className="category-img-wrapper bg-blue-light">
-                <img src={articleImages["qa"]} alt="Quality Assurance" className="category-img" />
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-blue-light"]}`}>
+                <Image src={articleImages["qa"]} alt="Quality Assurance" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
-              <h3 className="category-title">Quality Assurance</h3>
-              <p className="category-desc">Automated testing, checklists, and performance tracking.</p>
-              <span className="category-link text-blue">
+              <h3 className={styles["category-title"]}>Quality Assurance</h3>
+              <p className={styles["category-desc"]}>Automated testing, checklists, and performance tracking.</p>
+              <span className={`${styles["category-link"]} text-blue`}>
                 {categories.find(c => c.id === "qa")?.count} articles
-                <ArrowRight size={16} strokeWidth={3} className="arrow-icon" aria-hidden="true" />
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
-            
+
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import styles from "./ArticleDetail.module.css";
 
 function getText(node: any): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -22,14 +23,14 @@ export default function CodeBlock({ children }: { children?: React.ReactNode }) 
   };
 
   return (
-    <pre className="markdown-pre">
+    <pre className={styles["markdown-pre"]}>
       <button
         type="button"
-        className="code-copy-btn"
+        className={styles["code-copy-btn"]}
         onClick={handleCopy}
         aria-label={copied ? "Copied" : "Copy code"}
       >
-        {copied ? <Check size={14} /> : <Copy size={14} />}
+        {copied ? <Check size={14} strokeWidth={3} /> : <Copy size={14} strokeWidth={3} />}
       </button>
       {children}
     </pre>

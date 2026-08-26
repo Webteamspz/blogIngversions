@@ -616,7 +616,7 @@ The simplest personalization is reacting to what someone just did.
 The best personalization reacts to real behavior, not assumptions. Start small — returning-visitor logic and geo-based offers — measure actual conversion lift, and resist the urge to over-personalize.`,
   },
 
-"one-page-vs-multi-page-checkout": {
+  "one-page-vs-multi-page-checkout": {
     title: "The One-Page vs Multi-Page Checkout Debate",
     category: "CRO",
     categorySlug: "cro",
@@ -640,7 +640,7 @@ Breaking checkout into clear steps (contact → shipping → payment) can outper
 - Progress indicators reduce anxiety about "how much is left."
 - Easier to isolate where drop-off happens for future optimization.
 
-![One page vs multi step checkout](https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80)
+![One page vs multi step checkout](/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg)
 
 ### What Actually Determines the Winner
 - **Cart size and complexity:** multi-item, multi-shipping-address orders often do better with clear steps.
@@ -808,7 +808,6 @@ WCAG (Web Content Accessibility Guidelines) is built around four principles: con
 Accessibility testing isn't a one-time audit — it's an ongoing part of QA. Automate what you can, manually test keyboard and screen reader flows, and treat accessibility issues with the same urgency as any other checkout-blocking bug.`,
   },
 
- // ============ AI & Automation series (posts 31-40) ============
   "what-is-claude-ai-for-shopify-merchants": {
     title: "What Is Claude, and Why Are Shopify Merchants Using It?",
     category: "AI & Automation",
@@ -847,7 +846,6 @@ Run it, edit what's wrong, and you'll have a much better sense of what it's good
 This is the first in a short series. Next up: what MCP servers are and why they're the piece that turns Claude from "a chatbot I copy-paste into" to "a tool that can actually see my store."`,
   },
 
- // ============ AI & Automation series (posts 31-40) ============
   "what-are-mcp-servers-explained": {
     title: "What Are MCP Servers? A Plain-English Guide for Store Owners",
     category: "AI & Automation",
