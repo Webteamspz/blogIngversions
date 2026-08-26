@@ -31,9 +31,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999; /* Sabse upar */
-  /* Agar animation daalna ho hide hone pe toh: */
-  animation: fadeOut 0.5s ease 1.5s forwards; 
+  z-index: 99999;
+  animation: fadeOut 0.5s ease 1.5s forwards;
 }
 
 @keyframes fadeOut {

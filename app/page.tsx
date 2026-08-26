@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     "blog",
   ],
   authors: [{ name: "Ingversions" }],
-  // Canonical URL set karna zaroori hai SEO ke liye
   alternates: {
     canonical: "https://blog.ingversionsdigital.com/",
   },
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
     description:
       "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices.",
     images: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop"],
-    site: "@ingversions", // Aapke purane code se uthaya
+    site: "@ingversions",
   },
 };
 

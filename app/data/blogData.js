@@ -3,12 +3,12 @@ export const blogData = {
     links: [
       { label: "Home", href: "/" },
       { label: "Services", href: "https://ingversionsdigital.com/#services" },
+      { label: "Projects", href: "https://ingversionsdigital.com/projects" },
       { label: "Pricing", href: "https://ingversionsdigital.com/pricing" },
-      { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
     ],
     cta: {
-      label: "Book a call",
+      label: "Book A Call",
       href: "https://calendly.com/ingversionsdigital/30min?month=2025-10",
     },
   },

@@ -46,7 +46,7 @@
 .nav a {
   color: var(--palette-text-primary);
   text-decoration: none;
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: plus jakrta sans, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -79,7 +79,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background: var(--palette-accent);
+  background: var(--secondary);
   border: var(--border-width) solid var(--palette-border);
   border-radius: var(--radius-full);
   padding: 0;
@@ -181,7 +181,7 @@ body.menu-open .overlay {
 .mobileNav a {
   color: var(--palette-text-primary);
   text-decoration: none;
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: sans-serif;
   font-weight: 700;
   font-size: 17px;
   padding: 16px 4px;

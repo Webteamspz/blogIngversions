@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-// Apna sahi path adjust kar lena
-import { dl } from "../gtm"; 
+import { dl } from "../gtm";
 
 export default function GetStartedBtn() {
   const handleGetStartedClick = () => {
     try {
-      // "Get Started" ke liye Separate Event (gs tracking)
       dl().push({
         event: "get_started",
         button_location: "Article Bottom CTA",

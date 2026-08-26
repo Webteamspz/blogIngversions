@@ -45,7 +45,7 @@ const defaultComments: Comment[] = [
 function CommentsContent() {
   const searchParams = useSearchParams();
   
-  // ✅ SECRET KEY LOGIC: URL me "?secret=ing_admin_789" hoga tabhi isAdmin true hoga
+  // Admin mode unlocks only with ?secret=ing_admin_789 in the URL
   const isAdmin = searchParams.get("secret") === "ing_admin_789";
 
   const [comments, setComments] = useState<Comment[]>(defaultComments);
@@ -193,7 +193,7 @@ function CommentsContent() {
                   {replyingToId === comment.id ? "Cancel" : "Reply"}
                 </button>
 
-                {/* ✅ Delete Button: Sirf Admin ko dikhega */}
+                {/* Delete button: admin only */}
                 {isAdmin && (
                   <button 
                     className="comment-delete-btn"
@@ -259,7 +259,7 @@ function CommentsContent() {
                     <span className="comment-date">{reply.date}</span>
                     <p className="comment-text">{reply.text}</p>
                     
-                    {/* ✅ Delete Button: Sirf Admin ko dikhega */}
+                    {/* Delete button: admin only */}
                     {isAdmin && (
                       <button 
                         className="reply-delete-btn"

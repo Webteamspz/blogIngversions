@@ -17,18 +17,6 @@
   flex-grow: 1;
 }
 
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 /* --- Playful Geometric design system --- */
 :root {
   /* background (cream, layered) */
@@ -141,7 +129,6 @@ select:focus-visible,
   }
 }
 
-/* Yeh aapke layout ko center karega */
 .container {
   max-width: 1260px;
   width: 100%;
@@ -153,34 +140,6 @@ select:focus-visible,
   .container {
     padding: 0 22px;
   }
-}
-
-/* Yeh cards ko horizontally set karega */
-.grid {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(3, 1fr); /* Desktop pe 3 cards */
-}
-
-@media (max-width: 991px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* Tablet pe 2 cards */
-  }
-}
-
-@media (max-width: 767.98px) {
-  .grid {
-    grid-template-columns: 1fr; /* Mobile pe 1 card */
-  }
-}
-
-/* Card ki original styling */
-.card {
-  background: var(--bg-800);
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  box-shadow: var(--shadow-pop-soft);
 }
 
 .section-title {
@@ -195,28 +154,6 @@ select:focus-visible,
   text-transform: capitalize;
 }
 
-/* Buttons aur effects */
-.btn-hero, .c-btn, .social-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--text-primary);
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), background-color 0.2s ease;
-}
-
-.btn-hero:hover, .c-btn:hover, .social-btn:hover {
-  background: var(--tertiary);
-  box-shadow: var(--shadow-pop);
-  color: var(--text-primary);
-  transform: translate(-2px, -2px);
-}
-
 .btn {
   display: inline-flex;
   width: 100%;
@@ -229,7 +166,7 @@ select:focus-visible,
   color: #fff;
   text-decoration: none;
   transition: transform 0.3s var(--ease-pop), box-shadow 0.3s var(--ease-pop), background-color 0.2s ease;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
@@ -252,10 +189,10 @@ select:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-hero, .c-btn, .social-btn, .btn {
+  .btn {
     transition: none !important;
   }
-  .btn-hero:hover, .c-btn:hover, .social-btn:hover, .btn:hover, .btn:active {
+  .btn:hover, .btn:active {
     transform: none;
   }
 }

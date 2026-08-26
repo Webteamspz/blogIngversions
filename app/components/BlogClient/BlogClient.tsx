@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import "./BlogClient.css";
-import { ctaClick, formSuccess, pageview } from "../../gtm"; 
+import { pageview } from "../../gtm";
 import { blogData } from "../../data/blogData"; 
 
 const articleImages: Record<string, string> = {
@@ -57,11 +57,6 @@ const categoryBorderColors: Record<string, string> = {
 
 export default function BlogClient() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  
   const topRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -78,33 +73,6 @@ export default function BlogClient() {
   const filteredArticles = activeCategory === "all" 
     ? articles 
     : articles.filter(a => a.categorySlug === activeCategory);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try { ctaClick({ label: "Subscribe Attempt", location: "Blog Newsletter", href: "" }); } catch (err) {}
-
-    if (email) {
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch("/api/subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
-        
-        const data = await response.json();
-        if (response.ok && data.success) {
-          setSubscribed(true);
-          setEmail("");
-          try { formSuccess({ form_id: "blog_newsletter", form_name: "Blog Newsletter Form" }); } catch (err) {}
-        } else {
-          setError(data.error || "Something went wrong.");
-        }
-      } catch (err) { setError("Network error."); }
-      setLoading(false);
-    }
-  };
 
   return (
    <main className="blog-main">
@@ -173,43 +141,6 @@ export default function BlogClient() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="blog-section py-12">
-        <div className="newsletter-container text-center">
-          <h2 className="newsletter-title">
-            Get Weekly CRO & Shopify Tips
-          </h2>
-          <p className="newsletter-subtitle">
-            Join 2,000+ founders receiving actionable advice. No spam.
-          </p>
-          {subscribed ? (
-            <div className="success-msg">
-              <p className="success-text">Thank you for subscribing</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="newsletter-input"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="newsletter-btn"
-              >
-                {loading ? "Subscribing..." : "Subscribe"}
-              </button>
-            </form>
-          )}
-          {error && (
-            <p className="error-msg">{error}</p>
-          )}
         </div>
       </section>
 

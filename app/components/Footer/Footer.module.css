@@ -1,8 +1,18 @@
 .siteFooter {
   background: var(--palette-border);
   position: relative;
-  overflow: hidden;
-  padding: 115px 0 30px
+  overflow-x: hidden;
+  padding: 115px 0 30px;
+}
+.siteFooter::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--palette-bg-950);
+  pointer-events: none
 }
 .footerWave {
   position: absolute;
@@ -34,7 +44,7 @@
 }
 .companyBio {
   color: rgba(255,255,255,.65);
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -56,15 +66,16 @@
 }
 .linkGroup h4 {
   color: var(--palette-accent-soft);
-  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 18px;
   font-weight: 700;
+  letter-spacing: 0;
   margin: 0 0 8px 0
 }
 .linkGroup > a {
   color: var(--palette-bg-800);
   text-decoration: none;
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 100%;
@@ -83,7 +94,7 @@
 }
 .copyright {
   color: rgba(255,255,255,.6);
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 150%
@@ -204,8 +215,8 @@
     max-width: 160px
   }
   .socialBtn {
-    width: 40px;
-    height: 40px
+    width: 38px;
+    height: 38px
   }
   .socialBtn svg {
     width: 16px;

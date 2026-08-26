@@ -6,7 +6,7 @@ import styles from "./Preloader.module.css";
 interface PreloaderProps {
   minDuration?: number;
   logoSrc?: string;
-  children: React.ReactNode; // Ab yeh component website ke content ko bhi accept karega
+  children: React.ReactNode;
 }
 
 export default function Preloader({ minDuration = 1200, logoSrc, children }: PreloaderProps) {
@@ -44,7 +44,6 @@ export default function Preloader({ minDuration = 1200, logoSrc, children }: Pre
 
   return (
     <>
-      {/* Agar preloader dikhana hai, toh yeh UI render hoga */}
       {showPreloader && visible && (
         <div className={styles.overlay} role="status" aria-live="polite" aria-label="Loading">
           <div className={styles.wrapper}>
@@ -53,7 +52,6 @@ export default function Preloader({ minDuration = 1200, logoSrc, children }: Pre
         </div>
       )}
       
-      {/* Preloader ke piche/baad aapki website render hogi */}
       {children}
     </>
   );

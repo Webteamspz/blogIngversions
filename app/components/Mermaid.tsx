@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useId } from "react";
+import { useEffect, useState, useId } from "react";
 import mermaid from "mermaid";
 
 // Initialize Mermaid to match the Playful Geometric (light) theme

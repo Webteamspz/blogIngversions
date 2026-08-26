@@ -9,11 +9,8 @@ import GetStartedBtn from "./GetStartedBtn";
 import PopularArticles from "./PopularArticles";
 import { articles } from "../data/articlesData";
 import { articleImages, fallbackImagesByCategory } from "../data/articleImages";
-import Comments from "./Comments";
-
-// ✅ Import your new Mermaid client component
-// (Adjust the path if your page.tsx is located elsewhere relative to the components folder)
 import Mermaid from "../components/Mermaid";
+import CodeBlock from "./CodeBlock";
 
 export async function generateStaticParams() {
   return Object.keys(articles).map((slug) => ({
@@ -166,7 +163,6 @@ export default async function ArticlePage({
           </div>
 
           <div className="article-body markdown-content">
-            {/* ✅ NEW: Pass custom components to ReactMarkdown to render the Mermaid chart */}
             <ReactMarkdown
               components={{
                 code({ className, children, ...props }) {
@@ -185,6 +181,19 @@ export default async function ArticlePage({
                     </code>
                   );
                 },
+                pre({ children }) {
+                  return <CodeBlock>{children}</CodeBlock>;
+                },
+                img({ src, alt }) {
+                  const isDiagram = typeof src === "string" && src.startsWith("/diagrams/");
+                  return (
+                    <img
+                      src={src}
+                      alt={alt}
+                      className={isDiagram ? "markdown-diagram-img" : undefined}
+                    />
+                  );
+                },
               }}
             >
               {article.content}
@@ -193,7 +202,6 @@ export default async function ArticlePage({
 
           {/* <Comments /> */}
 
-          {/* ✅ NEW: Most Popular Articles Slider */}
           <PopularArticles currentSlug={slug} />
 
           <div className="article-cta-box">

@@ -1,15 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
-import Script from "next/script";
 
 import "./globals.css";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-// import Preloader from "./components/Preloader/Preloader"; //
 import ScrollToTop from "../app/components/ScrollToTop/ScrollToTop";
-
-import GTMProvider from "./GTMProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -119,7 +115,6 @@ export default function RootLayout({
 
         <ScrollToTop />
         
-        {/* ✅ Preloader ke andar wrap kar diya poora app */}
         {/* <Preloader> */}
           <Header />
           <main className="grow">{children}</main>

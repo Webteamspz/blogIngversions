@@ -5,7 +5,7 @@
   right: 28px;
   top: unset !important;
   z-index: 999;
-  background-color: var(--accent);
+  background-color: var(--secondary);
   border: var(--border-width) solid var(--border);
   box-shadow: var(--shadow-pop);
   border-radius: var(--radius-full);
