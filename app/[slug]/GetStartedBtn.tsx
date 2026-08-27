@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-// Apna sahi path adjust kar lena
-import { dl } from "../gtm"; 
+import { dl } from "../gtm";
+import styles from "./ArticleDetail.module.css";
 
 export default function GetStartedBtn() {
   const handleGetStartedClick = () => {
     try {
-      // "Get Started" ke liye Separate Event (gs tracking)
       dl().push({
         event: "get_started",
         button_location: "Article Bottom CTA",
@@ -21,7 +20,7 @@ export default function GetStartedBtn() {
   return (
     <Link
       href="https://calendly.com/ingversionsdigital/30min?month=2025-10"
-      className="cta-button"
+      className={styles["cta-button"]}
       onClick={handleGetStartedClick}
     >
       Get Started

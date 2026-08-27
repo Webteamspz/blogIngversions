@@ -2,12 +2,14 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./PopularArticles.css";
+import styles from "./PopularArticles.module.css";
+import articleStyles from "./ArticleDetail.module.css";
 
 import { articles } from "../data/articlesData";
 import { blogData } from "../data/blogData";
@@ -22,14 +24,10 @@ const categoryColors: Record<string, string> = {
   Analytics: "badge-analytics",
 };
 
-// ✅ Build a slug -> coverImage lookup from the SAME data source
-// the blog homepage (BlogClient.tsx) uses for its thumbnails.
 const coverImageBySlug: Record<string, string> = Object.fromEntries(
   blogData.posts.map((post: any) => [post.slug, post.coverImage])
 );
 
-// ✅ Same resolution order as the homepage: post.coverImage first,
-// then the 4-category fallback map, then a hard default.
 function getHomepageThumbnail(slug: string, categorySlug: string) {
   return (
     coverImageBySlug[slug] ||
@@ -63,12 +61,12 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
   if (popularArticles.length === 0) return null;
 
   return (
-    <section className="popular-section">
-      <h3 className="popular-title">Most Popular Articles</h3>
+    <section className={styles["popular-section"]}>
+      <h3 className={styles["popular-title"]}>Most Popular Articles</h3>
 
-      <div className="popular-slider-wrapper">
+      <div className={styles["popular-slider-wrapper"]}>
         <button
-          className="popular-nav popular-prev"
+          className={`${styles["popular-nav"]} ${styles["popular-prev"]}`}
           ref={prevRef}
           aria-label="Previous article"
         >
@@ -76,7 +74,7 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
         </button>
 
         <button
-          className="popular-nav popular-next"
+          className={`${styles["popular-nav"]} ${styles["popular-next"]}`}
           ref={nextRef}
           aria-label="Next article"
         >
@@ -108,31 +106,33 @@ export default function PopularArticles({ currentSlug }: { currentSlug: string }
             640: { slidesPerView: 2, spaceBetween: 16 },
             900: { slidesPerView: 3, spaceBetween: 18 },
           }}
-          className="popular-swiper"
+          className={styles["popular-swiper"]}
         >
           {popularArticles.map((article: any) => (
-            <SwiperSlide key={article.slug} className="popular-slide">
-              <Link href={`/${article.slug}`} className="popular-card-link">
-                <article className="popular-card">
-                  <div className="popular-img-wrapper">
-                    <img
+            <SwiperSlide key={article.slug} className={styles["popular-slide"]}>
+              <Link href={`/${article.slug}`} className={styles["popular-card-link"]}>
+                <article className={styles["popular-card"]}>
+                  <div className={styles["popular-img-wrapper"]}>
+                    <Image
                       src={getHomepageThumbnail(article.slug, article.categorySlug)}
                       alt={article.title}
-                      className="popular-img"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
+                      className={styles["popular-img"]}
                     />
                     <span
-                      className={`article-badge popular-badge ${
-                        categoryColors[article.category] || "badge-cro"
+                      className={`${articleStyles["article-badge"]} ${styles["popular-badge"]} ${
+                        articleStyles[categoryColors[article.category] || "badge-cro"]
                       }`}
                     >
                       {article.category}
                     </span>
                   </div>
-                  <div className="popular-content">
-                    <h4 className="popular-card-title">{article.title}</h4>
-                    <div className="popular-meta">
+                  <div className={styles["popular-content"]}>
+                    <h4 className={styles["popular-card-title"]}>{article.title}</h4>
+                    <div className={styles["popular-meta"]}>
                       <span>{article.date}</span>
-                      <span className="popular-meta-dot">•</span>
+                      <span className={styles["popular-meta-dot"]}>•</span>
                       <span>{article.readTime}</span>
                     </div>
                   </div>

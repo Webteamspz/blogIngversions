@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import "./ScrollToTop.css";
+import styles from "./ScrollToTop.module.css";
 
 export default function ScrollToTop() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -22,10 +22,10 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`tsNav scrollTopBtn ${showScrollTop ? "scrollTopVisible" : "scrollTopHidden"}`}
+      className={`${styles.tsNav} ${styles.scrollTopBtn} ${showScrollTop ? styles.scrollTopVisible : styles.scrollTopHidden}`}
       aria-label="Scroll to top"
     >
-      <ArrowUp className="scrollTopArrow" size={20} strokeWidth={2.5} aria-hidden="true" />
+      <ArrowUp className={styles.scrollTopArrow} size={20} strokeWidth={2.5} aria-hidden="true" />
     </button>
   );
 }
