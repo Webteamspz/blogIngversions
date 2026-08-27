@@ -29,16 +29,16 @@ export const articleImages: Record<string, string> = {
   "how-long-to-run-ab-test": "/assets/blog/covers/photo-1461749280684-dccba630e2f6.jpg",
   "regression-testing-shopify-releases": "/assets/blog/covers/photo-1504639725590-34d0984388bd.jpg",
   "accessibility-testing-wcag-ecommerce": "/assets/blog/covers/photo-1558494949-ef010cbdcc31.jpg",
-  "what-is-claude-ai-for-shopify-merchants": "/assets/blog/covers/photo-1531746790731-6c087fecd65a.jpg",
-  "what-are-mcp-servers-explained": "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
-  "connect-claude-to-shopify-store-mcp-guide": "/assets/blog/covers/photo-1517245386807-bb43f82c33c4.jpg",
-  "ai-product-descriptions-with-claude": "/assets/blog/covers/photo-1556740758-90de374c12ad.jpg",
-  "automating-customer-support-with-claude": "/assets/blog/covers/photo-1553877522-43269d4ea984.jpg",
-  "claude-vs-chatgpt-for-ecommerce": "/assets/blog/covers/photo-1620712943543-bcc4688e7485.jpg",
-  "ai-powered-shopify-reporting-claude-mcp": "/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg",
-  "ai-agents-in-ecommerce-2026": "/assets/blog/covers/photo-1485827404703-89b55fcc595e.jpg",
-  "prompting-claude-ecommerce-playbook": "/assets/blog/covers/photo-1455390582262-044cdead277a.jpg",
-  "claude-for-shopify-seo-content": "/assets/blog/covers/photo-1432888622747-4eb9a8efeb07.jpg"
+  "what-is-claude-ai-for-shopify-merchants": "/assets/blog/covers/photo-1717501217749-bbd8061155f5.jpg",
+  "what-are-mcp-servers-explained": "/assets/blog/covers/photo-1648134859187-71dadc9f815a.jpg",
+  "connect-claude-to-shopify-store-mcp-guide": "/assets/blog/covers/photo-1655393001768-d946c97d6fd1.jpg",
+  "ai-product-descriptions-with-claude": "/assets/blog/covers/photo-1515879218367-8466d910aaa4.jpg",
+  "automating-customer-support-with-claude": "/assets/blog/covers/photo-1684369175809-f9642140a1bd.jpg",
+  "claude-vs-chatgpt-for-ecommerce": "/assets/blog/covers/photo-1675865254433-6ba341f0f00b.jpg",
+  "ai-powered-shopify-reporting-claude-mcp": "/assets/blog/covers/photo-1653564142033-ab3532091515.jpg",
+  "ai-agents-in-ecommerce-2026": "/assets/blog/covers/photo-1737644467636-6b0053476bb2.jpg",
+  "prompting-claude-ecommerce-playbook": "/assets/blog/covers/photo-1717501218347-64853a917fd8.jpg",
+  "claude-for-shopify-seo-content": "/assets/blog/covers/photo-1672922310200-fff31138251e.jpg"
 };
 
 export const homepageCategoryImages: Record<string, string> = {
