@@ -62,7 +62,7 @@ const Footer = () => {
         <div className={styles.footerMain}>
 
           <div className={styles.brandCol}>
-            <Link href="/" className={styles.footerLeft}>
+            <a href="https://ingversionsdigital.com/" className={styles.footerLeft}>
               {f?.logo && (
                 <img
                   src={logo}
@@ -70,7 +70,7 @@ const Footer = () => {
                   className={styles.footerLogo}
                 />
               )}
-            </Link>
+            </a>
             <p className={styles.companyBio}>
               {f.bio || "Ingversions is a digital agency focused on CRO-driven websites. We help e-commerce brands scale conversions with data-backed design and development."}
             </p>

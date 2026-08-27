@@ -1,36 +1,33 @@
 export const blogData = {
   header: {
     links: [
-      { label: "Home", href: "/" },
+      { label: "Home", href: "https://ingversionsdigital.com" },
       { label: "Services", href: "https://ingversionsdigital.com/#services" },
+      { label: "Projects", href: "https://ingversionsdigital.com/projects" },
       { label: "Pricing", href: "https://ingversionsdigital.com/pricing" },
-      { label: "Team Page", href: "https://ingversionsdigital.com/teampage" },
       { label: "About Us", href: "https://ingversionsdigital.com/about-us" },
+      { label: "Blog", href: "/" },
     ],
     cta: {
-      label: "Book a call",
+      label: "Book A Call",
       href: "https://calendly.com/ingversionsdigital/30min?month=2025-10",
     },
   },
 
-  // 1. SEO Data
   seo: {
     title: "Ingversions Blog | Latest Insights & News",
     description: "Read our latest articles on web development, design, and business strategies.",
     keywords: ["Next.js", "React", "Web Development", "Ingversions Blog", "Shopify Development", "A/B Testing", "QA Automation", "CRO Strategy"],
   },
 
-  // 2. Blog Page Hero Section
   hero: {
     heading: "Insights & Updates",
     subheading: "Discover the latest trends, tutorials, and stories from the Ingversions team.",
     backgroundImage: "/assets/blog/hero-bg.jpg",
   },
 
-  // 3. Categories / Filters
   categories: ["All", "Shopify Development", "A/B Testing", "CRO", "Quality Assurance", "AI & Automation", "Design", "Business", "Marketing"],
 
-  // 4. Featured Post
   featuredPost: {
     id: "post-0",
     title: "How to Migrate from React to Next.js App Router",
@@ -47,7 +44,6 @@ export const blogData = {
     coverImage: "/assets/blog/covers/nextjs-migration.jpg",
   },
 
-  // 5. All Other Blog Posts (Total: 30 Posts)
   posts: [
     {
       id: "post-1",
@@ -58,7 +54,7 @@ export const blogData = {
       date: "April 8, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+      coverImage: "/assets/blog/covers/photo-1556742049-0cfed4f6a45d.jpg",
     },
     {
       id: "post-2",
@@ -69,7 +65,7 @@ export const blogData = {
       date: "April 5, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+      coverImage: "/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg",
     },
     {
       id: "post-3",
@@ -80,7 +76,7 @@ export const blogData = {
       date: "April 3, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
+      coverImage: "/assets/blog/covers/photo-1454165804606-c3d57bc86b40.jpg",
     },
     {
       id: "post-4",
@@ -91,7 +87,7 @@ export const blogData = {
       date: "April 9, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1200&auto=format&fit=crop",
+      coverImage: "/assets/blog/covers/photo-1496171367470-9ed9a91ea931.jpg",
     },
     {
       id: "post-5",
@@ -102,7 +98,7 @@ export const blogData = {
       date: "April 12, 2026",
       readTime: "8 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1507238691740-187a5b1d37b8.jpg",
     },
     {
       id: "post-6",
@@ -113,7 +109,7 @@ export const blogData = {
       date: "April 15, 2026",
       readTime: "5 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1600132806370-bf17e65e942f.jpg",
     },
     {
       id: "post-7",
@@ -124,7 +120,7 @@ export const blogData = {
       date: "April 18, 2026",
       readTime: "9 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1522542550221-31fd19575a2d.jpg",
     },
     {
       id: "post-8",
@@ -135,7 +131,7 @@ export const blogData = {
       date: "April 20, 2026",
       readTime: "6 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1551434678-e076c223a692.jpg",
     },
     {
       id: "post-9",
@@ -146,7 +142,7 @@ export const blogData = {
       date: "April 24, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg",
     },
     {
       id: "post-10",
@@ -157,7 +153,7 @@ export const blogData = {
       date: "April 28, 2026",
       readTime: "8 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1516321318423-f06f85e504b3.jpg",
     },
     {
       id: "post-11",
@@ -168,7 +164,7 @@ export const blogData = {
       date: "May 2, 2026",
       readTime: "10 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1555066931-4365d14bab8c.jpg",
     },
     {
       id: "post-12",
@@ -179,7 +175,7 @@ export const blogData = {
       date: "May 5, 2026",
       readTime: "5 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1512428559087-560fa5ceab42.jpg",
     },
     {
       id: "post-13",
@@ -190,7 +186,7 @@ export const blogData = {
       date: "May 8, 2026",
       readTime: "7 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1533750516457-a7f992034fec.jpg",
     },
     {
       id: "post-14",
@@ -201,7 +197,7 @@ export const blogData = {
       date: "May 11, 2026",
       readTime: "6 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1531403009284-440f080d1e12.jpg",
     },
     {
       id: "post-15",
@@ -212,7 +208,7 @@ export const blogData = {
       date: "May 14, 2026",
       readTime: "8 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1519389950473-47ba0277781c.jpg",
     },
     {
       id: "post-16",
@@ -223,7 +219,7 @@ export const blogData = {
       date: "May 17, 2026",
       readTime: "6 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1551836022-d5d88e9218df.jpg",
     },
     {
       id: "post-17",
@@ -234,7 +230,7 @@ export const blogData = {
       date: "May 19, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1586717791821-3f44a563fa4c.jpg",
     },
     {
       id: "post-18",
@@ -245,7 +241,7 @@ export const blogData = {
       date: "May 21, 2026",
       readTime: "9 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1504868584819-f8e8b4b6d7e3.jpg",
     },
     {
       id: "post-19",
@@ -256,7 +252,7 @@ export const blogData = {
       date: "May 24, 2026",
       readTime: "7 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1557821552-17105176677c.jpg",
     },
     {
       id: "post-20",
@@ -267,9 +263,8 @@ export const blogData = {
       date: "May 26, 2026",
       readTime: "8 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1581291518633-83b4ebd1d83e.jpg",
     },
-    // Expert Blogs with 100% Unique Images Below (Posts 21-30)
     {
       id: "post-21",
       title: "Shopify Apps You Can Safely Uninstall to Boost Speed",
@@ -279,7 +274,7 @@ export const blogData = {
       date: "June 2, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
     },
     {
       id: "post-22",
@@ -290,7 +285,7 @@ export const blogData = {
       date: "June 6, 2026",
       readTime: "7 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1556740758-90de374c12ad.jpg",
     },
     {
       id: "post-23",
@@ -301,7 +296,7 @@ export const blogData = {
       date: "June 10, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1522071820081-009f0129c71c.jpg",
     },
     {
       id: "post-24",
@@ -312,7 +307,7 @@ export const blogData = {
       date: "June 14, 2026",
       readTime: "5 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1551650975-87deedd944c3.jpg",
     },
     {
       id: "post-25",
@@ -323,7 +318,7 @@ export const blogData = {
       date: "June 19, 2026",
       readTime: "6 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1553877522-43269d4ea984.jpg",
     },
     {
       id: "post-26",
@@ -334,7 +329,7 @@ export const blogData = {
       date: "June 23, 2026",
       readTime: "6 min read",
       category: "CRO",
-      coverImage: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1556155092-490a1ba16284.jpg",
     },
     {
       id: "post-27",
@@ -345,7 +340,7 @@ export const blogData = {
       date: "June 27, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1504384308090-c894fdcc538d.jpg",
     },
     {
       id: "post-28",
@@ -356,7 +351,7 @@ export const blogData = {
       date: "July 1, 2026",
       readTime: "6 min read",
       category: "A/B Testing",
-      coverImage: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1518186285589-2f7649de83e0.jpg",
     },
     {
       id: "post-29",
@@ -367,7 +362,7 @@ export const blogData = {
       date: "July 5, 2026",
       readTime: "7 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1518791841217-8f162f1e1131.jpg",
     },
     {
       id: "post-30",
@@ -378,123 +373,120 @@ export const blogData = {
       date: "July 9, 2026",
       readTime: "7 min read",
       category: "Quality Assurance",
-      coverImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80",
+      coverImage: "/assets/blog/covers/photo-1573497019940-1c28c88b4f3e.jpg",
     },
-
-    // AI & Automation series (posts 31-40)
-  {
-    id: "post-31",
-    title: "What Is Claude, and Why Are Shopify Merchants Using It?",
-    slug: "what-is-claude-ai-for-shopify-merchants",
-    excerpt: "Not another chatbot explainer. Here's what Claude actually does for a Shopify store, in plain terms, with a real workflow.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "July 13, 2026",
-    readTime: "6 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-32",
-    title: "What Are MCP Servers? A Plain-English Guide for Store Owners",
-    slug: "what-are-mcp-servers-explained",
-    excerpt: "MCP sounds like developer jargon. It's actually the reason Claude can read your real store data instead of guessing.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "July 17, 2026",
-    readTime: "7 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-33",
-    title: "How to Connect Claude to Your Shopify Store (MCP Setup Guide)",
-    slug: "connect-claude-to-shopify-store-mcp-guide",
-    excerpt: "A step-by-step walkthrough of connecting Claude to Shopify via MCP, plus the permissions you should and shouldn't grant.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "July 21, 2026",
-    readTime: "8 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-34",
-    title: "Using Claude to Write Product Descriptions at Scale",
-    slug: "ai-product-descriptions-with-claude",
-    excerpt: "How to batch-generate on-brand product copy for hundreds of SKUs without it reading like it was written by a robot.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "July 25, 2026",
-    readTime: "7 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-35",
-    title: "Automating Customer Support Replies with Claude",
-    slug: "automating-customer-support-with-claude",
-    excerpt: "Where AI-drafted replies save your team hours, and where a human still needs to hit send.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "July 29, 2026",
-    readTime: "6 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-36",
-    title: "Claude vs ChatGPT for E-commerce: Which to Use When",
-    slug: "claude-vs-chatgpt-for-ecommerce",
-    excerpt: "Both are useful. Here's an honest breakdown of which tasks each one actually handles better for a Shopify store.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "August 2, 2026",
-    readTime: "6 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-37",
-    title: "Building an AI-Powered Reporting Workflow with Claude + MCP",
-    slug: "ai-powered-shopify-reporting-claude-mcp",
-    excerpt: "Turn raw Shopify data into a plain-English weekly report your whole team actually reads, automatically.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "August 6, 2026",
-    readTime: "8 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-38",
-    title: "AI Agents in E-commerce: What Merchants Need to Know in 2026",
-    slug: "ai-agents-in-ecommerce-2026",
-    excerpt: "\"Agent\" gets thrown around a lot. Here's what actually makes something an agent, and where it's genuinely useful for a store.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "August 10, 2026",
-    readTime: "7 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-39",
-    title: "Prompting Claude for E-commerce Tasks: A Practical Playbook",
-    slug: "prompting-claude-ecommerce-playbook",
-    excerpt: "Five reusable prompt structures for merchandising, support, analysis, and content, that you can copy today.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "August 14, 2026",
-    readTime: "7 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    id: "post-40",
-    title: "Using Claude for Shopify SEO and Content at Scale",
-    slug: "claude-for-shopify-seo-content",
-    excerpt: "A repeatable system for turning keyword research into published, SEO-checked collection and blog content with Claude.",
-    author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
-    date: "August 18, 2026",
-    readTime: "7 min read",
-    category: "AI & Automation",
-    coverImage: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1200&q=80",
+    {
+      id: "post-31",
+      title: "What Is Claude, and Why Are Shopify Merchants Using It?",
+      slug: "what-is-claude-ai-for-shopify-merchants",
+      excerpt: "Not another chatbot explainer. Here's what Claude actually does for a Shopify store, in plain terms, with a real workflow.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "July 13, 2026",
+      readTime: "6 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1531746790731-6c087fecd65a.jpg",
+    },
+    {
+      id: "post-32",
+      title: "What Are MCP Servers? A Plain-English Guide for Store Owners",
+      slug: "what-are-mcp-servers-explained",
+      excerpt: "MCP sounds like developer jargon. It's actually the reason Claude can read your real store data instead of guessing.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "July 17, 2026",
+      readTime: "7 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
+    },
+    {
+      id: "post-33",
+      title: "How to Connect Claude to Your Shopify Store (MCP Setup Guide)",
+      slug: "connect-claude-to-shopify-store-mcp-guide",
+      excerpt: "A step-by-step walkthrough of connecting Claude to Shopify via MCP, plus the permissions you should and shouldn't grant.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "July 21, 2026",
+      readTime: "8 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1517245386807-bb43f82c33c4.jpg",
+    },
+    {
+      id: "post-34",
+      title: "Using Claude to Write Product Descriptions at Scale",
+      slug: "ai-product-descriptions-with-claude",
+      excerpt: "How to batch-generate on-brand product copy for hundreds of SKUs without it reading like it was written by a robot.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "July 25, 2026",
+      readTime: "7 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1556740758-90de374c12ad.jpg",
+    },
+    {
+      id: "post-35",
+      title: "Automating Customer Support Replies with Claude",
+      slug: "automating-customer-support-with-claude",
+      excerpt: "Where AI-drafted replies save your team hours, and where a human still needs to hit send.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "July 29, 2026",
+      readTime: "6 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1553877522-43269d4ea984.jpg",
+    },
+    {
+      id: "post-36",
+      title: "Claude vs ChatGPT for E-commerce: Which to Use When",
+      slug: "claude-vs-chatgpt-for-ecommerce",
+      excerpt: "Both are useful. Here's an honest breakdown of which tasks each one actually handles better for a Shopify store.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "August 2, 2026",
+      readTime: "6 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1620712943543-bcc4688e7485.jpg",
+    },
+    {
+      id: "post-37",
+      title: "Building an AI-Powered Reporting Workflow with Claude + MCP",
+      slug: "ai-powered-shopify-reporting-claude-mcp",
+      excerpt: "Turn raw Shopify data into a plain-English weekly report your whole team actually reads, automatically.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "August 6, 2026",
+      readTime: "8 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg",
+    },
+    {
+      id: "post-38",
+      title: "AI Agents in E-commerce: What Merchants Need to Know in 2026",
+      slug: "ai-agents-in-ecommerce-2026",
+      excerpt: "\"Agent\" gets thrown around a lot. Here's what actually makes something an agent, and where it's genuinely useful for a store.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "August 10, 2026",
+      readTime: "7 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1485827404703-89b55fcc595e.jpg",
+    },
+    {
+      id: "post-39",
+      title: "Prompting Claude for E-commerce Tasks: A Practical Playbook",
+      slug: "prompting-claude-ecommerce-playbook",
+      excerpt: "Five reusable prompt structures for merchandising, support, analysis, and content, that you can copy today.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "August 14, 2026",
+      readTime: "7 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1455390582262-044cdead277a.jpg",
+    },
+    {
+      id: "post-40",
+      title: "Using Claude for Shopify SEO and Content at Scale",
+      slug: "claude-for-shopify-seo-content",
+      excerpt: "A repeatable system for turning keyword research into published, SEO-checked collection and blog content with Claude.",
+      author: { name: "Ingversions Team", avatar: "/assets/team/author-1.png" },
+      date: "August 18, 2026",
+      readTime: "7 min read",
+      category: "AI & Automation",
+      coverImage: "/assets/blog/covers/photo-1432888622747-4eb9a8efeb07.jpg",
     },
   ],
 
-  // 6. Blog Page Bottom Call To Action (CTA)
   ctaSection: {
     heading: "Want to build something amazing?",
     subheading: "Let's turn your idea into reality with our expert development team.",
@@ -502,15 +494,14 @@ export const blogData = {
     buttonLink: "/#contact",
   },
 
-  // 7. Footer
-footer: {
+  footer: {
     logo: "/logos/main-logo.png",
     company: "Ingversions Digital",
     linkGroups: [
       {
         title: "Quick Links",
         links: [
-          { name: "Home", href: "/" },
+          { name: "Home", href: "https://ingversionsdigital.com/" },
           { name: "Services", href: "https://ingversionsdigital.com/#services" },
           { name: "Pricing", href: "https://ingversionsdigital.com/pricing" },
           { name: "Projects", href: "https://ingversionsdigital.com/projects" },
