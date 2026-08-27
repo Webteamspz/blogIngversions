@@ -1,19 +1,17 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
-import "./ArticleDetail.css";
+import styles from "./ArticleDetail.module.css";
 
 import ArticleTracker from "./ArticleTracker";
 import GetStartedBtn from "./GetStartedBtn";
 import PopularArticles from "./PopularArticles";
 import { articles } from "../data/articlesData";
 import { articleImages, fallbackImagesByCategory } from "../data/articleImages";
-import Comments from "./Comments";
-
-// ✅ Import your new Mermaid client component
-// (Adjust the path if your page.tsx is located elsewhere relative to the components folder)
 import Mermaid from "../components/Mermaid";
+import CodeBlock from "./CodeBlock";
 
 export async function generateStaticParams() {
   return Object.keys(articles).map((slug) => ({
@@ -127,7 +125,10 @@ export default async function ArticlePage({
   };
 
   return (
-    <main className="article-main">
+    <main className={styles["article-main"]}>
+
+      <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-circle"]}`} aria-hidden="true" />
+      <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-square"]}`} aria-hidden="true" />
 
       <script
         type="application/ld+json"
@@ -136,53 +137,70 @@ export default async function ArticlePage({
 
       <ArticleTracker title={article.title} />
 
-      <article className="article-container">
+      <article className={styles["article-container"]}>
 
-        <div className="back-link-wrapper">
-          <Link href="/" className="back-link">
+        <div className={styles["back-link-wrapper"]}>
+          <Link href="/" className={styles["back-link"]}>
             <ArrowLeft size={18} strokeWidth={2.5} aria-hidden="true" />
             Back to Blog
           </Link>
         </div>
 
-        <div className="article-hero-wrapper">
-          <img src={heroImage} alt={article.title} className="article-hero-img" />
+        <div className={styles["article-hero-wrapper"]}>
+          <Image
+            src={heroImage}
+            alt={article.title}
+            fill
+            sizes="(max-width: 767px) 100vw, 1260px"
+            priority
+            className={styles["article-hero-img"]}
+          />
         </div>
 
-        <div className="article-content-wrapper">
+        <div className={styles["article-content-wrapper"]}>
 
-          <div className="badge-container">
-            <span className={`article-badge ${badgeColor}`}>
+          <div className={styles["badge-container"]}>
+            <span className={`${styles["article-badge"]} ${styles[badgeColor]}`}>
               {article.category}
             </span>
           </div>
 
-          <h1 className="article-title">{article.title}</h1>
+          <h1 className={styles["article-title"]}>{article.title}</h1>
 
-          <div className="article-meta">
+          <div className={styles["article-meta"]}>
             <span>{article.date}</span>
-            <span className="meta-dot">•</span>
+            <span className={styles["meta-dot"]}>•</span>
             <span>{article.readTime}</span>
           </div>
 
-          <div className="article-body markdown-content">
-            {/* ✅ NEW: Pass custom components to ReactMarkdown to render the Mermaid chart */}
+          <div className={`${styles["article-body"]} ${styles["markdown-content"]}`}>
             <ReactMarkdown
               components={{
                 code({ className, children, ...props }) {
                   const match = /language-(\w+)/.exec(className || "");
                   const language = match ? match[1] : "";
 
-                  // If it's a mermaid block, render our client component
                   if (language === "mermaid") {
                     return <Mermaid chart={String(children).replace(/\n$/, "")} />;
                   }
 
-                  // Otherwise, return standard code blocks
                   return (
                     <code className={className} {...props}>
                       {children}
                     </code>
+                  );
+                },
+                pre({ children }) {
+                  return <CodeBlock>{children}</CodeBlock>;
+                },
+                img({ src, alt }) {
+                  const isDiagram = typeof src === "string" && src.startsWith("/diagrams/");
+                  return (
+                    <img
+                      src={src}
+                      alt={alt}
+                      className={isDiagram ? styles["markdown-diagram-img"] : undefined}
+                    />
                   );
                 },
               }}
@@ -191,14 +209,11 @@ export default async function ArticlePage({
             </ReactMarkdown>
           </div>
 
-          {/* <Comments /> */}
-
-          {/* ✅ NEW: Most Popular Articles Slider */}
           <PopularArticles currentSlug={slug} />
 
-          <div className="article-cta-box">
-            <h3 className="cta-heading">Want results like these?</h3>
-            <p className="cta-text">
+          <div className={styles["article-cta-box"]}>
+            <h3 className={styles["cta-heading"]}>Want results like these?</h3>
+            <p className={styles["cta-text"]}>
               We help Shopify stores optimize their conversion rates.
             </p>
             <GetStartedBtn />

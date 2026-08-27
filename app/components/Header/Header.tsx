@@ -24,7 +24,7 @@ const HamburgerIcon = (props: any) => (
     <path
       d="M9 13.1221H27.75M9 24.6221H39M20.25 36.1221H39"
       stroke="currentColor"
-      strokeWidth="2.5"
+      strokeWidth="4.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -63,9 +63,6 @@ const Header = () => {
   const [ctaScrollMode, setCtaScrollMode] = useState(false);
   const [hideHeaderCta, setHideHeaderCta] = useState(false);
 
-  // No #hero section exists on this blog subsite, so there's nothing to
-  // hide the CTA behind on initial render — start visible and only hide
-  // it if a #hero element actually shows up (see the effect below).
   const [hideCtaOnHero, setHideCtaOnHero] = useState(false);
 
   const ctaHref = cta.href;
@@ -135,8 +132,6 @@ const Header = () => {
 
     const heroEl = document.getElementById("hero");
     if (!heroEl) {
-      // No #hero section on this page (e.g. the blog homepage) — nothing
-      // to hide the CTA behind, so keep it visible.
       setHideCtaOnHero(false);
       return;
     }
@@ -296,12 +291,12 @@ const Header = () => {
     <>
       <header className={styles.siteHeader} id="header">
         <div className={`container ${styles.headerRow}`}>
-          <Link
-            href="/"
+          <a
+            href="https://ingversionsdigital.com/"
             className={styles.brand}
             data-cta="Logo"
             data-cta-loc="Header Brand"
-            onClick={() => handleNavClick("Logo", "Header Brand", "/")}
+            onClick={() => ctaClick({ label: "Logo", location: "Header Brand", href: "https://ingversionsdigital.com/" })}
           >
             <img
               src={logoDay}
@@ -313,7 +308,7 @@ const Header = () => {
               alt="Ingversions Logo"
               className={`${styles.brandLogo} ${styles.mobileLogoOnly}`}
             />
-          </Link>
+          </a>
 
           <nav className={styles.nav}>
             {links.map((linkItem: any, index: number) =>

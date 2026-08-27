@@ -6,10 +6,7 @@ import "./globals.css";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-// import Preloader from "./components/Preloader/Preloader"; //
 import ScrollToTop from "../app/components/ScrollToTop/ScrollToTop";
-
-import GTMProvider from "./GTMProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -106,8 +103,6 @@ export default function RootLayout({
           }}
         />
 
-        <GTMProvider />
-
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P5BGX7H7"
@@ -118,14 +113,10 @@ export default function RootLayout({
         </noscript>
 
         <ScrollToTop />
-        
-        {/* ✅ Preloader ke andar wrap kar diya poora app */}
-        {/* <Preloader> */}
-          <Header />
-          <main className="grow">{children}</main>
-          <Footer />
-        {/* </Preloader> */}
-        
+
+        <Header />
+        <main className="grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );
