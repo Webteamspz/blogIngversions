@@ -54,7 +54,7 @@ export const blogData = {
       date: "April 8, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1556742049-0cfed4f6a45d.jpg",
+      coverImage: "/assets/blog/covers/photo-1742454582165-deab666a8763.jpg",
     },
     {
       id: "post-2",
@@ -65,7 +65,7 @@ export const blogData = {
       date: "April 5, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg",
+      coverImage: "/assets/blog/covers/photo-1643917853964-434e78b21cf7.jpg",
     },
     {
       id: "post-3",
@@ -76,7 +76,7 @@ export const blogData = {
       date: "April 3, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1454165804606-c3d57bc86b40.jpg",
+      coverImage: "/assets/blog/covers/photo-1608222351212-18fe0ec7b13b.jpg",
     },
     {
       id: "post-4",
@@ -87,7 +87,7 @@ export const blogData = {
       date: "April 9, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1496171367470-9ed9a91ea931.jpg",
+      coverImage: "/assets/blog/covers/photo-1609549939295-3902f48210df.jpg",
     },
     {
       id: "post-5",
@@ -98,7 +98,7 @@ export const blogData = {
       date: "April 12, 2026",
       readTime: "8 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1507238691740-187a5b1d37b8.jpg",
+      coverImage: "/assets/blog/covers/photo-1634084462412-b54873c0a56d.jpg",
     },
     {
       id: "post-6",
@@ -109,7 +109,7 @@ export const blogData = {
       date: "April 15, 2026",
       readTime: "5 min read",
       category: "Quality Assurance",
-      coverImage: "/assets/blog/covers/photo-1600132806370-bf17e65e942f.jpg",
+      coverImage: "/assets/blog/covers/photo-1586282023338-52aa50a846ba.jpg",
     },
     {
       id: "post-7",
@@ -120,7 +120,7 @@ export const blogData = {
       date: "April 18, 2026",
       readTime: "9 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1522542550221-31fd19575a2d.jpg",
+      coverImage: "/assets/blog/covers/photo-1610989001873-03968eed0f08.jpg",
     },
     {
       id: "post-8",
@@ -131,7 +131,7 @@ export const blogData = {
       date: "April 20, 2026",
       readTime: "6 min read",
       category: "A/B Testing",
-      coverImage: "/assets/blog/covers/photo-1551434678-e076c223a692.jpg",
+      coverImage: "/assets/blog/covers/photo-1667984390533-64bdefe719ea.jpg",
     },
     {
       id: "post-9",
@@ -142,7 +142,7 @@ export const blogData = {
       date: "April 24, 2026",
       readTime: "7 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg",
+      coverImage: "/assets/blog/covers/photo-1773047747593-b2f10e0579c5.jpg",
     },
     {
       id: "post-10",
@@ -153,7 +153,7 @@ export const blogData = {
       date: "April 28, 2026",
       readTime: "8 min read",
       category: "Quality Assurance",
-      coverImage: "/assets/blog/covers/photo-1516321318423-f06f85e504b3.jpg",
+      coverImage: "/assets/blog/covers/photo-1753998941488-fc3064ab6094.jpg",
     },
     {
       id: "post-11",
@@ -164,7 +164,7 @@ export const blogData = {
       date: "May 2, 2026",
       readTime: "10 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1555066931-4365d14bab8c.jpg",
+      coverImage: "/assets/blog/covers/photo-1563131630-79ca2b9b47f5.jpg",
     },
     {
       id: "post-12",
@@ -175,7 +175,7 @@ export const blogData = {
       date: "May 5, 2026",
       readTime: "5 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1512428559087-560fa5ceab42.jpg",
+      coverImage: "/assets/blog/covers/photo-1763872038252-e6c4e0a11067.jpg",
     },
     {
       id: "post-13",
@@ -186,7 +186,7 @@ export const blogData = {
       date: "May 8, 2026",
       readTime: "7 min read",
       category: "A/B Testing",
-      coverImage: "/assets/blog/covers/photo-1533750516457-a7f992034fec.jpg",
+      coverImage: "/assets/blog/covers/photo-1787276140535-d626c2fd1495.jpg",
     },
     {
       id: "post-14",
@@ -197,7 +197,7 @@ export const blogData = {
       date: "May 11, 2026",
       readTime: "6 min read",
       category: "Quality Assurance",
-      coverImage: "/assets/blog/covers/photo-1531403009284-440f080d1e12.jpg",
+      coverImage: "/assets/blog/covers/photo-1613068687893-5e85b4638b56.jpg",
     },
     {
       id: "post-15",
@@ -208,7 +208,7 @@ export const blogData = {
       date: "May 14, 2026",
       readTime: "8 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1519389950473-47ba0277781c.jpg",
+      coverImage: "/assets/blog/covers/photo-1569748130764-3fed0c102c59.jpg",
     },
     {
       id: "post-16",
@@ -219,7 +219,7 @@ export const blogData = {
       date: "May 17, 2026",
       readTime: "6 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1551836022-d5d88e9218df.jpg",
+      coverImage: "/assets/blog/covers/photo-1700045109699-52ea6362f59f.jpg",
     },
     {
       id: "post-17",
@@ -230,7 +230,7 @@ export const blogData = {
       date: "May 19, 2026",
       readTime: "5 min read",
       category: "A/B Testing",
-      coverImage: "/assets/blog/covers/photo-1586717791821-3f44a563fa4c.jpg",
+      coverImage: "/assets/blog/covers/photo-1694878981776-82e8479aab12.jpg",
     },
     {
       id: "post-18",
@@ -241,7 +241,7 @@ export const blogData = {
       date: "May 21, 2026",
       readTime: "9 min read",
       category: "Quality Assurance",
-      coverImage: "/assets/blog/covers/photo-1504868584819-f8e8b4b6d7e3.jpg",
+      coverImage: "/assets/blog/covers/photo-1605902711834-8b11c3e3ef2f.jpg",
     },
     {
       id: "post-19",
@@ -252,7 +252,7 @@ export const blogData = {
       date: "May 24, 2026",
       readTime: "7 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1557821552-17105176677c.jpg",
+      coverImage: "/assets/blog/covers/photo-1786139774034-6455b12e28cb.jpg",
     },
     {
       id: "post-20",
@@ -263,7 +263,7 @@ export const blogData = {
       date: "May 26, 2026",
       readTime: "8 min read",
       category: "CRO",
-      coverImage: "/assets/blog/covers/photo-1581291518633-83b4ebd1d83e.jpg",
+      coverImage: "/assets/blog/covers/photo-1748609339084-ea43ec1b8fbb.jpg",
     },
     {
       id: "post-21",
@@ -274,7 +274,7 @@ export const blogData = {
       date: "June 2, 2026",
       readTime: "6 min read",
       category: "Shopify Development",
-      coverImage: "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
+      coverImage: "/assets/blog/covers/photo-1611174895360-53948c735c3a.jpg",
     },
     {
       id: "post-22",
@@ -384,7 +384,7 @@ export const blogData = {
       date: "July 13, 2026",
       readTime: "6 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1531746790731-6c087fecd65a.jpg",
+      coverImage: "/assets/blog/covers/photo-1555255707-c07966088b7b.jpg",
     },
     {
       id: "post-32",
@@ -395,7 +395,7 @@ export const blogData = {
       date: "July 17, 2026",
       readTime: "7 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
+      coverImage: "/assets/blog/covers/photo-1581090121489-ff9b54bbee43.jpg",
     },
     {
       id: "post-33",
@@ -406,7 +406,7 @@ export const blogData = {
       date: "July 21, 2026",
       readTime: "8 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1517245386807-bb43f82c33c4.jpg",
+      coverImage: "/assets/blog/covers/photo-1581092334651-ddf26d9a09d0.jpg",
     },
     {
       id: "post-34",
@@ -417,7 +417,7 @@ export const blogData = {
       date: "July 25, 2026",
       readTime: "7 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1556740758-90de374c12ad.jpg",
+      coverImage: "/assets/blog/covers/photo-1593376893114-1aed528d80cf.jpg",
     },
     {
       id: "post-35",
@@ -428,7 +428,7 @@ export const blogData = {
       date: "July 29, 2026",
       readTime: "6 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1553877522-43269d4ea984.jpg",
+      coverImage: "/assets/blog/covers/photo-1641312874336-6279a832a3dc.jpg",
     },
     {
       id: "post-36",
@@ -439,7 +439,7 @@ export const blogData = {
       date: "August 2, 2026",
       readTime: "6 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1620712943543-bcc4688e7485.jpg",
+      coverImage: "/assets/blog/covers/photo-1678483789107-0029c61fdcca.jpg",
     },
     {
       id: "post-37",
@@ -450,7 +450,7 @@ export const blogData = {
       date: "August 6, 2026",
       readTime: "8 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1551288049-bebda4e38f71.jpg",
+      coverImage: "/assets/blog/covers/photo-1682019652913-b61a48eeba4f.jpg",
     },
     {
       id: "post-38",
@@ -461,7 +461,7 @@ export const blogData = {
       date: "August 10, 2026",
       readTime: "7 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1485827404703-89b55fcc595e.jpg",
+      coverImage: "/assets/blog/covers/photo-1696258686263-9f42a5e34371.jpg",
     },
     {
       id: "post-39",
@@ -472,7 +472,7 @@ export const blogData = {
       date: "August 14, 2026",
       readTime: "7 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1455390582262-044cdead277a.jpg",
+      coverImage: "/assets/blog/covers/photo-1707651020095-6dbf323a02b2.jpg",
     },
     {
       id: "post-40",
@@ -483,7 +483,7 @@ export const blogData = {
       date: "August 18, 2026",
       readTime: "7 min read",
       category: "AI & Automation",
-      coverImage: "/assets/blog/covers/photo-1432888622747-4eb9a8efeb07.jpg",
+      coverImage: "/assets/blog/covers/photo-1717501218636-a390f9ac5957.jpg",
     },
   ],
 

@@ -284,6 +284,14 @@
 .markdown-content blockquote p + p {
   margin-top: .75rem
 }
+.markdown-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-md)
+}
 .markdown-diagram-img {
   display: block;
   max-width: 420px;
