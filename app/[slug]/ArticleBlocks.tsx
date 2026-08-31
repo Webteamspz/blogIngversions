@@ -1,0 +1,436 @@
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import * as Lucide from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
+
+import styles from "./ArticleBlocks.module.css";
+import CodeBlock from "./CodeBlock";
+import Faq from "../components/Faq/Faq";
+import type { Block, StructuredPost } from "../data/structuredPosts";
+import { resolveToc } from "../data/structuredPosts";
+
+type IconProps = { name?: string; size?: number };
+
+function Icon({ name, size = 20 }: IconProps) {
+  if (!name) return null;
+  const pascal = name
+    .split("-")
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+    .join("");
+  const icons = Lucide as unknown as Record<string, React.ComponentType<{ size?: number }>>;
+  const Cmp = icons[pascal] ?? icons.Circle;
+  return <Cmp size={size} />;
+}
+
+function RichText({ text }: { text: string }) {
+  const tokens = text.split(/(\*\*[^*]+\*\*|==[^=]+==|\[[^\]]+\]\([^)]+\)|`[^`]+`)/g);
+  return (
+    <>
+      {tokens.map((tok, i) => {
+        if (/^\*\*[^*]+\*\*$/.test(tok))
+          return <strong key={i}>{tok.slice(2, -2)}</strong>;
+        if (/^==[^=]+==$/.test(tok))
+          return (
+            <mark key={i} className={styles.highlight}>
+              {tok.slice(2, -2)}
+            </mark>
+          );
+        if (/^`[^`]+`$/.test(tok))
+          return (
+            <code key={i} className={styles.inlineCode}>
+              {tok.slice(1, -1)}
+            </code>
+          );
+        const link = tok.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (link)
+          return (
+            <a key={i} href={link[2]} className={styles.link}>
+              {link[1]}
+            </a>
+          );
+        return <React.Fragment key={i}>{tok}</React.Fragment>;
+      })}
+    </>
+  );
+}
+
+function BlockView({ block }: { block: Block }) {
+  const b = block as Record<string, any>;
+  switch (b.type) {
+    case "paragraph":
+      return (
+        <p className={styles.paragraph}>
+          <RichText text={b.text} />
+        </p>
+      );
+
+    case "list":
+      return b.ordered ? (
+        <ol className={styles.list}>
+          {b.items.map((it: string, i: number) => (
+            <li key={i}>
+              <RichText text={it} />
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <ul className={styles.list}>
+          {b.items.map((it: string, i: number) => (
+            <li key={i}>
+              <RichText text={it} />
+            </li>
+          ))}
+        </ul>
+      );
+
+    case "callout":
+      return (
+        <div className={`${styles.callout} ${styles[`callout-${b.variant}`] ?? ""}`}>
+          <span className={styles.calloutIcon}>
+            <Icon name={b.icon} size={22} />
+          </span>
+          <div>
+            {b.title ? <p className={styles.calloutTitle}>{b.title}</p> : null}
+            <p className={styles.calloutText}>
+              <RichText text={b.text} />
+            </p>
+            {b.items?.length ? (
+              <ul className={styles.list}>
+                {b.items.map((it: string, i: number) => (
+                  <li key={i}>
+                    <RichText text={it} />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+      );
+
+    case "protip":
+      return (
+        <div className={styles.protip}>
+          <span className={styles.protipIcon}>
+            <Icon name={b.icon ?? "lightbulb"} size={20} />
+          </span>
+          <p className={styles.protipLabel}>{b.label ?? "PRO TIP"}</p>
+          <p className={styles.protipText}>
+            <RichText text={b.text} />
+          </p>
+          <ul className={styles.checklist}>
+            {b.checklist?.map((it: string, i: number) => (
+              <li key={i}>
+                <Lucide.Check size={16} />
+                <span>{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+
+    case "featureGrid":
+      return (
+        <div className={styles.featureGrid} style={{ "--cols": b.columns ?? 2 } as React.CSSProperties}>
+          {b.items.map((it: any, i: number) => (
+            <div key={i} className={styles.featureCard}>
+              <span className={`${styles.featureIcon} ${styles[`accent-${it.color}`] ?? ""}`}>
+                <Icon name={it.icon} size={20} />
+              </span>
+              <p className={styles.featureTitle}>{it.title}</p>
+              <p className={styles.featureText}>{it.text}</p>
+            </div>
+          ))}
+        </div>
+      );
+
+    case "flowDiagram":
+      return (
+        <ol className={styles.flow}>
+          {b.steps.map((s: any, i: number) => (
+            <li key={i} className={styles.flowStep}>
+              <span className={`${styles.flowNum} ${styles[`accent-${s.color}`] ?? ""}`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className={styles.flowCard}>
+                {s.icon ? (
+                  <span className={styles.flowCardIcon}>
+                    <Icon name={s.icon} size={18} />
+                  </span>
+                ) : null}
+                <span className={styles.flowCardText}>
+                  <span className={styles.flowTitle}>{s.title}</span>
+                  {s.subtitle ? <span className={styles.flowSub}>{s.subtitle}</span> : null}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      );
+
+    case "stepList":
+      return (
+        <ol className={styles.stepList}>
+          {b.steps.map((s: any, i: number) => (
+            <li key={i} className={styles.step}>
+              <span className={`${styles.stepNum} ${styles[`accent-${b.color}`] ?? ""}`}>{i + 1}</span>
+              <div>
+                <p className={styles.stepTitle}>{s.title}</p>
+                <p className={styles.stepText}>
+                  <RichText text={s.text} />
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      );
+
+    case "image":
+      // eslint-disable-next-line @next/next/no-img-element
+      return (
+        <figure className={styles.figure}>
+          <img src={b.src} alt={b.alt} className={styles.image} />
+          {b.caption ? <figcaption className={styles.caption}>{b.caption}</figcaption> : null}
+        </figure>
+      );
+
+    case "quote":
+      return (
+        <blockquote className={styles.quote}>
+          <RichText text={b.text} />
+          {b.cite ? <cite className={styles.cite}>— {b.cite}</cite> : null}
+        </blockquote>
+      );
+
+    case "code":
+      return (
+        <div className={styles.codeWrap}>
+          <CodeBlock>
+            <code className={`language-${b.language ?? "text"}`}>{b.code}</code>
+          </CodeBlock>
+        </div>
+      );
+
+    case "table":
+      return (
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {b.headers.map((h: string, i: number) => (
+                  <th key={i}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {b.rows.map((row: string[], i: number) => (
+                <tr key={i}>
+                  {row.map((cell, j) => (
+                    <td key={j}>
+                      <RichText text={cell} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+    case "divider":
+      return <hr className={styles.divider} />;
+
+    default:
+      return null;
+  }
+}
+
+export default function ArticleBlocks({ post }: { post: StructuredPost }) {
+  const toc = resolveToc(post);
+  const [activeAnchor, setActiveAnchor] = useState<string>(toc[0]?.anchor ?? "");
+
+  useEffect(() => {
+    const ids = toc.map((it) => it.anchor);
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible.length > 0) {
+          setActiveAnchor(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-120px 0px -60% 0px", threshold: 0 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [toc]);
+
+  const asideRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const [tocStyle, setTocStyle] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    const TOP_OFFSET = 120;
+
+    function handleScroll() {
+      const aside = asideRef.current;
+      const nav = navRef.current;
+      if (!aside || !nav) return;
+
+      if (window.innerWidth <= 1000) {
+        setTocStyle({});
+        return;
+      }
+
+      const asideRect = aside.getBoundingClientRect();
+      const navHeight = nav.offsetHeight;
+
+      if (asideRect.top <= TOP_OFFSET && asideRect.bottom >= TOP_OFFSET + navHeight) {
+        setTocStyle({
+          position: "fixed",
+          top: TOP_OFFSET,
+          left: asideRect.left,
+          width: asideRect.width,
+        });
+      } else if (asideRect.bottom < TOP_OFFSET + navHeight) {
+        setTocStyle({
+          position: "absolute",
+          left: 0,
+          width: "100%",
+          top: aside.offsetHeight - navHeight,
+        });
+      } else {
+        setTocStyle({ position: "absolute", left: 0, width: "100%", top: 0 });
+      }
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div className={styles.wrap}>
+      <header className={styles.hero}>
+        <div className={styles.heroMain}>
+          <div className={styles.badges}>
+            {post.hero.badges.map((bd, i) => (
+              <span key={i} className={`${styles.badge} ${styles[`badge-${bd.color}`] ?? ""}`}>
+                {bd.label}
+              </span>
+            ))}
+          </div>
+          <h1 className={styles.title}>{post.hero.title}</h1>
+          <p className={styles.excerpt}>{post.hero.excerpt}</p>
+          <div className={styles.meta}>
+            <span>
+              <Calendar size={15} /> {post.meta.date}
+            </span>
+            <span>
+              <Clock size={15} /> {post.meta.readTime}
+            </span>
+          </div>
+        </div>
+        {post.hero.image ? (
+          <img src={post.hero.image.src} alt={post.hero.image.alt} className={styles.heroBanner} />
+        ) : (
+          <div className={styles.heroGrid}>
+            {(post.hero.highlights ?? []).map((h, i) => (
+              <div key={i} className={styles.heroCell}>
+                <span className={`${styles.heroCellIcon} ${styles[`accent-${h.color}`] ?? ""}`}>
+                  <Icon name={h.icon} size={18} />
+                </span>
+                <p className={styles.heroCellLabel}>{h.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </header>
+
+      {/* Back to Blog CTA hidden for now
+      <Link href="/" className={styles.backLink}>
+        <Lucide.ArrowLeft size={16} />
+        Back to Blog
+      </Link>
+      */}
+
+      <div className={styles.layout}>
+        <aside ref={asideRef} className={styles.tocAside}>
+          <nav ref={navRef} className={styles.toc} style={tocStyle}>
+            <p className={styles.tocEyebrow}>{post.toc.eyebrow}</p>
+            <p className={styles.tocTitle}>{post.toc.title}</p>
+            <ul className={styles.tocList}>
+              {toc.map((it, i) => (
+                <li key={i}>
+                  <a
+                    href={`#${it.anchor}`}
+                    className={`${styles.tocLink} ${activeAnchor === it.anchor ? styles.tocLinkActive : ""}`}
+                  >
+                    {it.icon ? <Icon name={it.icon} size={15} /> : null}
+                    {it.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+
+        <div className={styles.content}>
+          {post.intro.map((block, i) => (
+            <div className={styles.lead} key={`intro-${i}`}>
+              <BlockView block={block} />
+            </div>
+          ))}
+
+          {post.body.sections.map((section) => (
+            <section key={section.id} id={section.id} className={styles.section}>
+              <h2 className={styles.sectionHead}>
+                <span className={`${styles.sectionNum} ${styles[`accent-${section.accent}`] ?? ""}`}>
+                  {section.number}
+                </span>
+                {section.heading}
+              </h2>
+              {section.blocks.map((block, i) => (
+                <BlockView block={block} key={i} />
+              ))}
+            </section>
+          ))}
+
+          {post.faq ? (
+            <section id={post.faq.id} className={styles.section}>
+              <h2 className={styles.sectionHead}>
+                <span className={`${styles.sectionNum} ${styles["accent-pink"]}`}>?</span>
+                {post.faq.heading}
+              </h2>
+              <Faq items={post.faq.items} />
+            </section>
+          ) : null}
+
+          {post.cta ? (
+            <div className={styles.ctaBox}>
+              <h3 className={styles.ctaHeading}>{post.cta.heading}</h3>
+              <p className={styles.ctaText}>{post.cta.text}</p>
+              <Link href={post.cta.buttonLink} className={styles.ctaButton}>
+                {post.cta.buttonLabel}
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
