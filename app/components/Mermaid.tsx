@@ -20,8 +20,6 @@ mermaid.initialize({
   },
 });
 
-/* ---------- linear-flow parser: mermaid `graph`/`flowchart` -> ordered step labels ---------- */
-
 function parseFlowSteps(src: string): string[] | null {
   const lines = src.split(/\r?\n/).map((l) => l.trim());
   if (!/^(graph|flowchart)\s/i.test(lines[0] || "")) return null;
@@ -29,13 +27,16 @@ function parseFlowSteps(src: string): string[] | null {
   const labels = new Map<string, string>();
   const order: string[] = [];
 
-  const addNode = (raw: string) => {
-    const token = raw.trim().replace(/^\|[^|]*\|/, "").trim(); // drop leading edge label
-    if (!token) return;
+  const outDeg = new Map<string, number>();
+  const inDeg = new Map<string, number>();
+
+  const addNode = (raw: string): string | null => {
+    const token = raw.trim().replace(/^\|[^|]*\|/, "").trim();
+    if (!token) return null;
     const shaped = token.match(/^([\w.-]+)\s*[[({]+\s*"?(.*?)"?\s*[\])}]+\s*$/);
     const bare = token.match(/^([\w.-]+)$/);
     const id = shaped ? shaped[1] : bare ? bare[1] : null;
-    if (!id) return;
+    if (!id) return null;
     const label = shaped
       ? shaped[2].replace(/<br\s*\/?>/gi, " ").replace(/\s+/g, " ").trim()
       : "";
@@ -45,6 +46,7 @@ function parseFlowSteps(src: string): string[] | null {
     } else if (label && labels.get(id) === id) {
       labels.set(id, label);
     }
+    return id;
   };
 
   for (const line of lines) {
@@ -57,14 +59,22 @@ function parseFlowSteps(src: string): string[] | null {
     if (!/--+>?|==+>?|-\.-+>?/.test(line)) continue;
     const parts = line.split(/\s*(?:--+>?|==+>?|-\.-+>?)\s*/).filter(Boolean);
     if (parts.length < 2) continue;
-    parts.forEach(addNode);
+    const ids = parts.map(addNode);
+    for (let i = 0; i < ids.length - 1; i++) {
+      const from = ids[i];
+      const to = ids[i + 1];
+      if (!from || !to) continue;
+      outDeg.set(from, (outDeg.get(from) ?? 0) + 1);
+      inDeg.set(to, (inDeg.get(to) ?? 0) + 1);
+    }
   }
+
+  for (const d of outDeg.values()) if (d > 1) return null;
+  for (const d of inDeg.values()) if (d > 1) return null;
 
   const steps = order.map((id) => labels.get(id) || id);
   return steps.length >= 2 ? steps : null;
 }
-
-/* ---------- vertical step timeline ---------- */
 
 function FlowSteps({ steps }: { steps: string[] }) {
   return (
@@ -107,16 +117,12 @@ export default function Mermaid({ chart }: { chart: string }) {
   if (flowSteps) return <FlowSteps steps={flowSteps} />;
 
   if (!svg) {
-    return (
-      <div className="flex justify-center p-10 text-sm text-gray-500 animate-pulse">
-        Rendering diagram...
-      </div>
-    );
+    return <div className={articleStyles["mermaid-loading"]}>Rendering diagram...</div>;
   }
 
   return (
     <div
-      className={`flex justify-center my-8 overflow-x-auto w-full ${articleStyles["mermaid-diagram-container"]}`}
+      className={articleStyles["mermaid-diagram-container"]}
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );

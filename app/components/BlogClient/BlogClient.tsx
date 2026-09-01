@@ -1,19 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import styles from "./BlogClient.module.css";
-import { pageview } from "../../gtm";
-import { blogData } from "../../data/blogData"; 
-
-const articleImages: Record<string, string> = {
-  "cro": "/assets/blog/covers/photo-1460925895917-afdab827c52f.jpg",
-  "ab-testing": "/assets/blog/covers/photo-1507003211169-0a1dd7228f2d.jpg",
-  "shopify": "/assets/blog/covers/photo-1441986300917-64674bd600d8.jpg",
-  "qa": "/assets/blog/covers/photo-1516321318423-f06f85e504b3.jpg",
-};
+import { blogData } from "../../data/blogData";
+import { homepageCategoryImages as articleImages } from "../../data/articleImages";
 
 const getCategorySlug = (categoryName: string) => {
   if (!categoryName) return "all";
@@ -31,37 +24,25 @@ const articles = blogData.posts
   }))
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+const categoryLabelBySlug = new Map<string, string>();
+for (const a of articles) {
+  if (!categoryLabelBySlug.has(a.categorySlug)) categoryLabelBySlug.set(a.categorySlug, a.category);
+}
+
 const categories = [
   { id: "all", name: "All Posts", count: articles.length },
-  { id: "cro", name: "CRO", count: articles.filter(a => a.categorySlug === "cro").length },
-  { id: "ab-testing", name: "A/B Testing", count: articles.filter(a => a.categorySlug === "ab-testing").length },
-  { id: "shopify", name: "Shopify Development", count: articles.filter(a => a.categorySlug === "shopify").length },
-  { id: "qa", name: "Quality Assurance", count: articles.filter(a => a.categorySlug === "qa").length },
-  { id: "ai-automation", name: "AI & Automation", count: articles.filter(a => a.categorySlug === "ai-automation").length },
+  ...[...categoryLabelBySlug.entries()]
+    .map(([id, name]) => ({ id, name, count: articles.filter(a => a.categorySlug === id).length }))
+    .sort((a, b) => b.count - a.count),
 ];
 
-const categoryColors: Record<string, string> = {
-  "CRO": "badge-cro",
-  "A/B Testing": "badge-ab",
-  "Shopify Development": "badge-shopify",
-  "Quality Assurance": "badge-qa",
-  "AI & Automation": "badge-ai-automation",
-};
+const articleLabel = (n: number) => `${n} article${n === 1 ? "" : "s"}`;
 
-const categoryBorderColors: Record<string, string> = {
-  "CRO": "border-hover-cro",
-  "A/B Testing": "border-hover-ab",
-  "Shopify Development": "border-hover-shopify",
-  "Quality Assurance": "border-hover-qa",
-};
+const categoryCount = (id: string) => categories.find(c => c.id === id)?.count ?? 0;
 
 export default function BlogClient() {
   const [activeCategory, setActiveCategory] = useState("all");
   const topRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    try { pageview(window.location.pathname, "Blog Index Page"); } catch (e) {}
-  }, []);
 
   const handleCategoryClick = (categoryId: string) => {
     setActiveCategory(categoryId);
@@ -75,7 +56,7 @@ export default function BlogClient() {
     : articles.filter(a => a.categorySlug === activeCategory);
 
   return (
-   <main className={styles["blog-main"]}>
+   <div className={styles["blog-main"]}>
       <section className={`${styles["blog-section"]} ${styles["hero-section"]}`} ref={topRef}>
         <div className={styles["hero-grid"]} aria-hidden="true" />
         <div className={`${styles.container} ${styles["text-center"]}`}>
@@ -100,19 +81,19 @@ export default function BlogClient() {
         </div>
       </section>
 
-      <section className={`${styles["blog-section"]} py-8`}>
+      <section className={styles["blog-section"]}>
         <div className={styles.container}>
           <div className={styles["grid-header"]}>
             <h2 className={styles["section-title"]}>
               {activeCategory === "all" ? "Latest Articles" : categories.find(c => c.id === activeCategory)?.name}
             </h2>
-            <span className={styles["article-count"]}>{filteredArticles.length} articles</span>
+            <span className={styles["article-count"]}>{articleLabel(filteredArticles.length)}</span>
           </div>
 
           <div className={styles["articles-grid"]}>
-            {filteredArticles.map((article: any) => (
+            {filteredArticles.map((article) => (
               <Link key={article.id} href={`/${article.slug}`} className={styles["block-link"]}>
-                <article className={`${styles["article-card"]} ${styles[categoryBorderColors[article.category]]}`}>
+                <article className={styles["article-card"]}>
                   <div className={styles["article-img-wrapper"]}>
                     <Image
                       src={article.coverImage || articleImages[article.categorySlug]}
@@ -121,7 +102,7 @@ export default function BlogClient() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className={styles["article-img"]}
                     />
-                    <span className={`${styles.badge} ${styles[categoryColors[article.category]]}`}>
+                    <span className={styles.badge}>
                       {article.category}
                     </span>
                   </div>
@@ -145,7 +126,7 @@ export default function BlogClient() {
         </div>
       </section>
 
-      <section className={`${styles["blog-section"]} py-12`}>
+      <section className={styles["blog-section"]}>
         <div className={styles.container}>
           <h2 className={styles["section-title-center"]}>Browse by Category</h2>
           <div className={styles["categories-grid"]}>
@@ -159,8 +140,8 @@ export default function BlogClient() {
               </div>
               <h3 className={styles["category-title"]}>CRO</h3>
               <p className={styles["category-desc"]}>Conversion rate optimization strategies and best practices.</p>
-              <span className={`${styles["category-link"]} text-green`}>
-                {categories.find(c => c.id === "cro")?.count} articles
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("cro"))}
                 <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
@@ -174,8 +155,8 @@ export default function BlogClient() {
               </div>
               <h3 className={styles["category-title"]}>A/B Testing</h3>
               <p className={styles["category-desc"]}>Testing methodologies and statistical significance.</p>
-              <span className={`${styles["category-link"]} text-orange`}>
-                {categories.find(c => c.id === "ab-testing")?.count} articles
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("ab-testing"))}
                 <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
@@ -189,8 +170,8 @@ export default function BlogClient() {
               </div>
               <h3 className={styles["category-title"]}>Shopify Development</h3>
               <p className={styles["category-desc"]}>Theme customization and store optimization.</p>
-              <span className={`${styles["category-link"]} text-purple`}>
-                {categories.find(c => c.id === "shopify")?.count} articles
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("shopify"))}
                 <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
@@ -204,8 +185,38 @@ export default function BlogClient() {
               </div>
               <h3 className={styles["category-title"]}>Quality Assurance</h3>
               <p className={styles["category-desc"]}>Automated testing, checklists, and performance tracking.</p>
-              <span className={`${styles["category-link"]} text-blue`}>
-                {categories.find(c => c.id === "qa")?.count} articles
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("qa"))}
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
+              </span>
+            </div>
+
+            <div
+              className={`${styles["category-card"]} ${styles["hover-ai"]}`}
+              onClick={() => handleCategoryClick("ai-automation")}
+            >
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-sky-light"]}`}>
+                <Image src={articleImages["ai-automation"]} alt="AI and automation" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
+              </div>
+              <h3 className={styles["category-title"]}>AI &amp; Automation</h3>
+              <p className={styles["category-desc"]}>Claude, MCP servers, and AI workflows for e-commerce.</p>
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("ai-automation"))}
+                <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
+              </span>
+            </div>
+
+            <div
+              className={`${styles["category-card"]} ${styles["hover-design"]}`}
+              onClick={() => handleCategoryClick("design")}
+            >
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-purple-light"]}`}>
+                <Image src={articleImages["design"]} alt="Design" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
+              </div>
+              <h3 className={styles["category-title"]}>Design</h3>
+              <p className={styles["category-desc"]}>Product page design, UX, and conversion-focused layouts.</p>
+              <span className={styles["category-link"]}>
+                {articleLabel(categoryCount("design"))}
                 <ArrowRight size={16} strokeWidth={3} className={styles["arrow-icon"]} aria-hidden="true" />
               </span>
             </div>
@@ -213,6 +224,6 @@ export default function BlogClient() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

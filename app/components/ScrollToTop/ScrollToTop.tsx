@@ -22,7 +22,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`${styles.tsNav} ${styles.scrollTopBtn} ${showScrollTop ? styles.scrollTopVisible : styles.scrollTopHidden}`}
+      className={`${styles.scrollTopBtn} ${showScrollTop ? styles.scrollTopVisible : styles.scrollTopHidden}`}
       aria-label="Scroll to top"
     >
       <ArrowUp className={styles.scrollTopArrow} size={20} strokeWidth={2.5} aria-hidden="true" />

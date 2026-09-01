@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import styles from "./ArticleDetail.module.css";
 
-import ArticleTracker from "./ArticleTracker";
 import GetStartedBtn from "./GetStartedBtn";
 import PopularArticles from "./PopularArticles";
 import ArticleBlocks from "./ArticleBlocks";
@@ -129,13 +128,11 @@ export default async function ArticlePage({
     };
 
     return (
-      <main className={styles["article-main"]}>
+      <div className={styles["article-main"]}>
         <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-circle"]}`} aria-hidden="true" />
         <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-square"]}`} aria-hidden="true" />
 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredSchema) }} />
-
-        <ArticleTracker title={structured.hero.title} />
 
         <article className={styles["article-container"]}>
           <ArticleBlocks post={structured} />
@@ -144,7 +141,7 @@ export default async function ArticlePage({
             <PopularArticles currentSlug={slug} />
           </div>
         </article>
-      </main>
+      </div>
     );
   }
 
@@ -152,17 +149,7 @@ export default async function ArticlePage({
 
   if (!article) notFound();
 
-  const categoryColors: Record<string, string> = {
-    CRO: "badge-cro",
-    "A/B Testing": "badge-ab",
-    "Shopify Development": "badge-shopify",
-    "Quality Assurance": "badge-qa",
-    "UX Design": "badge-ux",
-    "Analytics": "badge-analytics"
-  };
-
   const heroImage = articleImages[slug] || fallbackImagesByCategory[article.categorySlug] || fallbackImagesByCategory["cro"];
-  const badgeColor = categoryColors[article.category] || "badge-default";
 
   const publishedDate = new Date(article.date);
   const articleSchema = {
@@ -190,7 +177,7 @@ export default async function ArticlePage({
   };
 
   return (
-    <main className={styles["article-main"]}>
+    <div className={styles["article-main"]}>
 
       <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-circle"]}`} aria-hidden="true" />
       <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-square"]}`} aria-hidden="true" />
@@ -199,8 +186,6 @@ export default async function ArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-
-      <ArticleTracker title={article.title} />
 
       <article className={styles["article-container"]}>
 
@@ -216,7 +201,7 @@ export default async function ArticlePage({
             src={heroImage}
             alt={article.title}
             fill
-            sizes="(max-width: 767px) 100vw, 1440px"
+            sizes="(max-width: 767px) 100vw, 1260px"
             priority
             className={styles["article-hero-img"]}
           />
@@ -225,7 +210,7 @@ export default async function ArticlePage({
         <div className={styles["article-content-wrapper"]}>
 
           <div className={styles["badge-container"]}>
-            <span className={`${styles["article-badge"]} ${styles[badgeColor]}`}>
+            <span className={styles["article-badge"]}>
               {article.category}
             </span>
           </div>
@@ -293,6 +278,6 @@ export default async function ArticlePage({
         </div>
       </article>
 
-    </main>
+    </div>
   );
 }

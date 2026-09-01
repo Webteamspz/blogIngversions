@@ -47,6 +47,7 @@ export const homepageCategoryImages: Record<string, string> = {
   "shopify": "/assets/blog/covers/photo-1441986300917-64674bd600d8.jpg",
   "qa": "/assets/blog/covers/photo-1516321318423-f06f85e504b3.jpg",
   "ai-automation": "/assets/blog/covers/photo-1518770660439-4636190af475.jpg",
+  "design": "/assets/blog/covers/photo-1455390582262-044cdead277a.jpg",
 };
 
 export const fallbackImagesByCategory: Record<string, string> = {

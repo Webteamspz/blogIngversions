@@ -121,17 +121,6 @@
   align-self: flex-start;
   font-family: var(--font-plus-jakarta),sans-serif
 }
-.badge-ab,
-.badge-ai-automation,
-.badge-analytics,
-.badge-cro,
-.badge-default,
-.badge-qa,
-.badge-shopify,
-.badge-ux {
-  background: var(--bg-800);
-  color: var(--text-primary)
-}
 .block-link {
   display: block;
   text-decoration: none
@@ -214,18 +203,6 @@
   transition: box-shadow .3s var(--ease-pop)
 }
 .article-card:hover .article-img-wrapper {
-  box-shadow: 9px 9px 0 0 var(--tertiary)
-}
-.article-card.border-hover-cro:hover .article-img-wrapper {
-  box-shadow: 9px 9px 0 0 var(--tertiary)
-}
-.article-card.border-hover-ab:hover .article-img-wrapper {
-  box-shadow: 9px 9px 0 0 var(--tertiary)
-}
-.article-card.border-hover-shopify:hover .article-img-wrapper {
-  box-shadow: 9px 9px 0 0 var(--tertiary)
-}
-.article-card.border-hover-qa:hover .article-img-wrapper {
   box-shadow: 9px 9px 0 0 var(--tertiary)
 }
 @media (prefers-reduced-motion:reduce) {
@@ -384,6 +361,18 @@
 .category-card.hover-qa:hover {
   box-shadow: 8px 8px 0 0 var(--secondary)
 }
+.category-card.hover-ai::before {
+  background: #38bdf8
+}
+.category-card.hover-ai:hover {
+  box-shadow: 8px 8px 0 0 #38bdf8
+}
+.category-card.hover-design::before {
+  background: var(--accent-strong)
+}
+.category-card.hover-design:hover {
+  box-shadow: 8px 8px 0 0 var(--accent-strong)
+}
 @media (prefers-reduced-motion:reduce) {
   .category-card {
     transition: none!important
@@ -412,6 +401,9 @@
 }
 .bg-blue-light {
   background-color: var(--secondary)
+}
+.bg-sky-light {
+  background-color: #38bdf8
 }
 .category-img {
   width: 100%;

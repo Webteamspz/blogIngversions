@@ -26,8 +26,6 @@ export const blogData = {
     backgroundImage: "/assets/blog/hero-bg.jpg",
   },
 
-  categories: ["All", "Shopify Development", "A/B Testing", "CRO", "Quality Assurance", "AI & Automation", "Design", "Business", "Marketing"],
-
   featuredPost: {
     id: "post-0",
     title: "How to Migrate from React to Next.js App Router",
@@ -76,7 +74,7 @@ export const blogData = {
       date: "August 30, 2026",
       readTime: "7 min read",
       category: "A/B Testing",
-      coverImage: "/assets/blog/covers/photo-1507003211169-0a1dd7228f2d.jpg",
+      coverImage: "/assets/blog/covers/photo-1620712943543-bcc4688e7485.jpg",
     },
     {
       id: "post-43",

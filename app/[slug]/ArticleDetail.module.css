@@ -1,10 +1,10 @@
 .article-main {
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
   background-color: var(--bg-950);
   color: var(--text-primary);
   min-height: 100vh;
-  padding-top: 130px
+  padding-top: 120px
 }
 .article-main .article-container {
   position: relative;
@@ -84,7 +84,7 @@
   }
 }
 .article-main .article-container {
-  padding: 16px 0 48px 0
+  padding: 0 0 48px 0
 }
 .article-main .article-content-wrapper,
 .article-main .back-link-wrapper {
@@ -97,7 +97,7 @@
 .article-main .article-hero-wrapper {
   position: relative;
   width: 100%;
-  max-width: min(1440px,calc(100% - 32px));
+  max-width: min(1260px,calc(100% - 32px));
   aspect-ratio: 3/1;
   margin: 0 auto 32px auto;
   overflow: hidden;
@@ -129,16 +129,6 @@
   border: var(--border-width) solid var(--border);
   box-shadow: 3px 3px 0 0 var(--border);
   font-family: var(--font-plus-jakarta),sans-serif
-}
-.article-main .article-badge.badge-ab,
-.article-main .article-badge.badge-analytics,
-.article-main .article-badge.badge-cro,
-.article-main .article-badge.badge-default,
-.article-main .article-badge.badge-qa,
-.article-main .article-badge.badge-shopify,
-.article-main .article-badge.badge-ux {
-  background-color: var(--bg-800);
-  color: var(--text-primary)
 }
 .article-main .article-title {
   font-family: var(--font-outfit),sans-serif;
@@ -583,7 +573,11 @@
     transform: none
   }
 }
+.mermaid-loading {
+  display: flex
+}
 .markdown-content .mermaid-diagram-container {
+  display: flex;
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-pop-soft);
@@ -609,7 +603,7 @@
 }
 @media (max-width:767px) {
   .article-main {
-    padding-top: 100px
+    padding-top: 80px
   }
   .article-main .article-container {
     padding-top: 24px
@@ -709,7 +703,6 @@ textarea:-webkit-autofill:hover {
   transition: background-color 5000s ease-in-out 0s
 }
 
-/* step timeline — replaces linear mermaid graphs, clean on every screen */
 .flow-steps {
   list-style: none;
   margin: 32px 0;

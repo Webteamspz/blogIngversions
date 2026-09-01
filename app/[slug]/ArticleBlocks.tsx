@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Lucide from "lucide-react";
 import { Calendar, Clock } from "lucide-react";
@@ -56,8 +56,25 @@ function RichText({ text }: { text: string }) {
   );
 }
 
+type StepNode = { title?: string; subtitle?: string; text?: string; icon?: string; color?: string };
+type FeatureItemNode = { icon?: string; title?: string; text?: string; color?: string };
+
+type BlockNode =
+  | { type: "paragraph"; text: string }
+  | { type: "list"; ordered?: boolean; items: string[] }
+  | { type: "callout"; variant?: string; icon?: string; title?: string; text: string; items?: string[] }
+  | { type: "protip"; icon?: string; label?: string; text: string; checklist?: string[] }
+  | { type: "featureGrid"; columns?: number; items: FeatureItemNode[] }
+  | { type: "flowDiagram"; steps: StepNode[] }
+  | { type: "stepList"; color?: string; steps: StepNode[] }
+  | { type: "image"; src: string; alt?: string; caption?: string }
+  | { type: "quote"; text: string; cite?: string }
+  | { type: "code"; language?: string; code: string }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "divider" };
+
 function BlockView({ block }: { block: Block }) {
-  const b = block as Record<string, any>;
+  const b = block as unknown as BlockNode;
   switch (b.type) {
     case "paragraph":
       return (
@@ -69,7 +86,7 @@ function BlockView({ block }: { block: Block }) {
     case "list":
       return b.ordered ? (
         <ol className={styles.list}>
-          {b.items.map((it: string, i: number) => (
+          {(b.items ?? []).map((it, i) => (
             <li key={i}>
               <RichText text={it} />
             </li>
@@ -77,7 +94,7 @@ function BlockView({ block }: { block: Block }) {
         </ol>
       ) : (
         <ul className={styles.list}>
-          {b.items.map((it: string, i: number) => (
+          {(b.items ?? []).map((it, i) => (
             <li key={i}>
               <RichText text={it} />
             </li>
@@ -98,7 +115,7 @@ function BlockView({ block }: { block: Block }) {
             </p>
             {b.items?.length ? (
               <ul className={styles.list}>
-                {b.items.map((it: string, i: number) => (
+                {b.items.map((it, i) => (
                   <li key={i}>
                     <RichText text={it} />
                   </li>
@@ -120,7 +137,7 @@ function BlockView({ block }: { block: Block }) {
             <RichText text={b.text} />
           </p>
           <ul className={styles.checklist}>
-            {b.checklist?.map((it: string, i: number) => (
+            {b.checklist?.map((it, i) => (
               <li key={i}>
                 <Lucide.Check size={16} />
                 <span>{it}</span>
@@ -133,7 +150,7 @@ function BlockView({ block }: { block: Block }) {
     case "featureGrid":
       return (
         <div className={styles.featureGrid} style={{ "--cols": b.columns ?? 2 } as React.CSSProperties}>
-          {b.items.map((it: any, i: number) => (
+          {(b.items ?? []).map((it, i) => (
             <div key={i} className={styles.featureCard}>
               <span className={`${styles.featureIcon} ${styles[`accent-${it.color}`] ?? ""}`}>
                 <Icon name={it.icon} size={20} />
@@ -148,7 +165,7 @@ function BlockView({ block }: { block: Block }) {
     case "flowDiagram":
       return (
         <ol className={styles.flow}>
-          {b.steps.map((s: any, i: number) => (
+          {(b.steps ?? []).map((s, i) => (
             <li key={i} className={styles.flowStep}>
               <span className={`${styles.flowNum} ${styles[`accent-${s.color}`] ?? ""}`}>
                 {String(i + 1).padStart(2, "0")}
@@ -172,13 +189,13 @@ function BlockView({ block }: { block: Block }) {
     case "stepList":
       return (
         <ol className={styles.stepList}>
-          {b.steps.map((s: any, i: number) => (
+          {(b.steps ?? []).map((s, i) => (
             <li key={i} className={styles.step}>
               <span className={`${styles.stepNum} ${styles[`accent-${b.color}`] ?? ""}`}>{i + 1}</span>
               <div>
                 <p className={styles.stepTitle}>{s.title}</p>
                 <p className={styles.stepText}>
-                  <RichText text={s.text} />
+                  <RichText text={s.text ?? ""} />
                 </p>
               </div>
             </li>
@@ -187,7 +204,6 @@ function BlockView({ block }: { block: Block }) {
       );
 
     case "image":
-      // eslint-disable-next-line @next/next/no-img-element
       return (
         <figure className={styles.figure}>
           <img src={b.src} alt={b.alt} className={styles.image} />
@@ -218,13 +234,13 @@ function BlockView({ block }: { block: Block }) {
           <table className={styles.table}>
             <thead>
               <tr>
-                {b.headers.map((h: string, i: number) => (
+                {(b.headers ?? []).map((h, i) => (
                   <th key={i}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {b.rows.map((row: string[], i: number) => (
+              {(b.rows ?? []).map((row, i) => (
                 <tr key={i}>
                   {row.map((cell, j) => (
                     <td key={j}>
@@ -258,74 +274,24 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
 
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    const TRIGGER = 130;
+    const sync = () => {
+      let current = elements[0].id;
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top <= TRIGGER) current = el.id;
+        else break;
+      }
+      setActiveAnchor(current);
+    };
 
-        if (visible.length > 0) {
-          setActiveAnchor(visible[0].target.id);
-        }
-      },
-      { rootMargin: "-120px 0px -60% 0px", threshold: 0 }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    return () => window.removeEventListener("scroll", sync);
   }, [toc]);
 
-  const asideRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  const [tocStyle, setTocStyle] = useState<React.CSSProperties>({});
-
-  useEffect(() => {
-    const TOP_OFFSET = 120;
-
-    function handleScroll() {
-      const aside = asideRef.current;
-      const nav = navRef.current;
-      if (!aside || !nav) return;
-
-      if (window.innerWidth <= 1000) {
-        setTocStyle({});
-        return;
-      }
-
-      const asideRect = aside.getBoundingClientRect();
-      const navHeight = nav.offsetHeight;
-
-      if (asideRect.top <= TOP_OFFSET && asideRect.bottom >= TOP_OFFSET + navHeight) {
-        setTocStyle({
-          position: "fixed",
-          top: TOP_OFFSET,
-          left: asideRect.left,
-          width: asideRect.width,
-        });
-      } else if (asideRect.bottom < TOP_OFFSET + navHeight) {
-        setTocStyle({
-          position: "absolute",
-          left: 0,
-          width: "100%",
-          top: aside.offsetHeight - navHeight,
-        });
-      } else {
-        setTocStyle({ position: "absolute", left: 0, width: "100%", top: 0 });
-      }
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
   return (
-    <div className={styles.wrap}>
-      <header className={styles.hero}>
+    <>
+      <section className={styles.hero}>
         <div className={styles.heroMain}>
           <div className={styles.badges}>
             {post.hero.badges.map((bd, i) => (
@@ -359,18 +325,12 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
             ))}
           </div>
         )}
-      </header>
+      </section>
 
-      {/* Back to Blog CTA hidden for now
-      <Link href="/" className={styles.backLink}>
-        <Lucide.ArrowLeft size={16} />
-        Back to Blog
-      </Link>
-      */}
-
-      <div className={styles.layout}>
-        <aside ref={asideRef} className={styles.tocAside}>
-          <nav ref={navRef} className={styles.toc} style={tocStyle}>
+      <div className={styles.wrap}>
+        <div className={styles.layout}>
+        <aside className={styles.tocAside}>
+          <nav className={styles.toc}>
             <p className={styles.tocEyebrow}>{post.toc.eyebrow}</p>
             <p className={styles.tocTitle}>{post.toc.title}</p>
             <ul className={styles.tocList}>
@@ -432,5 +392,6 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
