@@ -1,17 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
+import type { SVGProps } from "react";
+
+const noop = () => () => {};
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { blogData as data } from "../../data/blogData";
 import styles from "./Header.module.css";
-import { ctaClick, dl } from "../../gtm";
 
 const logoDay = "/logos/main-logo-violet.png";
 const mobileLogo = "/logos/mobile-logo.png";
 
-const HamburgerIcon = (props: any) => (
+type NavLink = { label: string; href: string };
+
+const HamburgerIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="48"
     height="49"
@@ -31,7 +35,7 @@ const HamburgerIcon = (props: any) => (
   </svg>
 );
 
-const CloseIcon = (props: any) => (
+const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="27"
     height="27"
@@ -58,9 +62,15 @@ const Header = () => {
   const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
 
-  const [ctaScrollMode, setCtaScrollMode] = useState(false);
+  const [ctaScrollMode, setCtaScrollMode] = useState(() => {
+    try {
+      return typeof sessionStorage !== "undefined" && sessionStorage.getItem("ctaScrollMode") === "1";
+    } catch {
+      return false;
+    }
+  });
   const [hideHeaderCta, setHideHeaderCta] = useState(false);
 
   const [hideCtaOnHero, setHideCtaOnHero] = useState(false);
@@ -68,26 +78,12 @@ const Header = () => {
   const ctaHref = cta.href;
   const isHomePage = pathname === "/";
 
-  const shouldHideCta = hideHeaderCta || hideCtaOnHero;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const flag = sessionStorage.getItem("ctaScrollMode");
-    if (flag === "1") {
-      setCtaScrollMode(true);
-    }
-  }, []);
+  const shouldHideCta =
+    (ctaScrollMode && hideHeaderCta) || (isHomePage && hideCtaOnHero);
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
     document.body.classList.toggle("menu-open", open);
-    dl().push({
-      event: open ? "menu_open" : "menu_close",
-      menu_location: "Header",
-    });
     return () => {
       document.documentElement.style.overflow = "";
       document.body.classList.remove("menu-open");
@@ -95,10 +91,7 @@ const Header = () => {
   }, [open]);
 
   useEffect(() => {
-    if (!ctaScrollMode) {
-      setHideHeaderCta(false);
-      return;
-    }
+    if (!ctaScrollMode) return;
 
     const handleScroll = () => {
       const contactEl = document.getElementById("contact");
@@ -125,16 +118,10 @@ const Header = () => {
   }, [ctaScrollMode]);
 
   useEffect(() => {
-    if (!isHomePage) {
-      setHideCtaOnHero(false);
-      return;
-    }
+    if (!isHomePage) return;
 
     const heroEl = document.getElementById("hero");
-    if (!heroEl) {
-      setHideCtaOnHero(false);
-      return;
-    }
+    if (!heroEl) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -151,16 +138,14 @@ const Header = () => {
     };
   }, [isHomePage]);
 
-  const handleNavClick = (label: string, loc: string, href: string) => {
-    ctaClick({ label, location: loc, href });
-
+  const scrollTopIfHome = (href: string) => {
     if (href === "/" && typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const handleBookCallClick = (loc: string) => {
-    handleNavClick(cta.label, loc, ctaHref);
+  const handleBookCallClick = () => {
+    scrollTopIfHome(ctaHref);
 
     if (ctaHref.includes("#contact")) {
       sessionStorage.setItem("ctaScrollMode", "1");
@@ -168,70 +153,43 @@ const Header = () => {
     }
   };
 
-  const renderDesktopNavLink = (linkItem: any, index: number) => {
-    const { href, label } = linkItem;
-
+  const renderDesktopNavLink = ({ href, label }: NavLink, index: number) => {
     if (href.startsWith("#") || isExternalHref(href)) {
       return (
-        <a
-          key={index}
-          href={href}
-          data-cta={label}
-          data-cta-loc="Header Nav"
-          onClick={() => handleNavClick(label, "Header Nav", href)}
-        >
+        <a key={index} href={href} onClick={() => scrollTopIfHome(href)}>
           {label}
         </a>
       );
     }
 
-    const isActive = href === pathname;
-
     return (
       <Link
         key={index}
         href={href}
-        className={isActive ? styles.navLinkActive : undefined}
-        data-cta={label}
-        data-cta-loc="Header Nav"
-        onClick={() => handleNavClick(label, "Header Nav", href)}
+        className={href === pathname ? styles.navLinkActive : undefined}
+        onClick={() => scrollTopIfHome(href)}
       >
         {label}
       </Link>
     );
   };
 
-  const renderMobileNavLink = (linkItem: any, index: number) => {
-    const { href, label } = linkItem;
+  const renderMobileNavLink = ({ href, label }: NavLink, index: number) => {
+    const onClick = () => {
+      scrollTopIfHome(href);
+      setOpen(false);
+    };
 
     if (href.startsWith("#") || isExternalHref(href)) {
       return (
-        <a
-          key={index}
-          href={href}
-          data-cta={label}
-          data-cta-loc="Mobile Nav"
-          onClick={() => {
-            handleNavClick(label, "Mobile Nav", href);
-            setOpen(false);
-          }}
-        >
+        <a key={index} href={href} onClick={onClick}>
           {label}
         </a>
       );
     }
 
     return (
-      <Link
-        key={index}
-        href={href}
-        data-cta={label}
-        data-cta-loc="Mobile Nav"
-        onClick={() => {
-          handleNavClick(label, "Mobile Nav", href);
-          setOpen(false);
-        }}
-      >
+      <Link key={index} href={href} onClick={onClick}>
         {label}
       </Link>
     );
@@ -266,23 +224,17 @@ const Header = () => {
 
       <div className={styles.menuBody}>
         <nav className={styles.mobileNav}>
-          {links.map((linkItem: any, index: number) =>
-            renderMobileNavLink(linkItem, index)
-          )}
+          {links.map(renderMobileNavLink)}
         </nav>
       </div>
     </aside>
   );
 
-  const ctaClassName = `btn ${styles.desktopCta} ${
-    shouldHideCta ? styles.desktopCtaHidden : ""
-  }`;
-
   const ctaCommonProps = {
-    className: ctaClassName,
-    "data-cta": cta.label,
-    "data-cta-loc": "Header CTA",
-    onClick: () => handleBookCallClick("Header CTA"),
+    className: `btn ${styles.desktopCta} ${
+      shouldHideCta ? styles.desktopCtaHidden : ""
+    }`,
+    onClick: handleBookCallClick,
     "aria-hidden": shouldHideCta ? ("true" as const) : undefined,
     tabIndex: shouldHideCta ? -1 : undefined,
   };
@@ -291,13 +243,7 @@ const Header = () => {
     <>
       <header className={styles.siteHeader} id="header">
         <div className={`container ${styles.headerRow}`}>
-          <a
-            href="https://ingversionsdigital.com/"
-            className={styles.brand}
-            data-cta="Logo"
-            data-cta-loc="Header Brand"
-            onClick={() => ctaClick({ label: "Logo", location: "Header Brand", href: "https://ingversionsdigital.com/" })}
-          >
+          <a href="https://ingversionsdigital.com/" className={styles.brand}>
             <img
               src={logoDay}
               alt="Ingversions Logo"
@@ -310,11 +256,7 @@ const Header = () => {
             />
           </a>
 
-          <nav className={styles.nav}>
-            {links.map((linkItem: any, index: number) =>
-              renderDesktopNavLink(linkItem, index)
-            )}
-          </nav>
+          <nav className={styles.nav}>{links.map(renderDesktopNavLink)}</nav>
 
           {isExternalHref(ctaHref) || ctaHref.startsWith("#") ? (
             <a href={ctaHref} {...ctaCommonProps}>
@@ -331,12 +273,7 @@ const Header = () => {
             aria-label="Toggle menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            data-cta="Hamburger"
-            data-cta-loc="Header"
-            onClick={() => {
-              ctaClick({ label: "Hamburger", location: "Header", href: "" });
-              setOpen((v) => !v);
-            }}
+            onClick={() => setOpen((v) => !v)}
             type="button"
           >
             <HamburgerIcon className={styles.menuIcon} />

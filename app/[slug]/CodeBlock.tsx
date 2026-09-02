@@ -1,17 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 import { Check, Copy } from "lucide-react";
 import styles from "./ArticleDetail.module.css";
 
-function getText(node: any): string {
+function getText(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(getText).join("");
-  if (node?.props?.children) return getText(node.props.children);
+  if (node && typeof node === "object" && "props" in node) {
+    return getText((node as { props?: { children?: ReactNode } }).props?.children);
+  }
   return "";
 }
 
-export default function CodeBlock({ children }: { children?: React.ReactNode }) {
+export default function CodeBlock({ children }: { children?: ReactNode }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -23,7 +26,7 @@ export default function CodeBlock({ children }: { children?: React.ReactNode }) 
   };
 
   return (
-    <pre className={styles["markdown-pre"]}>
+    <pre>
       <button
         type="button"
         className={styles["code-copy-btn"]}
