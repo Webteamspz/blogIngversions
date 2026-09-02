@@ -21,10 +21,6 @@
   background: var(--quaternary);
   color: var(--text-primary)
 }
-.accent-blue {
-  background: #38bdf8;
-  color: var(--text-primary)
-}
 .accent-gray {
   background: var(--bg-700);
   color: var(--text-primary)
@@ -36,7 +32,7 @@
   gap: 32px;
   min-height: 380px;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 32px 20px
 }
@@ -78,9 +74,9 @@
 }
 .title {
   font-family: var(--font-outfit),sans-serif;
-  font-size: 48px;
-  line-height: 1.12;
-  letter-spacing: -.03em;
+  font-size: 64px;
+  line-height: 1.15;
+  letter-spacing: -1px;
   color: var(--text-primary);
   margin: 0 0 16px
 }
@@ -126,12 +122,7 @@
   background: var(--bg-950);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-md);
-  box-shadow: 3px 3px 0 0 var(--border);
-  transition: transform .3s var(--ease-pop),box-shadow .3s var(--ease-pop)
-}
-.heroCell:hover {
-  transform: translateY(-8px) rotate(-.7deg);
-  box-shadow: 8px 8px 0 var(--accent)
+  box-shadow: 3px 3px 0 0 var(--border)
 }
 .heroCellIcon {
   display: inline-flex;
@@ -185,11 +176,25 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px
 }
+.tocMarker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  border-radius: var(--radius-sm);
+  background: var(--tertiary);
+  pointer-events: none;
+  transition: transform .34s cubic-bezier(.4, 0, .2, 1), height .34s cubic-bezier(.4, 0, .2, 1)
+}
 .tocLink {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -199,15 +204,18 @@
   font-weight: 600;
   color: var(--text-subtle);
   text-decoration: none;
-  transition: background .15s ease,color .15s ease
+  transition: color .34s cubic-bezier(.4, 0, .2, 1)
 }
 .tocLink:hover {
-  background: var(--tertiary);
   color: var(--text-primary)
 }
 .tocLinkActive {
-  background: var(--tertiary);
   color: var(--text-primary)
+}
+@media (prefers-reduced-motion: reduce) {
+  .tocMarker {
+    transition: none
+  }
 }
 .content {
   min-width: 0
@@ -249,12 +257,12 @@
   margin: 0 0 18px
 }
 .highlight {
-  background: #f3e8ff;
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-800));
   color: var(--accent-strong);
   padding: 1px 4px;
   border-radius: 3px;
   font-weight: 600;
-  box-shadow: inset 0 -2px 0 var(--accent-soft)
+  box-shadow: inset 0 -2px 0 var(--accent)
 }
 .inlineCode {
   font-family: SFMono-Regular,Menlo,Consolas,monospace;
@@ -298,16 +306,16 @@
   background: var(--bg-800)
 }
 .callout-star {
-  background: #fde4f1
+  background: color-mix(in srgb, var(--secondary) 18%, var(--bg-800))
 }
 .callout-warning {
-  background: #fef3d0
+  background: color-mix(in srgb, var(--tertiary) 20%, var(--bg-800))
 }
 .callout-info {
-  background: #ede9fe
+  background: color-mix(in srgb, var(--accent) 15%, var(--bg-800))
 }
 .callout-success {
-  background: #d1fae5
+  background: color-mix(in srgb, var(--quaternary) 24%, var(--bg-800))
 }
 .calloutIcon {
   display: inline-flex;
@@ -394,12 +402,7 @@
   background: var(--bg-800);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-md);
-  box-shadow: 3px 3px 0 0 var(--border);
-  transition: transform .3s var(--ease-pop),box-shadow .3s var(--ease-pop)
-}
-.featureCard:hover {
-  transform: translateY(-8px) rotate(-.7deg);
-  box-shadow: 8px 8px 0 var(--accent)
+  box-shadow: 3px 3px 0 0 var(--border)
 }
 .featureIcon {
   display: inline-flex;
@@ -687,7 +690,7 @@
     min-height: 320px
   }
   .title {
-    font-size: 38px
+    font-size: 52px
   }
   .excerpt {
     font-size: 18px
@@ -710,7 +713,7 @@
     padding: 7px 16px
   }
   .title {
-    font-size: 30px;
+    font-size: 36px;
     line-height: 1.15
   }
   .excerpt {

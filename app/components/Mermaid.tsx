@@ -81,9 +81,6 @@ function FlowSteps({ steps }: { steps: string[] }) {
     <ol className={articleStyles["flow-steps"]}>
       {steps.map((label, i) => (
         <li key={i} className={articleStyles["flow-steps-item"]}>
-          <span className={articleStyles["flow-steps-num"]}>
-            {String(i + 1).padStart(2, "0")}
-          </span>
           <div className={articleStyles["flow-steps-card"]}>{label}</div>
         </li>
       ))}

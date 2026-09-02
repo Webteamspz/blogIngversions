@@ -192,10 +192,10 @@ export default function BlogClient() {
             </div>
 
             <div
-              className={`${styles["category-card"]} ${styles["hover-ai"]}`}
+              className={`${styles["category-card"]} ${styles["hover-cro"]}`}
               onClick={() => handleCategoryClick("ai-automation")}
             >
-              <div className={`${styles["category-img-wrapper"]} ${styles["bg-sky-light"]}`}>
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-green-light"]}`}>
                 <Image src={articleImages["ai-automation"]} alt="AI and automation" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
               <h3 className={styles["category-title"]}>AI &amp; Automation</h3>
@@ -207,10 +207,10 @@ export default function BlogClient() {
             </div>
 
             <div
-              className={`${styles["category-card"]} ${styles["hover-design"]}`}
+              className={`${styles["category-card"]} ${styles["hover-ab"]}`}
               onClick={() => handleCategoryClick("design")}
             >
-              <div className={`${styles["category-img-wrapper"]} ${styles["bg-purple-light"]}`}>
+              <div className={`${styles["category-img-wrapper"]} ${styles["bg-orange-light"]}`}>
                 <Image src={articleImages["design"]} alt="Design" fill sizes="(max-width: 768px) 100vw, 33vw" className={styles["category-img"]} />
               </div>
               <h3 className={styles["category-title"]}>Design</h3>

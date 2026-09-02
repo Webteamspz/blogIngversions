@@ -88,16 +88,14 @@
 }
 .article-main .article-content-wrapper,
 .article-main .back-link-wrapper {
-  max-width: 1260px;
+  max-width: min(1228px, calc(100% - 32px));
   margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px
+  margin-right: auto
 }
 .article-main .article-hero-wrapper {
   position: relative;
   width: 100%;
-  max-width: min(1260px,calc(100% - 32px));
+  max-width: min(1228px, calc(100% - 32px));
   aspect-ratio: 3/1;
   margin: 0 auto 32px auto;
   overflow: hidden;
@@ -212,7 +210,7 @@
 .markdown-content a {
   color: var(--accent-strong);
   text-decoration: underline;
-  text-decoration-color: var(--accent-soft);
+  text-decoration-color: var(--accent);
   text-underline-offset: 3px
 }
 .markdown-content a:hover {
@@ -578,12 +576,17 @@
 }
 .markdown-content .mermaid-diagram-container {
   display: flex;
+  justify-content: center;
+  width: fit-content;
+  min-width: min(680px, 100%);
+  max-width: 100%;
+  overflow-x: auto;
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-pop-soft);
   background-color: var(--bg-800);
   padding: 20px;
-  margin-bottom: 24px
+  margin: 0 auto 24px
 }
 .markdown-content .mermaid-diagram-container .node foreignObject p,
 .markdown-content .mermaid-diagram-container .node foreignObject span {
@@ -703,19 +706,20 @@ textarea:-webkit-autofill:hover {
   transition: background-color 5000s ease-in-out 0s
 }
 
-.flow-steps {
+.markdown-content .flow-steps {
   list-style: none;
-  margin: 32px 0;
+  margin: 32px auto;
   padding: 0;
+  max-width: 620px;
   display: flex;
   flex-direction: column
 }
-.flow-steps-item {
+.markdown-content .flow-steps-item {
   position: relative;
+  margin: 0;
+  padding-bottom: 22px;
   display: flex;
-  align-items: stretch;
-  gap: 18px;
-  padding-bottom: 18px
+  flex-direction: column
 }
 .flow-steps-item:last-child {
   padding-bottom: 0
@@ -723,47 +727,19 @@ textarea:-webkit-autofill:hover {
 .flow-steps-item:not(:last-child)::before {
   content: "";
   position: absolute;
-  left: 21px;
-  top: 46px;
-  bottom: -4px;
+  left: 50%;
+  bottom: 0;
   width: 3px;
+  height: 22px;
+  transform: translateX(-50%);
   background: var(--border-soft);
   border-radius: 999px
 }
-.flow-steps-num {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  border: var(--border-width) solid var(--border);
-  background: var(--accent);
-  box-shadow: 3px 3px 0 0 var(--border);
-  font-family: var(--font-outfit),sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  color: #fff
-}
-.flow-steps-item:nth-child(4n+2) .flow-steps-num {
-  background: var(--secondary);
-  color: var(--text-primary)
-}
-.flow-steps-item:nth-child(4n+3) .flow-steps-num {
-  background: var(--tertiary);
-  color: var(--text-primary)
-}
-.flow-steps-item:nth-child(4n+4) .flow-steps-num {
-  background: var(--quaternary);
-  color: var(--text-primary)
-}
 .flow-steps-card {
-  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   min-height: 44px;
   padding: 12px 18px;
   border: var(--border-width) solid var(--border);
@@ -774,26 +750,9 @@ textarea:-webkit-autofill:hover {
   font-weight: 600;
   font-size: 15px;
   line-height: 1.4;
-  color: var(--text-primary);
-  transition: transform .2s var(--ease-pop),box-shadow .2s var(--ease-pop)
-}
-.flow-steps-card:hover {
-  transform: translate(-2px,-2px);
-  box-shadow: 5px 5px 0 0 var(--accent)
+  color: var(--text-primary)
 }
 @media (max-width:520px) {
-  .flow-steps-item {
-    gap: 12px
-  }
-  .flow-steps-num {
-    width: 38px;
-    height: 38px;
-    font-size: 13px
-  }
-  .flow-steps-item:not(:last-child)::before {
-    left: 18px;
-    top: 40px
-  }
   .flow-steps-card {
     font-size: 14px;
     padding: 10px 14px

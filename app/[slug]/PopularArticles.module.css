@@ -54,7 +54,7 @@
 .popular-img-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/9;
   overflow: hidden;
   border-bottom: var(--border-width) solid var(--border);
   background-color: var(--bg-700)

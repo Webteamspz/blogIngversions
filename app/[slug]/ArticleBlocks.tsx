@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import * as Lucide from "lucide-react";
 import { Calendar, Clock } from "lucide-react";
@@ -263,8 +263,10 @@ function BlockView({ block }: { block: Block }) {
 }
 
 export default function ArticleBlocks({ post }: { post: StructuredPost }) {
-  const toc = resolveToc(post);
+  const toc = useMemo(() => resolveToc(post), [post]);
   const [activeAnchor, setActiveAnchor] = useState<string>(toc[0]?.anchor ?? "");
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const [marker, setMarker] = useState<{ top: number; height: number } | null>(null);
 
   useEffect(() => {
     const ids = toc.map((it) => it.anchor);
@@ -275,7 +277,9 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
     if (elements.length === 0) return;
 
     const TRIGGER = 130;
+    let frame = 0;
     const sync = () => {
+      frame = 0;
       let current = elements[0].id;
       for (const el of elements) {
         if (el.getBoundingClientRect().top <= TRIGGER) current = el.id;
@@ -283,11 +287,31 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
       }
       setActiveAnchor(current);
     };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(sync);
+    };
 
     sync();
-    window.addEventListener("scroll", sync, { passive: true });
-    return () => window.removeEventListener("scroll", sync);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, [toc]);
+
+  useEffect(() => {
+    const place = () => {
+      const idx = toc.findIndex((it) => it.anchor === activeAnchor);
+      const li = itemRefs.current[idx];
+      if (!li) return;
+      const top = li.offsetTop;
+      const height = li.offsetHeight;
+      setMarker((m) => (m && m.top === top && m.height === height ? m : { top, height }));
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [activeAnchor, toc]);
 
   return (
     <>
@@ -334,8 +358,17 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
             <p className={styles.tocEyebrow}>{post.toc.eyebrow}</p>
             <p className={styles.tocTitle}>{post.toc.title}</p>
             <ul className={styles.tocList}>
+              <span
+                aria-hidden="true"
+                className={styles.tocMarker}
+                style={
+                  marker
+                    ? { transform: `translateY(${marker.top}px)`, height: marker.height }
+                    : { opacity: 0 }
+                }
+              />
               {toc.map((it, i) => (
-                <li key={i}>
+                <li key={i} ref={(el) => { itemRefs.current[i] = el; }}>
                   <a
                     href={`#${it.anchor}`}
                     className={`${styles.tocLink} ${activeAnchor === it.anchor ? styles.tocLinkActive : ""}`}
@@ -373,7 +406,6 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
           {post.faq ? (
             <section id={post.faq.id} className={styles.section}>
               <h2 className={styles.sectionHead}>
-                <span className={`${styles.sectionNum} ${styles["accent-pink"]}`}>?</span>
                 {post.faq.heading}
               </h2>
               <Faq items={post.faq.items} />

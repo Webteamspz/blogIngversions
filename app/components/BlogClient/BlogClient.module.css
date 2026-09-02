@@ -340,38 +340,14 @@
 .category-card.hover-cro::before {
   background: var(--quaternary)
 }
-.category-card.hover-cro:hover {
-  box-shadow: 8px 8px 0 0 var(--quaternary)
-}
 .category-card.hover-ab::before {
   background: var(--tertiary)
 }
-.category-card.hover-ab:hover {
-  box-shadow: 8px 8px 0 0 var(--tertiary)
-}
 .category-card.hover-shopify::before {
-  background: var(--accent-soft)
-}
-.category-card.hover-shopify:hover {
-  box-shadow: 8px 8px 0 0 var(--accent-soft)
+  background: var(--accent)
 }
 .category-card.hover-qa::before {
   background: var(--secondary)
-}
-.category-card.hover-qa:hover {
-  box-shadow: 8px 8px 0 0 var(--secondary)
-}
-.category-card.hover-ai::before {
-  background: #38bdf8
-}
-.category-card.hover-ai:hover {
-  box-shadow: 8px 8px 0 0 #38bdf8
-}
-.category-card.hover-design::before {
-  background: var(--accent-strong)
-}
-.category-card.hover-design:hover {
-  box-shadow: 8px 8px 0 0 var(--accent-strong)
 }
 @media (prefers-reduced-motion:reduce) {
   .category-card {
@@ -397,13 +373,10 @@
   background-color: var(--tertiary)
 }
 .bg-purple-light {
-  background-color: var(--accent-soft)
+  background-color: var(--accent)
 }
 .bg-blue-light {
   background-color: var(--secondary)
-}
-.bg-sky-light {
-  background-color: #38bdf8
 }
 .category-img {
   width: 100%;
