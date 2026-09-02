@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ScrollToTopOnMount from "./ScrollToTopOnMount";
 import styles from "./not-found.module.css";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section className={styles.nfWrapper}>
-      <ScrollToTopOnMount />
       <div className={styles.decor} aria-hidden="true">
         <span className={styles.shapeCircleTl} />
         <span className={styles.shapeSquareTr} />

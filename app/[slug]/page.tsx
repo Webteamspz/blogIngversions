@@ -5,18 +5,21 @@ import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import styles from "./ArticleDetail.module.css";
 
-import ArticleTracker from "./ArticleTracker";
 import GetStartedBtn from "./GetStartedBtn";
 import PopularArticles from "./PopularArticles";
+import ArticleBlocks from "./ArticleBlocks";
 import { articles } from "../data/articlesData";
 import { articleImages, fallbackImagesByCategory } from "../data/articleImages";
+import { structuredPosts, getStructuredPost } from "../data/structuredPosts";
 import Mermaid from "../components/Mermaid";
 import CodeBlock from "./CodeBlock";
 
 export async function generateStaticParams() {
-  return Object.keys(articles).map((slug) => ({
-    slug,
-  }));
+  const slugs = new Set([
+    ...Object.keys(articles),
+    ...structuredPosts.map((p) => p.slug),
+  ]);
+  return [...slugs].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -25,6 +28,30 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  const structured = getStructuredPost(slug);
+  if (structured) {
+    return {
+      title: structured.seo.title,
+      description: structured.seo.description,
+      keywords: structured.seo.keywords,
+      alternates: { canonical: structured.seo.canonical },
+      openGraph: {
+        type: "article",
+        url: structured.seo.canonical,
+        title: structured.hero.title,
+        description: structured.seo.description,
+        images: [{ url: structured.meta.coverImage, width: 1200, height: 630, alt: structured.hero.title }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: structured.hero.title,
+        description: structured.seo.description,
+        images: [structured.meta.coverImage],
+      },
+    };
+  }
+
   const article = articles[slug];
 
   if (!article) {
@@ -83,21 +110,46 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  const structured = getStructuredPost(slug);
+  if (structured) {
+    const structuredSchema = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: structured.hero.title,
+      image: [structured.meta.coverImage],
+      author: { "@type": "Organization", name: "Ingversions Digital" },
+      publisher: {
+        "@type": "Organization",
+        name: "Ingversions Digital",
+        logo: { "@type": "ImageObject", url: "https://ingversionsdigital.com/logos/logo-192.png" },
+      },
+      mainEntityOfPage: { "@type": "WebPage", "@id": structured.seo.canonical },
+    };
+
+    return (
+      <div className={styles["article-main"]}>
+        <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-circle"]}`} aria-hidden="true" />
+        <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-square"]}`} aria-hidden="true" />
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredSchema) }} />
+
+        <article className={styles["article-container"]}>
+          <ArticleBlocks post={structured} />
+
+          <div className={styles["article-content-wrapper"]}>
+            <PopularArticles currentSlug={slug} />
+          </div>
+        </article>
+      </div>
+    );
+  }
+
   const article = articles[slug];
 
   if (!article) notFound();
 
-  const categoryColors: Record<string, string> = {
-    CRO: "badge-cro",
-    "A/B Testing": "badge-ab",
-    "Shopify Development": "badge-shopify",
-    "Quality Assurance": "badge-qa",
-    "UX Design": "badge-ux",
-    "Analytics": "badge-analytics"
-  };
-
   const heroImage = articleImages[slug] || fallbackImagesByCategory[article.categorySlug] || fallbackImagesByCategory["cro"];
-  const badgeColor = categoryColors[article.category] || "badge-default";
 
   const publishedDate = new Date(article.date);
   const articleSchema = {
@@ -125,7 +177,7 @@ export default async function ArticlePage({
   };
 
   return (
-    <main className={styles["article-main"]}>
+    <div className={styles["article-main"]}>
 
       <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-circle"]}`} aria-hidden="true" />
       <div className={`${styles["article-hero-shape"]} ${styles["article-hero-shape-square"]}`} aria-hidden="true" />
@@ -134,8 +186,6 @@ export default async function ArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-
-      <ArticleTracker title={article.title} />
 
       <article className={styles["article-container"]}>
 
@@ -160,7 +210,7 @@ export default async function ArticlePage({
         <div className={styles["article-content-wrapper"]}>
 
           <div className={styles["badge-container"]}>
-            <span className={`${styles["article-badge"]} ${styles[badgeColor]}`}>
+            <span className={styles["article-badge"]}>
               {article.category}
             </span>
           </div>
@@ -191,6 +241,12 @@ export default async function ArticlePage({
                   );
                 },
                 pre({ children }) {
+                  const child = Array.isArray(children) ? children[0] : children;
+                  const cn =
+                    (child as { props?: { className?: string } })?.props?.className || "";
+                  if (typeof cn === "string" && cn.includes("language-mermaid")) {
+                    return <>{children}</>;
+                  }
                   return <CodeBlock>{children}</CodeBlock>;
                 },
                 img({ src, alt }) {
@@ -222,6 +278,6 @@ export default async function ArticlePage({
         </div>
       </article>
 
-    </main>
+    </div>
   );
 }

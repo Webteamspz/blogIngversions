@@ -819,7 +819,12 @@ Claude is an AI assistant made by Anthropic. What makes it relevant to a Shopify
 
 Think of it less like a search engine and more like a very fast, very literal employee who never gets tired of repetitive work, but always needs your final sign-off.
 
-![Flowchart: Shopify merchant provides context and data to Claude, which drafts descriptions, analyzes data, or writes code depending on the task, then goes through human review before sign-off](/diagrams/claude-for-shopify-merchants-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Merchant provides context and data] --> B[Claude drafts, analyzes, or codes by task]
+  B --> C[Human review]
+  C --> D[Sign-off and publish]
+\`\`\`
 
 ### What Merchants Actually Use It For
 - **Writing:** product descriptions, email flows, ad copy, blog posts.
@@ -857,7 +862,13 @@ Without a connection, Claude only knows what you paste in. Ask it "what's my bes
 
 MCP (Model Context Protocol) is the standard that lets Claude connect to outside tools and data, safely and with your permission, so it can answer that question directly.
 
-![Flowchart: Claude processes a question, checks if it needs store data, translates it into an API call via MCP, gets JSON back from Shopify, and translates the result into a plain-English answer](/diagrams/mcp-servers-explained-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Claude receives a question] --> B[Needs store data?]
+  B --> C[Translate to an API call via MCP]
+  C --> D[Shopify returns JSON]
+  D --> E[Translate to a plain-English answer]
+\`\`\`
 
 ### The Simplest Way to Think About It
 An MCP server is a **translator**. Shopify's Admin API speaks in API calls and JSON. Claude speaks in plain English. The MCP server sits in between, exposing a small set of "tools" Claude is allowed to call, like \`get_inventory\` or \`list_orders\`, and translating Claude's request into the actual API call.
@@ -893,7 +904,14 @@ Next in this series: the actual step-by-step of connecting Claude to your Shopif
     content: `## Before You Start
 This assumes you understand what an MCP server does (see our previous post if not). This guide covers the general setup flow, exact menu names can shift as Claude and Shopify both ship updates, so treat this as the shape of the process rather than a pixel-perfect walkthrough.
 
-![Flowchart: choose an existing app or custom-built tool to connect Claude, review requested scopes, run a test prompt, fix permissions if it fails, then build real workflows once connected](/diagrams/connect-claude-shopify-mcp-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Pick an app or custom tool] --> B[Connect it to Claude]
+  B --> C[Review requested scopes]
+  C --> D[Run a test prompt]
+  D --> E[Fix permissions if it fails]
+  E --> F[Build real workflows]
+\`\`\`
 
 ### Step 1: Choose Your Connection Method
 You have two realistic paths:
@@ -945,7 +963,14 @@ If you're not confident setting this up internally, this is exactly the kind of 
     content: `## The Real Bottleneck Isn't Writing, It's Consistency
 Writing one great product description is easy. Writing 200 of them that all sound like the same brand, without repeating the same three adjectives, is where most stores give up and settle for "premium quality, built to last."
 
-![Flowchart: export clean data, create a strict style guide, generate a batch of 15-25 SKUs, human review flags factual errors for editing or approves for publishing via CSV/MCP](/diagrams/ai-product-descriptions-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Export clean product data] --> B[Write a strict style guide]
+  B --> C[Generate a batch of 15-25 SKUs]
+  C --> D[Human review]
+  D --> E[Edit flagged errors]
+  E --> F[Publish via CSV or MCP]
+\`\`\`
 
 ### Step 1: Export Clean Product Data First
 Garbage in, garbage out applies harder to AI than almost anything else. Before writing a single prompt, export:
@@ -999,7 +1024,14 @@ This isn't "set and forget." It's turning a 40-hour writing task into a 6-hour w
     content: `## The Goal Isn't Full Automation, It's Faster Humans
 The best support automation setups don't remove people, they remove the blank-page problem. An agent staring at "where's my order" for the 40th time today isn't adding value by typing the same sentence from scratch, they're adding value by catching the 5% of cases that need real judgment.
 
-![Flowchart: routine tickets get a Claude-drafted reply via MCP with a confidence check before human approval, sensitive issues and low-confidence drafts go straight to a human](/diagrams/automating-support-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Ticket comes in] --> B[Routine or sensitive?]
+  B --> C[Claude drafts a reply via MCP]
+  C --> D[Confidence check]
+  D --> E[Human approval]
+  E --> F[Send the reply]
+\`\`\`
 
 ### Sort Tickets Into Two Buckets First
 Before automating anything, separate your ticket volume:
@@ -1043,7 +1075,13 @@ Don't just track response time. Track **edit distance**, how much agents change 
     content: `## Skip the Brand Loyalty, Match the Task
 This isn't a "which one is better" post, that question doesn't have a real answer. Both are capable general-purpose AI assistants. What actually matters for a Shopify store is which one fits a specific task better, and most teams end up using both.
 
-![Flowchart: real-time data, long docs, and strict code tasks route to Claude + MCP for a structured workflow, while image generation and quick ideas route to ChatGPT for creative ideation](/diagrams/claude-vs-chatgpt-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[What is the task?] --> B[Real-time data, long docs, strict code]
+  B --> C[Claude + MCP structured workflow]
+  A --> D[Image generation or quick ideas]
+  D --> E[ChatGPT creative ideation]
+\`\`\`
 
 ### Where Claude Tends to Pull Ahead
 - **Long documents.** Pasting in a full return policy, a contract, or a big product spec sheet and asking careful questions about it.
@@ -1075,7 +1113,14 @@ Neither tool requires you to "pick a side." A common, sensible setup: Claude con
     content: `## Most Store Reports Get Built, Then Ignored
 You've probably built a dashboard that looked great on day one and hasn't been opened in three weeks. The problem usually isn't the data, it's that dashboards require someone to go look at them. A report that lands in Slack every Monday morning gets read. A dashboard that requires a login doesn't.
 
-![Flowchart: on a schedule, MCP fetches store data, Claude analyzes deltas and drafts a highlight or standard-trends report, formats it in plain English, and delivers it to Slack or email](/diagrams/ai-reporting-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Scheduled trigger] --> B[MCP fetches store data]
+  B --> C[Claude analyzes the deltas]
+  C --> D[Drafts the report]
+  D --> E[Formats it in plain English]
+  E --> F[Delivers to Slack or email]
+\`\`\`
 
 ### The Pipeline, End to End
 1. **Shopify data updates** continuously, orders, inventory levels, traffic if you've connected analytics too.
@@ -1115,7 +1160,14 @@ AI-generated reports can sound confident even when they're wrong. Spot-check the
     content: `## "Agent" Is Doing a Lot of Marketing Work Right Now
 Every tool in your app store seems to call itself an "AI agent" now. Most of them are just a chatbot with a new label. It's worth being precise about what actually makes something an agent, because the difference determines how much you should trust it running unsupervised.
 
-![Flowchart: agent checks data against a target condition, high-risk actions like refunds get drafted for human approval, low-risk alerts execute autonomously, otherwise it waits for the next loop](/diagrams/ai-agents-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Agent checks data vs a target condition] --> B[Risk level?]
+  B --> C[High risk: draft for human approval]
+  B --> D[Low risk: execute autonomously]
+  C --> E[Wait for the next loop]
+  D --> E
+\`\`\`
 
 ### The Actual Definition
 A chatbot answers a question. An **agent** does something with the answer, calls a tool, checks the result, and decides what to do next, on its own, in a loop, without you prompting each step.
@@ -1154,7 +1206,16 @@ The loop looks roughly like this:
     content: `## Good Prompts Aren't Clever, They're Complete
 The difference between a mediocre AI output and a genuinely useful one is rarely the AI, it's almost always missing context in the prompt. Here's a reusable structure, plus five prompts you can copy today.
 
-![Prompt structure flowchart: Write Prompt to Define AI Role to Provide Store Context to State Exact Task to Define Output decision, then Set Format or Add Verification Step, into Execute Prompt to High Quality Output](/diagrams/prompting-claude-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Write the prompt] --> B[Define the AI role]
+  B --> C[Provide store context]
+  C --> D[State the exact task]
+  D --> E[Define the output]
+  E --> F[Set format or add a verification step]
+  F --> G[Execute the prompt]
+  G --> H[High-quality output]
+\`\`\`
 
 ### The 5-Part Structure
 1. **Role** — who should Claude act as? ("You're a Shopify merchandiser," not just "help me with products.")
@@ -1214,7 +1275,14 @@ Add a line that gives Claude permission to say "I don't have enough information.
     content: `## AI Content Without the SEO Homework Is a Wasted Effort
 Publishing more content faster only helps if it's actually structured to rank. This is a repeatable system for turning keyword research into content that's checked against real technical SEO requirements before it goes live, not just generated and published.
 
-![Flowchart: human keyword research feeds a Claude-drafted outline, revised until approved, then content sections are generated and validated against an SEO checklist before publishing](/diagrams/seo-content-flowchart.png)
+\`\`\`mermaid
+graph TD
+  A[Human keyword research] --> B[Claude-drafted outline]
+  B --> C[Revise until approved]
+  C --> D[Generate content sections]
+  D --> E[Validate against SEO checklist]
+  E --> F[Publish]
+\`\`\`
 
 ### Step 1: Keyword Research Stays Human-Led
 Claude can help you brainstorm angles and group related terms, but the actual search volume and intent data should come from a proper keyword tool. AI is good at expanding a list, not at knowing what people are currently searching.
