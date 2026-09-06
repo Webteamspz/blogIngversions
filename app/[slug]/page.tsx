@@ -189,12 +189,12 @@ export default async function ArticlePage({
 
       <article className={styles["article-container"]}>
 
-        <div className={styles["back-link-wrapper"]}>
+        {/* <div className={styles["back-link-wrapper"]}>
           <Link href="/" className={styles["back-link"]}>
             <ArrowLeft size={18} strokeWidth={2.5} aria-hidden="true" />
             Back to Blog
           </Link>
-        </div>
+        </div> */}
 
         <div className={styles["article-hero-wrapper"]}>
           <Image
