@@ -143,11 +143,11 @@ textarea:focus-visible {
   box-shadow: var(--shadow-pop);
   cursor: pointer
 }
-.btn:hover {
+@media (min-width:1024px){.btn:hover {
   background: var(--accent-strong);
   box-shadow: var(--shadow-pop-hover);
   transform: translate(-2px,-2px)
-}
+}}
 .btn:active {
   box-shadow: var(--shadow-pop-active);
   transform: translate(2px,2px)
