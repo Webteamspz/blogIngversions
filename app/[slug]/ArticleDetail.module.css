@@ -61,19 +61,19 @@
 .article-main .back-link svg {
   transition: transform .3s ease
 }
-.article-main .back-link:hover {
+@media (min-width:1024px){.article-main .back-link:hover {
   background: var(--tertiary);
   color: var(--text-primary);
   transform: translate(-2px,-2px);
   box-shadow: var(--shadow-pop-hover)
-}
+}}
 .article-main .back-link:active {
   transform: translate(2px,2px);
   box-shadow: var(--shadow-pop-active)
 }
-.article-main .back-link:hover svg {
+@media (min-width:1024px){.article-main .back-link:hover svg {
   transform: translateX(-4px)
-}
+}}
 @media (prefers-reduced-motion:reduce) {
   .article-main .back-link {
     transition: none!important
@@ -213,9 +213,9 @@
   text-decoration-color: var(--accent);
   text-underline-offset: 3px
 }
-.markdown-content a:hover {
+@media (min-width:1024px){.markdown-content a:hover {
   color: var(--accent)
-}
+}}
 .markdown-content table {
   width: 100%;
   border-collapse: separate;
@@ -337,10 +337,10 @@
   cursor: pointer;
   transition: background-color .2s ease,transform .2s ease
 }
-.code-copy-btn:hover {
+@media (min-width:1024px){.code-copy-btn:hover {
   background: var(--bg-700);
   transform: translate(-1px,-1px)
-}
+}}
 .article-main .article-cta-box {
   position: relative;
   max-width: calc(100% - 40px);
@@ -413,11 +413,11 @@
   box-shadow: 4px 4px 0 0 var(--border);
   cursor: pointer
 }
-.article-main .cta-button:hover {
+@media (min-width:1024px){.article-main .cta-button:hover {
   background: var(--tertiary);
   box-shadow: 6px 6px 0 0 var(--border);
   transform: translate(-2px,-2px)
-}
+}}
 .article-main .cta-button:active {
   box-shadow: 2px 2px 0 0 var(--border);
   transform: translate(2px,2px)
@@ -500,9 +500,9 @@
   padding: 0;
   font-family: inherit
 }
-.comment-reply-btn:hover {
+@media (min-width:1024px){.comment-reply-btn:hover {
   text-decoration: underline
-}
+}}
 .comment-form-wrapper {
   margin-top: 48px
 }
@@ -551,11 +551,11 @@
   box-shadow: var(--shadow-pop);
   cursor: pointer
 }
-.comment-submit-btn:hover {
+@media (min-width:1024px){.comment-submit-btn:hover {
   background: var(--accent-strong);
   box-shadow: var(--shadow-pop-hover);
   transform: translate(-2px,-2px)
-}
+}}
 .comment-submit-btn:active {
   box-shadow: var(--shadow-pop-active);
   transform: translate(2px,2px)

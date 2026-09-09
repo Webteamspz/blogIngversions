@@ -206,9 +206,9 @@
   text-decoration: none;
   transition: color .34s cubic-bezier(.4, 0, .2, 1)
 }
-.tocLink:hover {
+@media (min-width:1024px){.tocLink:hover {
   color: var(--text-primary)
-}
+}}
 .tocLinkActive {
   color: var(--text-primary)
 }
@@ -484,10 +484,10 @@
   box-shadow: 3px 3px 0 0 var(--border);
   transition: transform .2s var(--ease-pop),box-shadow .2s var(--ease-pop)
 }
-.flowCard:hover {
+@media (min-width:1024px){.flowCard:hover {
   transform: translate(-2px,-2px);
   box-shadow: 5px 5px 0 0 var(--accent)
-}
+}}
 .flowCardIcon {
   flex-shrink: 0;
   display: inline-flex;
@@ -675,9 +675,9 @@
   border: var(--border-width) solid var(--border);
   box-shadow: 4px 4px 0 0 var(--border)
 }
-.ctaButton:hover {
+@media (min-width:1024px){.ctaButton:hover {
   background: var(--tertiary)
-}
+}}
 @media (max-width:1024px) {
   .layout {
     grid-template-columns: 1fr

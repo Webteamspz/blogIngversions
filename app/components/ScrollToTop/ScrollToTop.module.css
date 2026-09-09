@@ -17,11 +17,11 @@
   cursor: pointer;
   transition: opacity .3s ease,transform .3s cubic-bezier(.34, 1.56, .64, 1),background-color .2s ease,box-shadow .3s cubic-bezier(.34, 1.56, .64, 1)!important
 }
-.scrollTopBtn:hover {
+@media (min-width:1024px){.scrollTopBtn:hover {
   background-color: var(--accent-strong);
   transform: translate(-2px,-2px);
   box-shadow: var(--shadow-pop-hover)
-}
+}}
 .scrollTopBtn:active {
   transform: translate(2px,2px);
   box-shadow: var(--shadow-pop-active)

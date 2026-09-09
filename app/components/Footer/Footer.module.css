@@ -79,9 +79,9 @@
   transition: color .2s ease;
   padding: 4px 0
 }
-.linkGroup > a:hover {
+@media (min-width:1024px){.linkGroup > a:hover {
   color: var(--tertiary)
-}
+}}
 .footerBottomRow {
   display: flex;
   justify-content: space-between;
@@ -111,12 +111,12 @@
   background: 0 0;
   transition: transform .2s ease,background-color .2s ease,border-color .2s ease
 }
-.socialBtn:hover {
+@media (min-width:1024px){.socialBtn:hover {
   color: var(--palette-border);
   background: var(--tertiary);
   border-color: var(--tertiary);
   transform: translateY(-2px)
-}
+}}
 .socialBtn svg {
   width: 18px;
   height: 18px;

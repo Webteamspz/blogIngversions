@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import * as Lucide from "lucide-react";
 import { Calendar, Clock } from "lucide-react";
 
@@ -206,7 +207,14 @@ function BlockView({ block }: { block: Block }) {
     case "image":
       return (
         <figure className={styles.figure}>
-          <img src={b.src} alt={b.alt} className={styles.image} />
+          <Image
+            src={b.src}
+            alt={b.alt ?? ""}
+            width={1200}
+            height={900}
+            sizes="(max-width: 1024px) 100vw, 760px"
+            className={styles.image}
+          />
           {b.caption ? <figcaption className={styles.caption}>{b.caption}</figcaption> : null}
         </figure>
       );
@@ -336,7 +344,15 @@ export default function ArticleBlocks({ post }: { post: StructuredPost }) {
           </div>
         </div>
         {post.hero.image ? (
-          <img src={post.hero.image.src} alt={post.hero.image.alt} className={styles.heroBanner} />
+          <Image
+            src={post.hero.image.src}
+            alt={post.hero.image.alt}
+            width={1200}
+            height={800}
+            sizes="(max-width: 1024px) 100vw, 520px"
+            priority
+            className={styles.heroBanner}
+          />
         ) : (
           <div className={styles.heroGrid}>
             {(post.hero.highlights ?? []).map((h, i) => (
