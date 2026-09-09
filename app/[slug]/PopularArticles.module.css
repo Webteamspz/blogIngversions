@@ -39,10 +39,10 @@
   flex-direction: column;
   transition: transform .3s var(--ease-pop),box-shadow .3s var(--ease-pop),rotate .3s var(--ease-pop)
 }
-.popular-card-link:hover .popular-card {
+@media (min-width:1024px){.popular-card-link:hover .popular-card {
   transform: translateY(-6px) rotate(-1deg);
   box-shadow: var(--shadow-pop-hover)
-}
+}}
 @media (prefers-reduced-motion:reduce) {
   .popular-card {
     transition: none!important
@@ -129,12 +129,12 @@
 .popular-nav svg {
   display: block
 }
-.popular-nav:hover {
+@media (min-width:1024px){.popular-nav:hover {
   background: var(--accent);
   color: #fff;
   transform: translateY(-50%) translate(-2px,-2px);
   box-shadow: 5px 5px 0 0 var(--border)
-}
+}}
 .popular-nav:active {
   transform: translateY(-50%) translate(2px,2px);
   box-shadow: 1px 1px 0 0 var(--border)
@@ -171,9 +171,9 @@
   margin: 0 5px !important;
   transition: background-color .2s ease,border-color .2s ease,transform .2s ease
 }
-.popular-swiper :global(.swiper-pagination-bullet):hover {
+@media (min-width:1024px){.popular-swiper :global(.swiper-pagination-bullet):hover {
   background: var(--tertiary)
-}
+}}
 .popular-swiper :global(.swiper-pagination-bullet-active) {
   background: var(--palette-accent)
 }

@@ -32,9 +32,9 @@
   color: var(--palette-text-primary);
   outline: 0
 }
-.accordionItemHeader:hover {
+@media (min-width:1024px){.accordionItemHeader:hover {
   color: var(--palette-accent)
-}
+}}
 .accordionItem.open .accordionItemHeader {
   color: var(--palette-accent)
 }

@@ -250,12 +250,17 @@ export default async function ArticlePage({
                   return <CodeBlock>{children}</CodeBlock>;
                 },
                 img({ src, alt }) {
-                  const isDiagram = typeof src === "string" && src.startsWith("/diagrams/");
+                  if (typeof src !== "string") return null;
+                  const isDiagram = src.startsWith("/diagrams/");
                   return (
-                    <img
+                    <Image
                       src={src}
-                      alt={alt}
+                      alt={alt ?? ""}
+                      width={isDiagram ? 420 : 1200}
+                      height={isDiagram ? 420 : 800}
+                      sizes={isDiagram ? "420px" : "(max-width: 1024px) 100vw, 760px"}
                       className={isDiagram ? styles["markdown-diagram-img"] : undefined}
+                      style={{ width: "100%", height: "auto" }}
                     />
                   );
                 },
