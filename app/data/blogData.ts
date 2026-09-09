@@ -10,7 +10,7 @@ export const blogData = {
     ],
     cta: {
       label: "Book A Call",
-      href: "https://calendly.com/ingversionsdigital/30min?month=2025-10",
+      href: "https://calendly.com/ingversionsdigital/30min",
     },
   },
 
