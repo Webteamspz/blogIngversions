@@ -18,23 +18,16 @@ interface FaqAccordionItemProps {
 
 const FaqAccordionItem = ({ index, q, a, isOpen, onToggle }: FaqAccordionItemProps) => {
   const bodyRef = useRef<HTMLDivElement>(null);
-  const [maxHeight, setMaxHeight] = useState("0px");
+  const [contentHeight, setContentHeight] = useState(0);
+  const maxHeight = isOpen ? `${contentHeight}px` : "0px";
 
   useEffect(() => {
-    if (bodyRef.current) {
-      setMaxHeight(isOpen ? `${bodyRef.current.scrollHeight}px` : "0px");
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (bodyRef.current && isOpen) {
-        setMaxHeight(`${bodyRef.current.scrollHeight}px`);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
+    const body = bodyRef.current;
+    if (!body) return;
+    const observer = new ResizeObserver(() => setContentHeight(body.scrollHeight));
+    observer.observe(body.firstElementChild as Element);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className={`${styles.accordionItem} ${isOpen ? styles.open : ""}`}>
