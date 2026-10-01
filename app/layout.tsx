@@ -71,14 +71,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${plusJakarta.variable}`}>
       <head>
-        <Script src={`https://www.googletagmanager.com/gtm.js?id=GTM-P5BGX7H7`} strategy="afterInteractive" />
-        <Script id="gtm-init" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-SE8RMZKPRV" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              'gtm.start': new Date().getTime(),
-              event: 'gtm.js'
-            });
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SE8RMZKPRV');
           `}
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
@@ -103,15 +102,6 @@ export default function RootLayout({
             `,
           }}
         />
-
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-P5BGX7H7"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
 
         <ScrollToTop />
 
