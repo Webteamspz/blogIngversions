@@ -66,3 +66,16 @@ export const resolveToc = (post: StructuredPost): TocItem[] => {
   if (post.faq) items.push({ label: post.faq.heading, anchor: post.faq.id });
   return items;
 };
+
+// Home-page card for a structured post; ids continue after the legacy post-40.
+export const toCard = (p: StructuredPost, i: number) => ({
+  id: `post-${41 + i}`,
+  title: p.hero.title,
+  slug: p.slug,
+  excerpt: p.hero.excerpt,
+  author: p.meta.author,
+  date: p.meta.date,
+  readTime: p.meta.readTime,
+  category: p.meta.category,
+  coverImage: p.meta.coverImage,
+});
