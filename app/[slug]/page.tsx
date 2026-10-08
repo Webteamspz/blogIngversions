@@ -14,6 +14,12 @@ import { structuredPosts, getStructuredPost } from "../data/structuredPosts";
 import Mermaid from "../components/Mermaid";
 import CodeBlock from "./CodeBlock";
 
+// "October 7, 2026" -> ISO string; undefined if the date cannot be parsed
+const toIso = (d: string) => {
+  const t = new Date(d);
+  return isNaN(t.getTime()) ? undefined : t.toISOString();
+};
+
 export async function generateStaticParams() {
   const slugs = new Set([
     ...Object.keys(articles),
@@ -117,7 +123,9 @@ export default async function ArticlePage({
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: structured.hero.title,
-      image: [structured.meta.coverImage],
+      description: structured.seo.description,
+      image: [new URL(structured.meta.coverImage, structured.seo.canonical).href],
+      datePublished: toIso(structured.meta.date),
       author: { "@type": "Organization", name: "Ingversions Digital" },
       publisher: {
         "@type": "Organization",
@@ -156,7 +164,7 @@ export default async function ArticlePage({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.title,
-    image: [heroImage],
+    image: [new URL(heroImage, `https://blog.ingversionsdigital.com/${slug}`).href],
     datePublished: isNaN(publishedDate.getTime()) ? undefined : publishedDate.toISOString(),
     author: {
       "@type": "Organization",

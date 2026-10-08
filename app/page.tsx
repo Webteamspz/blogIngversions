@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import BlogClient from "./components/BlogClient/BlogClient";
 
 export const metadata: Metadata = {
-  title: "Blog Page",
+  title: "CRO, A/B Testing & Shopify Development Blog | Ingversions",
   description:
-    "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices. Learn from real case studies and client experiences. Join 2,000+ founders receiving actionable advice.",
+    "Practical insights on conversion rate optimization, A/B testing methodologies, and Shopify development best practices. Learn from real case studies and client experiences.",
   keywords: [
     "CRO",
     "conversion rate optimization",
