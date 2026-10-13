@@ -228,3 +228,7 @@
     font-size: 12px
   }
 }
+.copyright a {
+  color: inherit;
+  text-decoration: underline;
+}
