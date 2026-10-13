@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/privacy",
+        destination: "https://ingversionsdigital.com/privacy-policy",
+        permanent: false,
+      },
+      {
         source: "/blog",
         destination: "/",
         permanent: true,

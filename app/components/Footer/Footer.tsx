@@ -126,7 +126,8 @@ const Footer = () => {
 
         <div className={styles.footerBottomRow}>
           <div className={styles.copyright}>
-            © {f.year} {f.company}. All rights reserved.
+            © {f.year} {f.company}. All rights reserved.{" "}
+            <a href="https://ingversionsdigital.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a>
           </div>
           <div className={styles.footSocials}>
             {f.socials.map((s, i) => {
