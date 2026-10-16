@@ -8,6 +8,7 @@ import styles from "./layout.module.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Consent from "./components/Consent/Consent";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -108,6 +109,7 @@ export default function RootLayout({
         <Header />
         <main className={styles.main}>{children}</main>
         <Footer />
+        <Consent />
       </body>
     </html>
   );
